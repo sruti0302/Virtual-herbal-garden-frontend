@@ -1,0 +1,15 @@
+/* dashboard.css */
+@import "tailwindcss";
+
+.nav-link {
+  @apply flex items-center space-x-2 px-3 py-2 rounded-md cursor-pointer transition-all duration-200;
+}
+
+.nav-link:hover {
+  background-color: #01281e; /* deeper green shade */
+  color: #ffffff;
+}
+
+.feature-card {
+  @apply bg-green-100 p-4 rounded shadow hover:scale-105 transition-transform duration-300 cursor-pointer;
+}
