@@ -14,13 +14,14 @@ function App() {
   return (
     <Router>
       <div className="bg-white text-gray-900 min-h-screen flex flex-col">
-        <Navbar />
+        
 
         <Routes>
           <Route
             path="/"
             element={
               <>
+                <Navbar />
                 <Hero />
                 <CardsSection />
                 <Features />
