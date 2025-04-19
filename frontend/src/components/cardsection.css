@@ -1,0 +1,7 @@
+.plant-modal-card-content{
+    width: 65rem;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 2rem;
+    border: 0;
+}

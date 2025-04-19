@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
+import Footer from './Footer';
+
+
+import skincare from '../assets/health/skincare.png';
+import haircare from '../assets/health/haircare.png';
+import diseases from '../assets/health/diseases.png';
+import nutrition from '../assets/health/nutrition.png';
+import fitness from '../assets/health/fitness.png';
+import mentalhealth from '../assets/health/mentalhealth.png';
 
 
 const categories = [
-    { name: 'Skin Care', imageUrl: '/images/skincare.png', plants: ['Aloe Vera', 'Neem', 'Turmeric', 'Tulsi'] },
-    { name: 'Hair Care', imageUrl: '/images/haircare.png', plants: ['Bhringraj', 'Amla', 'Hibiscus', 'Fenugreek'] },
-    { name: 'Diseases', imageUrl: '/images/diseases.png', plants: ['Ashwagandha', 'Tulsi', 'Ginger'] },
-    { name: 'Nutrition', imageUrl: '/images/nutrition.png', plants: ['Moringa', 'Spinach', 'Broccoli'] },
-    { name: 'Fitness', imageUrl: '/images/fitness.png', plants: ['Wheatgrass', 'Spirulina', 'Ginseng'] },
-    { name: 'Mental Health', imageUrl: '/images/mentalhealth.png', plants: ['Lavender', 'Chamomile', 'Ashwagandha'] },
+    { name: 'Skin Care', imageUrl: skincare, plants: ['Aloe Vera', 'Neem', 'Turmeric', 'Tulsi'] },
+    { name: 'Hair Care', imageUrl: haircare, plants: ['Bhringraj', 'Amla', 'Hibiscus', 'Fenugreek'] },
+    { name: 'Diseases', imageUrl: diseases, plants: ['Ashwagandha', 'Tulsi', 'Ginger'] },
+    { name: 'Nutrition', imageUrl: nutrition, plants: ['Moringa', 'Spinach', 'Broccoli'] },
+    { name: 'Fitness', imageUrl: fitness, plants: ['Wheatgrass', 'Spirulina', 'Ginseng'] },
+    { name: 'Mental Health', imageUrl: mentalhealth, plants: ['Lavender', 'Chamomile', 'Ashwagandha'] },
 ];
 
 const wellnessTips = [
@@ -86,6 +95,7 @@ const HealthWellness = () => {
 
                 {selectedCategory && <Modal category={selectedCategory} closeModal={closeModal} />}
             </div>
+            <Footer/>
         </>
     );
 };
