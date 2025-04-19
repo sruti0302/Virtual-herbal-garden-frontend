@@ -42,7 +42,7 @@ export default function Dashboard() {
               <Leaf size={20} />
               <span>Gardening Tips</span>
             </Link>
-            <Link to="/dashboard/community-forum" className="flex items-center space-x-2 nav-link">
+            <Link to="/community" className="flex items-center space-x-2 nav-link">
               <MessageCircle size={20} />
               <span>Community Forum</span>
             </Link>

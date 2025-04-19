@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import Button from './Button';
 
 const Navbar = () => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
   const links = [
@@ -10,19 +10,17 @@ const Navbar = () => {
     { name: 'Login', path: '/login' },
     { name: 'Health', path: '/health' },
     { name: 'Community', path: '/community' },
-    { name: 'Dashboard', path: '/dashboard' }
+    { name: 'Dashboard', path: '/dashboard' },
   ];
 
   return (
-    <nav className="flex justify-between items-center px-6 py-6 shadow-md bg-white relative">
-      <div className="text-2xl font-bold text-green-700">HerbSphere</div>
+    <nav className="flex justify-between items-center px-6 py-6 border-b-1 border-b-zinc-500  relative">
+      <div className="text-2xl font-bold text-zinc-200">HerbSphere</div>
 
       {/* Desktop menu */}
-      <div className="hidden md:flex gap-6">
+      <div className="hidden md:flex gap-6 text-zinc-200">
         {links.map(({ name, path }) => (
-          <Link key={name} to={path} className="hover:text-green-600 hover:underline">
-            {name}
-          </Link>
+          <Button key={name} text={name} path={path} />
         ))}
       </div>
 
@@ -40,14 +38,17 @@ const Navbar = () => {
       {open && (
         <div className="absolute top-16 left-0 w-full bg-white flex flex-col items-center gap-4 py-4 shadow-md md:hidden z-50">
           {links.map(({ name, path }) => (
-            <Link key={name} to={path} onClick={() => setOpen(false)} className="hover:text-green-600">
-              {name}
-            </Link>
+            <Button
+              key={name}
+              text={name}
+              path={path}
+              onClick={() => setOpen(false)}
+            />
           ))}
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
