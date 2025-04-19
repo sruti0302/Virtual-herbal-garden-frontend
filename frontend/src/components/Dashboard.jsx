@@ -34,11 +34,11 @@ export default function Dashboard() {
               <Leaf size={20} />
               <span>My Herbs</span>
             </Link>
-            <Link to="/dashboard/explore-herbs" className="flex items-center space-x-2 nav-link">
+            <Link to="/" className="flex items-center space-x-2 nav-link">
               <Search size={20} />
               <span>Explore Herbs</span>
             </Link>
-            <Link to="/dashboard/gardening-tips" className="flex items-center space-x-2 nav-link">
+            <Link to="/gardeningtips" className="flex items-center space-x-2 nav-link">
               <Leaf size={20} />
               <span>Gardening Tips</span>
             </Link>

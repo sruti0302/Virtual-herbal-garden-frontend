@@ -9,6 +9,8 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import HealthWellness from './components/HealthWellness';
 import Community from './components/Community';
+import Gardening from './components/Gardening';
+
 
 function App() {
   return (
@@ -33,6 +35,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/health" element={<HealthWellness />} />
+          <Route path="/gardeningtips" element={<Gardening />} />
         </Routes>
       </div>
     </Router>
