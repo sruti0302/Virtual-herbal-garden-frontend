@@ -10,8 +10,8 @@ const Modal = ({ category, closeModal }) => {
     }, []);
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-sm">
-            <div className="fixed inset-0 bg-black bg-opacity-60" onClick={closeModal}></div>
+        <div className="fixed inset-0 flex items-center justify-center bg-opacity-30 z-50 backdrop-blur-sm">
+            <div className="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-60" onClick={closeModal}></div>
 
             <div className="relative bg-white rounded-2xl shadow-xl transform transition-all w-11/12 md:w-1/3 lg:w-1/4 p-8 z-10 animate-fadeIn">
                 <button
