@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
 import Footer from './Footer';
+import Navbar from './Navbar';
 
 
 import skincare from '../assets/health/skincare.png';
@@ -40,6 +41,7 @@ const HealthWellness = () => {
 
     return (
         <>
+        <Navbar/>
             
             <div className="py-8 px-4 text-center pt-36">
                 <h2 className="text-3xl font-bold mb-6 text-main-color">Explore Health & Wellness Categories</h2>
