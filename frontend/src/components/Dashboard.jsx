@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Home,
   Search,
@@ -15,7 +16,7 @@ export default function Dashboard() {
       title: "nklcknscnksskx",
       email: "subhadeep@gmail.com",
       replies: 1,
-    }
+    },
   ]);
 
   return (
@@ -25,26 +26,30 @@ export default function Dashboard() {
         <div>
           <h1 className="text-3xl font-bold mb-10">Ayurherb</h1>
           <nav className="space-y-6">
-            <div className="flex items-center space-x-2 nav-link">
+            <Link to="/" className="flex items-center space-x-2 nav-link">
               <Home size={20} />
               <span>Home</span>
-            </div>
-            <div className="flex items-center space-x-2 nav-link">
+            </Link>
+            <Link to="/dashboard/my-herbs" className="flex items-center space-x-2 nav-link">
               <Leaf size={20} />
               <span>My Herbs</span>
-            </div>
-            <div className="flex items-center space-x-2 nav-link">
+            </Link>
+            <Link to="/dashboard/explore-herbs" className="flex items-center space-x-2 nav-link">
               <Search size={20} />
               <span>Explore Herbs</span>
-            </div>
-            <div className="flex items-center space-x-2 nav-link">
+            </Link>
+            <Link to="/dashboard/gardening-tips" className="flex items-center space-x-2 nav-link">
               <Leaf size={20} />
               <span>Gardening Tips</span>
-            </div>
-            <div className="flex items-center space-x-2 nav-link">
+            </Link>
+            <Link to="/dashboard/community-forum" className="flex items-center space-x-2 nav-link">
               <MessageCircle size={20} />
               <span>Community Forum</span>
-            </div>
+            </Link>
+            <Link to="/health" className="flex items-center space-x-2 nav-link">
+              <MessageCircle size={20} />
+              <span>Health Tips</span>
+            </Link>
           </nav>
         </div>
         <button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded flex items-center justify-center space-x-2">
