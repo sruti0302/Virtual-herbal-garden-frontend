@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Modal from './Modal';
-import Navbar from '../navbar/Navbar';
+
 
 const categories = [
     { name: 'Skin Care', imageUrl: '/images/skincare.png', plants: ['Aloe Vera', 'Neem', 'Turmeric', 'Tulsi'] },
@@ -31,7 +31,7 @@ const HealthWellness = () => {
 
     return (
         <>
-            <Navbar />
+            
             <div className="py-8 px-4 text-center pt-36">
                 <h2 className="text-3xl font-bold mb-6 text-main-color">Explore Health & Wellness Categories</h2>
 
