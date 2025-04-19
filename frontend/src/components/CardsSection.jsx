@@ -60,7 +60,7 @@ function CardsSection() {
         onRequestClose={closeModal}
         contentLabel="Plant Details"
         className="bg-white p-6 rounded shadow-lg max-w-lg mx-auto mt-20"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
+        overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center"
       >
         {selectedCard && (
           <div>
