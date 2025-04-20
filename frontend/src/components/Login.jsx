@@ -18,7 +18,7 @@ function Login() {
 
       <div className="bg-white rounded-3xl shadow-2xl p-12 w-full max-w-xl">
         <h1 className="text-4xl font-extrabold text-center text-green-800 mb-8">
-          Virtual Herbal Garden
+          FloraMed
         </h1>
         <h2 className="text-2xl font-semibold text-center text-green-700 mb-6">
           Login Page
