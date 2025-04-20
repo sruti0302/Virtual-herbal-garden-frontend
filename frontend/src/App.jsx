@@ -11,6 +11,7 @@ import HealthWellness from "./components/HealthWellness";
 import Community from "./components/Community";
 import Herobg from "./assets/Images/Herobg.jpg";
 import BgImg from "./assets/Images/BgImg.jpg";
+import { AnimatePresence, motion } from "framer-motion";
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             element={
               <>
                 <div
-                  className="bg-cover bg-center bg-no-repeat min-h-screen rounded-b-4xl"
+                  className="bg-cover bg-center bg-no-repeat min-h-screen rounded-b-3xl"
                   style={{ backgroundImage: `url(${BgImg})` }}
                 >
                   <Navbar />
