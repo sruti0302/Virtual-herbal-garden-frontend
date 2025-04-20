@@ -1,24 +1,7 @@
 import React, { useState } from 'react';
 import bgImage from '../assets/Images/login-bg.png'; // Adjust path relative to the current file location
 
- main
 function Login() {
-  const [userType, setUserType] = useState("");
-
-  const handleUserTypeChange = (e) => {
-    setUserType(e.target.value);
-  };
-
-  return (
-    <div
-      className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${bgImage})` }}
-    >
-      <h1 className="text-4xl font-bold text-center text-blue-400 drop-shadow mb-8">Login Page</h1>
-
-      <div className="bg-sky-100 bg-opacity-90 p-8 rounded-lg shadow-md w-96">
-
-export default function Login() {
   const [userType, setUserType] = useState('normal');
 
   const handleUserTypeChange = (event) => {
@@ -26,8 +9,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-100 to-green-300 p-6">
-      <div className="bg-white rounded-3xl shadow-2xl p-12 w-full max-w-xl ">
+    <div
+      className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <h1 className="text-4xl font-bold text-center text-blue-400 drop-shadow mb-8">
+        Login Page
+      </h1>
+
+      <div className="bg-white rounded-3xl shadow-2xl p-12 w-full max-w-xl">
         <h1 className="text-4xl font-extrabold text-center text-green-800 mb-8">
           Virtual Herbal Garden
         </h1>
@@ -35,10 +25,11 @@ export default function Login() {
           Login Page
         </h2>
 
- main
         <form className="space-y-6">
           <div>
-            <label className="block text-green-700 font-semibold text-lg mb-3">Select User Type</label>
+            <label className="block text-green-700 font-semibold text-lg mb-3">
+              Select User Type
+            </label>
             <div className="flex items-center space-x-10">
               <label className="inline-flex items-center text-lg">
                 <input
@@ -63,17 +54,11 @@ export default function Login() {
             </div>
           </div>
 
- main
-          {userType === "herbalist" && (
-            <div className="mt-4">
-              <label htmlFor="identityProof" className="block text-lg font-semibold">Upload Identity Proof (DOCX)</label>
-
           {userType === 'herbalist' && (
             <div className="transition-all duration-300 ease-in-out">
               <label className="block text-green-700 font-semibold text-lg mb-3">
                 Upload Identity Proof (DOCX)
               </label>
- main
               <input
                 type="file"
                 accept=".docx"
@@ -82,25 +67,18 @@ export default function Login() {
             </div>
           )}
 
- main
           <div className="mt-6 text-center">
             <button
               type="submit"
-              className="w-full py-2 px-4 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700"
+              className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-xl shadow-lg transition duration-500"
             >
               Submit
             </button>
           </div>
-
-          <button
-            type="submit"
-            className="w-full bg-green-600 hover:bg-green-700 text-white text-lg font-bold py-3 px-6 rounded-xl shadow-lg transition duration-500"
-          >
-            Submit
-          </button>
- main
         </form>
       </div>
     </div>
   );
 }
+
+export default Login;
