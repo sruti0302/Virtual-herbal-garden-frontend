@@ -76,11 +76,8 @@ export default function Dashboard() {
               <Search size={20} />
               {!isCollapsed && <span>Explore Herbs</span>}
             </Link>
-            <Link
-              to="/dashboard/gardening-tips"
-              className="flex items-center space-x-2 nav-link"
-              title="Gardening Tips"
-            >
+            
+            <Link to="/gardeningtips" className="flex items-center space-x-2 nav-link">
               <Leaf size={20} />
               {!isCollapsed && <span>Gardening Tips</span>}
             </Link>
