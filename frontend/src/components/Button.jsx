@@ -1,19 +1,27 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Button = ({ text, path, onClick, className }) => {
+const Button = ({ text, path = '#', onClick, className = '' }) => {
   return (
     <Link
       to={path}
       onClick={onClick}
-      className={`relative px-6 py-3 text-md font-semibold rounded-full bg-opacity-30 backdrop-blur-md border border-white border-opacity-20 transition-transform  duration-300 hover:scale-105  hover:shadow-lg ${className}`}
-      style={{
-        background: 'rgba(255, 255, 255, 0.1)', // Glass morph effect
-        boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)', // Subtle shadow
-      }}
+      className={`
+        relative inline-flex items-center justify-center
+        px-6 py-3 text-base font-medium rounded-full
+        bg-transparent bg-opacity-10 backdrop-blur-md border border-white border-opacity-20
+        text-white overflow-hidden group transform
+        transition-all duration-300 ease-out hover:scale-105
+        ${className}
+      `}
     >
-{/*       <span className="absolute inset-0 bg-gradient-to-r from-green-400 to-green-50 opacity-0 rounded-full transition-opacity duration-300 hover:opacity-45"></span>
- */}      <span className="relative z-10">{text}</span>
+      {/* Hover glow effect */}
+      <span
+        className="absolute inset-0 bg-gradient-to-tr from-green-500 to-lime-300 opacity-0 
+        group-hover:opacity-20 transition duration-300 rounded-full blur-sm"
+      ></span>
+
+      <span className="relative z-10">{text}</span>
     </Link>
   );
 };
