@@ -1,3 +1,5 @@
+// "http://api.mediastack.com/v1/news?access_key=67007e8f546fdd766f133580b559e0f3&categories=health&languages=en&limit=2&countries=in&offset=10"
+
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Home, Search, BookOpen, Sprout, Leaf, MessageCircle, LogOut, Menu } from "lucide-react";
@@ -27,7 +29,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "http://api.mediastack.com/v1/news?access_key=c9908f2c7f13c6de9816c1ca44a8021c&categories=health,science&languages=en&limit=2&countries=in&offset=10"
+          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -105,24 +107,37 @@ export default function Dashboard() {
         {/* News Section */}
         <section className="mt-12 bg-green-200 p-8 rounded-lg shadow-lg">
           <h2 className="text-2xl font-bold mb-4 text-main-color">Latest News</h2>
-          {newsdata?.data?.length > 0 ? (
-            newsdata.data.map((article, index) => (
-              <div key={index} className="mb-4 p-4 bg-white rounded-lg shadow-md">
-                <h3 className="font-semibold text-lg">{article.title}</h3>
-                <p className="text-gray-600">{article.description}</p>
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500"
-                >
-                  Read more
-                </a>
-              </div>
+          <div className="space-y-6">
+          {newsdata?.results?.length > 0 ? (
+            newsdata.results.map((article, index) => (
+              <div
+            key={index}
+            className="flex p-7 bg-white rounded-xl shadow-lg overflow-hidden transition-transform transform hover:scale-[1.02] duration-300"
+          >
+            <img
+              src={article.image_url?article.image_url:"https://mediaengagement.org/wp-content/uploads/2022/12/News-Desert-Web-Tile-1.png"}
+              alt="News"
+              className="w-32 h-32 object-cover"
+            />
+            <div className="p-4">
+              <h3 className="font-semibold text-lg text-green-800 mb-2">
+                {article.title}
+              </h3>
+              <p className="text-gray-700 mb-2">{article.description}</p>
+              <a
+                href={article.link}
+                target="_blank"
+                className="text-blue-600 hover:underline text-sm"
+              >
+                Read more
+              </a>
+            </div>
+          </div>
             ))
           ) : (
             <p>Loading news articles...</p>
           )}
+          </div>
         </section>
       </main>
     </div>
