@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion';
 import Button from './Button';
 
-const Navbar = () => {
+const Navbar = ({ className = '' }) => {
   const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
@@ -13,24 +14,47 @@ const Navbar = () => {
     { name: 'Dashboard', path: '/dashboard' },
   ];
 
+  // Framer Motion variants for staggered animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1, // Stagger each child by 0.2 seconds
+      },
+    },
+  };
+
+  const buttonVariants = {
+    hidden: { opacity: 0, y: -50 }, // Start above the screen
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+  };
+
   return (
-    <nav className="flex justify-between items-center px-6 py-6  relative">
-      <div className="text-2xl font-bold text-zinc-200">HerbSphere</div>
+    <nav className={`flex justify-between items-center px-6 py-6 relative ${className}`}>
+      <div className="text-2xl font-bold">HerbSphere</div>
 
       {/* Desktop menu */}
-      <div className="hidden md:flex gap-6 text-zinc-100">
+      <motion.div
+        className="hidden md:flex gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         {links.map(({ name, path }) => (
-          <Button key={name} text={name} path={path} />
+          <motion.div key={name} variants={buttonVariants}>
+            <Button text={name} path={path} />
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
 
       {/* Mobile menu button */}
       <div className="md:hidden">
         <button
           onClick={() => setOpen(!open)}
-          className="text-2xl focus:outline-none text-white"
+          className="text-2xl focus:outline-none"
         >
-          {open ? '' : '☰'}
+          {open ? '✖' : '☰'}
         </button>
       </div>
 
@@ -52,7 +76,7 @@ const Navbar = () => {
         <div className="flex justify-end p-4">
           <button
             onClick={() => setOpen(false)}
-            className="text-2xl focus:outline-none text-white "
+            className="text-2xl focus:outline-none text-white"
           >
             ✖
           </button>
