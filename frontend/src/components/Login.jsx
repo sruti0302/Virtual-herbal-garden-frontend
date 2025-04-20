@@ -1,18 +1,21 @@
 import React, { useState } from 'react';
+import bgImage from '../assets/Images/login-bg.png'; // Adjust path relative to the current file location
 
 function Login() {
-  const [userType, setUserType] = useState("");  // Track the selected user type
+  const [userType, setUserType] = useState("");
 
   const handleUserTypeChange = (e) => {
-    setUserType(e.target.value);  // Update the user type based on selection
+    setUserType(e.target.value);
   };
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-50">
-      <h1 className="text-4xl font-bold text-center mb-8">Login Page</h1>
+    <div
+      className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
+      style={{ backgroundImage: `url(${bgImage})` }}
+    >
+      <h1 className="text-4xl font-bold text-center text-blue-400 drop-shadow mb-8">Login Page</h1>
 
-      {/* Form for selecting user type */}
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
+      <div className="bg-sky-100 bg-opacity-90 p-8 rounded-lg shadow-md w-96">
         <form className="space-y-6">
           <div className="flex flex-col">
             <label htmlFor="userType" className="text-lg font-semibold">Select User Type</label>
@@ -44,7 +47,6 @@ function Login() {
             </div>
           </div>
 
-          {/* File Upload Input for Herbalist */}
           {userType === "herbalist" && (
             <div className="mt-4">
               <label htmlFor="identityProof" className="block text-lg font-semibold">Upload Identity Proof (DOCX)</label>
@@ -58,7 +60,6 @@ function Login() {
             </div>
           )}
 
-          {/* Submit Button */}
           <div className="mt-6 text-center">
             <button
               type="submit"
