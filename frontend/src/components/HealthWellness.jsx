@@ -60,7 +60,7 @@ const HealthWellness = () => {
                             onClick={() => openModal(category)}
                         >
                             <img className="w-full h-48 object-cover" src={category.imageUrl} alt={category.name} />
-                            <div className="p-4">
+                            <div className="p-4 text-left bg-amber-50">
                                 <h3 className="text-xl pb-2 font-semibold">{category.name}</h3>
                                 <p className="text-sm text-gray-500">
                                     Explore plants and herbs known for their healing and wellness properties.
@@ -76,7 +76,7 @@ const HealthWellness = () => {
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 justify-center max-w-5xl mx-auto">
                         {/* Display All Cards */}
                         {wellnessTips.map((tip, index) => (
-                            <div key={index} className="bg-green-100 p-6 rounded-lg shadow-md max-w-md mx-auto">
+                            <div key={index} className="bg-green-100 text-left p-6 rounded-lg shadow-md max-w-md mx-auto">
                                 <h3 className="text-xl font-semibold text-green-700 mb-2">{tip.title}</h3>
                                 <p className="text-gray-600">{tip.description}</p>
                             </div>
@@ -84,9 +84,9 @@ const HealthWellness = () => {
                     </div>
 
                     {/* Add Call to Action Section with Reduced Text Width */}
-                    <div className="mt-16 bg-green-50 py-8 px-6 rounded-lg shadow-lg max-w-4xl mx-auto text-center">
+                    <div className="mt-16 bg-green-50 py-8 px-6 rounded-lg shadow-lg max-w-4xl mx-auto text-center text-left">
                         <h3 className="text-2xl font-bold text-green-700 mb-4">Take a Step Towards Better Health</h3>
-                        <p className="text-lg text-gray-700 mb-6 max-w-2xl mx-auto">
+                        <p className="text-lg text-gray-700 mb-6 max-w-2xl  text-left">
                             Embrace natural living and enhance your well-being by integrating these herbs and practices into your daily life. Join us in a journey towards a healthier, balanced lifestyle.
                         </p>
                         <button className="py-3 px-6 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-transform transform hover:scale-105">

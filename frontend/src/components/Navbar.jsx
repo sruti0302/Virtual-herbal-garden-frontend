@@ -33,7 +33,7 @@ const Navbar = ({ className = '' }) => {
 
   return (
     <nav className={`flex justify-between items-center px-6 py-6 relative ${className}`}>
-      <div className="text-2xl font-bold">HerbSphere</div>
+      <div className="text-2xl font-bold">FloraMed</div>
 
       {/* Desktop menu */}
       <motion.div
