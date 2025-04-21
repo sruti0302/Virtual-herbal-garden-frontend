@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { delay, motion } from 'framer-motion';
 import Button from './Button';
 
 const Navbar = ({ className = '' }) => {
@@ -20,7 +20,8 @@ const Navbar = ({ className = '' }) => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.1, // Stagger each child by 0.2 seconds
+        staggerChildren: 0.1,
+        delay:0, // Stagger each child by 0.2 seconds
       },
     },
   };
