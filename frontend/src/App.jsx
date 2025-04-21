@@ -66,7 +66,7 @@ function App() {
                   </div>
 
                   <div className="relative z-10">
-                    <Navbar className="text-white" />
+                    <Navbar className="text-" />
                     <Hero />
                   </div>
 
