@@ -11,15 +11,14 @@ function Login() {
   return (
     <div
       className="min-h-screen flex flex-col justify-center items-center bg-cover bg-center"
-      style={{ backgroundImage: `url(${bgImage})` }}
+      style={{ background: `linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.2)), url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
     >
-      <h1 className="text-4xl font-bold text-center text-blue-400 drop-shadow mb-8">
-        Login Page
-      </h1>
+      {/* backgroundImage: `url(${bgImage})` */}
+      {/* background: `linear-gradient(rgba(255,255,255,0.5), rgba(255,255,255,0.5)), url(${bgImage})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'  */}
 
       <div className="bg-white rounded-3xl shadow-2xl p-12 w-full max-w-xl">
         <h1 className="text-4xl font-extrabold text-center text-green-800 mb-8">
-          Virtual Herbal Garden
+          FloraMed
         </h1>
         <h2 className="text-2xl font-semibold text-center text-green-700 mb-6">
           Login Page

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import Card from "../components/Card";
 import Modal from 'react-modal';
 
@@ -88,6 +88,14 @@ const cardsData = [
 function CardsSection() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
+  
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.classList.add('modal-open');
+    } else {
+      document.body.classList.remove('modal-open');
+    }
+  }, [isModalOpen]);
 
   const openModal = (card) => {
     setSelectedCard(card);
@@ -123,6 +131,13 @@ function CardsSection() {
         contentLabel="Plant Details"
         className="bg-white p-6 rounded shadow-lg max-w-6xl mx-auto"
         overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center border-0"
+        style={{
+          overlay: {
+            overflow: 'hidden',
+            zIndex: 9999,
+          },
+          // ...
+        }}
       >
         {selectedCard && (
           <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] overflow-hidden bg-white rounded-lg shadow-lg">
