@@ -2,6 +2,10 @@ import React, { useState,useEffect } from 'react';
 import Card from "../components/Card";
 import Modal from 'react-modal';
 
+import { BsCart2 } from "react-icons/bs";
+
+
+
 const cardsData = [
     {
       image: "https://i.pinimg.com/736x/7b/47/c9/7b47c927867aa549f5603e623f1e4ab1.jpg",
@@ -156,6 +160,11 @@ function CardsSection() {
               <img src="/path-to-leaf1.jpg" alt={selectedCard.title} className="w-1/2 h-48 object-cover rounded" />
               <img src="/path-to-leaf2.jpg" alt={selectedCard.title} className="w-1/2 h-48 object-cover rounded" />
             </div> */}
+            <div className="flex gap-6 place-items-center justify-center mt-10">
+            <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">Buy Now</button>
+            <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"><BsCart2 className='inline font-extrabold'/> &nbsp; Add to cart</button>
+
+            </div>
           </div>
     
           {/* Right Side: Text & Audio */}
