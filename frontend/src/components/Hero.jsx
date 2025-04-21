@@ -45,7 +45,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
             className="bg-transparent border-2 text-white px-6 py-2 text-2xl rounded-md hover:scale-105 transition"
           >
-            <Link to="/login">Login</Link>
+            <Link to="https://administrative-planarian-cloudjam2024-55f1c272.koyeb.app/oauth2/authorization/google">Login</Link>
           </motion.div>
         </div>
       </motion.div>
