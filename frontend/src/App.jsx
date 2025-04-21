@@ -12,7 +12,6 @@ import CardsSection from "./components/CardsSection";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
-import Community from "./components/Community";
 import HealthImg from "./assets/Images/Health.webp";
 
 function App() {
