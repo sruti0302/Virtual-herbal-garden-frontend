@@ -1,24 +1,33 @@
-// pages/AuthCallback.jsx
+// ===== AuthCallback.jsx =====
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
-const AuthCallback = () => {
+function AuthCallback() {
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const token = params.get('token'); // ⬅️ this is how you capture it!
+    const params = new URLSearchParams(location.search);
+    const token = params.get("token");
+    const tempToken = params.get("tempToken");
 
     if (token) {
-      localStorage.setItem('accessToken', token);
-      console.log('✅ Token captured:', token);
-      navigate('/dashboard'); // redirect somewhere after login
+      localStorage.setItem("token", token);
+      navigate("/dashboard");
+    } else if (tempToken) {
+      localStorage.setItem("tempToken", tempToken);
+      navigate(`/login?tempToken=${tempToken}`); // <-- pass token to URL
     } else {
-      console.error('❌ No token found in URL');
+      alert("Login failed. Please try again.");
+      navigate("/");
     }
-  }, [navigate]);
+  }, [location, navigate]);
 
-  return <p>Logging you in...</p>;
-};
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      Logging you in...
+    </div>
+  );
+}
 
 export default AuthCallback;
