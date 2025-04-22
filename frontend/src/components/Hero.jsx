@@ -1,7 +1,16 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
+const GOOGLE_OAUTH_URL = "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/oauth2/authorization/google";
+
 const Hero = () => {
+
+
+  const handleLogin = () => {
+    window.location.href = GOOGLE_OAUTH_URL;
+  };
+
+
   return (
     <section className="flex flex-col md:flex-row mt-[36vh] items-end justify-between px-18 py-16 gap-10">
       {/* Animated Heading */}
@@ -44,8 +53,9 @@ const Hero = () => {
             
             whileTap={{ scale: 0.95 }}
             className="bg-transparent border-2 text-white px-6 py-2 text-2xl rounded-md hover:scale-105 transition"
+            onClick={handleLogin}
           >
-            <Link to="https://administrative-planarian-cloudjam2024-55f1c272.koyeb.app/oauth2/authorization/google">Login</Link>
+            <span>Login</span>
           </motion.div>
         </div>
       </motion.div>

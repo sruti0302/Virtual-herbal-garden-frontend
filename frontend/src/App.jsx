@@ -14,6 +14,8 @@ import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
 import HealthImg from "./assets/Images/Health.webp";
 
+
+
 function App() {
   const videos = [
     "/videos/video1.mp4",
@@ -98,7 +100,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
+          <Route path="/oauth/callback" element={<AuthCallback />} />
           <Route
             path="/health"
             element={
