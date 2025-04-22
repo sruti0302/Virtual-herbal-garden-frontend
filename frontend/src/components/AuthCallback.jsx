@@ -1,3 +1,4 @@
+// ===== AuthCallback.jsx =====
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -12,10 +13,10 @@ function AuthCallback() {
 
     if (token) {
       localStorage.setItem("token", token);
-      navigate("/dashboard"); // redirect to your actual dashboard page
+      navigate("/dashboard");
     } else if (tempToken) {
       localStorage.setItem("tempToken", tempToken);
-      navigate("/login"); // redirect to signup completion
+      navigate(`/login?tempToken=${tempToken}`); // <-- pass token to URL
     } else {
       alert("Login failed. Please try again.");
       navigate("/");
