@@ -131,7 +131,9 @@ function CardsSection({ cartItems, setCartItems }) {
 
   const handleAdd = (index) => {
     const item = cardsData[index];
-    const existingItem = cartItems.find((cartItem) => cartItem.title === item.title);
+    const existingItem = cartItems.find(
+      (cartItem) => cartItem.title === item.title
+    );
 
     if (existingItem) {
       setCartItems(
@@ -148,7 +150,9 @@ function CardsSection({ cartItems, setCartItems }) {
 
   const handleRemove = (index) => {
     const item = cardsData[index];
-    const existingItem = cartItems.find((cartItem) => cartItem.title === item.title);
+    const existingItem = cartItems.find(
+      (cartItem) => cartItem.title === item.title
+    );
 
     if (existingItem && existingItem.count > 1) {
       setCartItems(
@@ -159,7 +163,9 @@ function CardsSection({ cartItems, setCartItems }) {
         )
       );
     } else {
-      setCartItems(cartItems.filter((cartItem) => cartItem.title !== item.title));
+      setCartItems(
+        cartItems.filter((cartItem) => cartItem.title !== item.title)
+      );
     }
   };
 
@@ -175,7 +181,9 @@ function CardsSection({ cartItems, setCartItems }) {
             image={card.image}
             title={card.title}
             type={card.type}
-            count={cartItems.find((item) => item.title === card.title)?.count || 0}
+            count={
+              cartItems.find((item) => item.title === card.title)?.count || 0
+            }
             onAdd={() => handleAdd(index)}
             onRemove={() => handleRemove(index)}
             onBuyNow={() => openModal(card)}
@@ -204,7 +212,12 @@ function CardsSection({ cartItems, setCartItems }) {
                 ></iframe>
               </div>
               <div className="flex gap-6 place-items-center justify-center mt-10">
-                <button className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded">
+                <button
+                  onClick={() => {
+                    navigate("/cart"); // Redirect to the cart page
+                  }}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"
+                >
                   Buy Now
                 </button>
                 <button
