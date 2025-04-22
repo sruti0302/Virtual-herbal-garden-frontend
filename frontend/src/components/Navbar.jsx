@@ -10,7 +10,7 @@ const Navbar = ({ className = '' }) => {
     { name: 'Home', path: '/' },
     { name: 'Login', path: '/login' },
     { name: 'Health', path: '/health' },
-    { name: 'Community', path: '/community' },
+    { name: 'Gardening', path: '/dashboard/gardening-tips' },
     { name: 'Dashboard', path: '/dashboard' },
   ];
 

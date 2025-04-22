@@ -2,15 +2,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion"; // For sliding effect
 import Navbar from "./components/Navbar";
+import AuthCallback from "./components/AuthCallback";
 import Hero from "./components/Hero";
 import Features from "./components/Features";
 import About from "./components/About";
+import Gardening from "./components/Gardening";
 import Footer from "./components/Footer";
 import CardsSection from "./components/CardsSection";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
-import Community from "./components/Community";
 import HealthImg from "./assets/Images/Health.webp";
 
 function App() {
@@ -94,9 +95,10 @@ function App() {
               </>
             }
           />
-          <Route path="/community" element={<Community />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard/gardening-tips" element={<Gardening />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           <Route
             path="/health"
             element={
