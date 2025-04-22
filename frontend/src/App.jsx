@@ -13,6 +13,7 @@ import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
 import HealthImg from "./assets/Images/Health.webp";
+import CartPage from "./components/CartPage";
 
 function App() {
   const videos = [
@@ -21,6 +22,7 @@ function App() {
     "/videos/video3.mp4",
   ]; // Array of video paths
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0); // State to track the current video
+  const [cartItems, setCartItems] = useState([]);
 
   // Automatically transition to the next video every 4 seconds
   useEffect(() => {
@@ -89,7 +91,7 @@ function App() {
                   {/* Optional overlay for better text visibility */}
                   <div className="absolute inset-0  bg-opacity-30"></div>
                 </div>
-                <CardsSection />
+                <CardsSection cartItems={cartItems} setCartItems={setCartItems} />
                 <Features />
                 <Footer />
               </>
@@ -110,6 +112,7 @@ function App() {
               </div>
             }
           />
+          <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
         </Routes>
       </div>
     </Router>
