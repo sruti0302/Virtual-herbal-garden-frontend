@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { delay, motion } from 'framer-motion';
 import Button from './Button';
+import HomeButton from './HomeButton';
 
 const Navbar = ({ className = '' }) => {
   const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
   const links = [
-    { name: 'Home', path: '/' },
-    { name: 'Login', path: '/login' },
     { name: 'Health', path: '/health' },
     { name: 'Gardening', path: '/dashboard/gardening-tips' },
     { name: 'Dashboard', path: '/dashboard' },
@@ -31,7 +30,12 @@ const Navbar = ({ className = '' }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
+
+
+  
+
   return (
+
     <nav className={`flex justify-between items-center px-6 py-6 relative ${className}`}>
       <div className="text-2xl font-bold">FloraMed</div>
 
@@ -42,6 +46,10 @@ const Navbar = ({ className = '' }) => {
         initial="hidden"
         animate="visible"
       >
+        <motion.div key='Home' variants={buttonVariants}>
+            <HomeButton text='Home' path='/' />
+          </motion.div>
+
         {links.map(({ name, path }) => (
           <motion.div key={name} variants={buttonVariants}>
             <Button text={name} path={path} />
