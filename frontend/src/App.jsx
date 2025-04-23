@@ -71,22 +71,24 @@ function App() {
             path="/"
             element={
               <>
+                {/* Video Background */}
                 <div className="relative min-h-screen rounded-b-2xl overflow-hidden">
+                  {/* Video Slider with Sliding Effect */}
                   <div className="absolute top-0 left-0 w-full h-full">
                     <AnimatePresence>
                       <motion.video
-                        key={currentVideoIndex}
+                        key={currentVideoIndex} // Re-render the video when the index changes
                         src={videos[currentVideoIndex]}
                         autoPlay
                         muted
                         loop
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        initial={currentVideoIndex === 0 ? {} : { x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-90%" }}
+                        initial={currentVideoIndex === 0 ? {} : { x: "100%" }} // No animation for the first video
+                        animate={{ x: 0 }} // Slide into view
+                        exit={{ x: "-90%" }} // Slide out to the left
                         transition={{
-                          duration: 1.5,
-                          ease: "easeInOut",
+                          duration: 1.5, // Slower transition (1.5 seconds)
+                          ease: "easeInOut", // Smooth easing function
                         }}
                       />
                     </AnimatePresence>
@@ -97,6 +99,7 @@ function App() {
                     <Hero />
                   </div>
 
+                  {/* Dots for Slider */}
                   <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
                     {videos.map((_, index) => (
                       <button
@@ -111,12 +114,12 @@ function App() {
                     ))}
                   </div>
 
-                  <div className="absolute inset-0 bg-opacity-30"></div>
+                  {/* Optional overlay for better text visibility */}
+                  <div className="absolute inset-0  bg-opacity-30"></div>
                 </div>
                 <CardsSection
                   cartItems={cartItems}
                   setCartItems={setCartItems}
-                  onSave={handleSave} // Pass handleSave to CardsSection
                 />
                 <Features />
                 <Footer />
@@ -138,13 +141,7 @@ function App() {
               </div>
             }
           />
-          <Route
-            path="/cart"
-            element={
-              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
-            }
-          />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
           <Route
             path="/myherbs"
             element={

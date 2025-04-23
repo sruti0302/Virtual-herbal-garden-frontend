@@ -13,6 +13,8 @@ function AuthCallback() {
 
     if (token) {
       localStorage.setItem("token", token);
+      console.log("Token:", token);
+      
       navigate("/dashboard");
     } else if (tempToken) {
       localStorage.setItem("tempToken", tempToken);

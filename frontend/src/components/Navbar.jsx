@@ -1,12 +1,14 @@
-import { useState } from "react";
-import { delay, motion } from "framer-motion";
-import Button from "./Button";
+import { useState } from 'react';
+import { delay, motion } from 'framer-motion';
+import Button from './Button';
+import HomeButton from './HomeButton';
 
-const Navbar = ({ className = "" }) => {
+const Navbar = ({ className = '' }) => {
   const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
   const links = [
+<<<<<<< HEAD
     { name: "Home", path: "/" },
     { name: "Login", path: "/login" },
     { name: "Health", path: "/health" },
@@ -14,6 +16,11 @@ const Navbar = ({ className = "" }) => {
     { name: "Dashboard", path: "/dashboard" },
     { name: "Blog", path: "/blog" }, // New Blog Link
     { name: "My Herbs", path: "/myherbs" }, // Added My Herbs Link
+=======
+    { name: 'Health', path: '/health' },
+    { name: 'Gardening', path: '/dashboard/gardening-tips' },
+    { name: 'Dashboard', path: '/dashboard' },
+>>>>>>> 0eb7cf627efb2be6f368379df5a98019d8dfb5db
   ];
 
   // Framer Motion variants for staggered animation
@@ -23,24 +30,23 @@ const Navbar = ({ className = "" }) => {
       opacity: 1,
       transition: {
         staggerChildren: 0.1,
-        delay: 0, // Stagger each child by 0.2 seconds
+        delay:0, // Stagger each child by 0.2 seconds
       },
     },
   };
 
   const buttonVariants = {
     hidden: { opacity: 0, y: -50 }, // Start above the screen
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
   };
 
+
+
+  
+
   return (
-    <nav
-      className={`flex justify-between items-center px-6 py-6 relative ${className}`}
-    >
+
+    <nav className={`flex justify-between items-center px-6 py-6 relative ${className}`}>
       <div className="text-2xl font-bold">FloraMed</div>
 
       {/* Desktop menu */}
@@ -50,6 +56,10 @@ const Navbar = ({ className = "" }) => {
         initial="hidden"
         animate="visible"
       >
+        <motion.div key='Home' variants={buttonVariants}>
+            <HomeButton text='Home' path='/' />
+          </motion.div>
+
         {links.map(({ name, path }) => (
           <motion.div key={name} variants={buttonVariants}>
             <Button text={name} path={path} />
@@ -63,7 +73,7 @@ const Navbar = ({ className = "" }) => {
           onClick={() => setOpen(!open)}
           className="text-2xl focus:outline-none"
         >
-          {open ? "✖" : "☰"}
+          {open ? '✖' : '☰'}
         </button>
       </div>
 
@@ -78,7 +88,7 @@ const Navbar = ({ className = "" }) => {
       {/* Mobile menu */}
       <div
         className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-transparent to-black text-white transform ${
-          open ? "translate-x-0" : "translate-x-full"
+          open ? 'translate-x-0' : 'translate-x-full'
         } transition-transform duration-300 ease-in-out z-50`}
       >
         {/* Close button inside the menu */}
