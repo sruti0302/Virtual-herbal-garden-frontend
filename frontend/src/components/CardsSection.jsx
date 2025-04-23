@@ -106,7 +106,7 @@ const cardsData = [
   },
 ];
 
-function CardsSection({ cartItems, setCartItems }) {
+function CardsSection({ cartItems, setCartItems, onSave }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const navigate = useNavigate();
@@ -187,6 +187,7 @@ function CardsSection({ cartItems, setCartItems }) {
             onAdd={() => handleAdd(index)}
             onRemove={() => handleRemove(index)}
             onBuyNow={() => openModal(card)}
+            onSave={() => onSave(card)} // Pass the onSave function here
           />
         ))}
       </div>
