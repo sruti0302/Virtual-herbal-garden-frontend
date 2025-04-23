@@ -14,8 +14,8 @@ import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
 import HealthImg from "./assets/Images/Health.webp";
 import CartPage from "./components/CartPage";
-
-
+import BlogPage from "./components/BlogPage";
+import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
 
 function App() {
   const videos = [
@@ -25,6 +25,14 @@ function App() {
   ]; // Array of video paths
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0); // State to track the current video
   const [cartItems, setCartItems] = useState([]);
+  const [savedHerbs, setSavedHerbs] = useState([]);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("savedHerbs");
+    if (saved) {
+      setSavedHerbs(JSON.parse(saved));
+    }
+  }, []);
 
   // Automatically transition to the next video every 4 seconds
   useEffect(() => {
@@ -37,6 +45,22 @@ function App() {
 
   const handleDotClick = (index) => {
     setCurrentVideoIndex(index); // Update the current video index when a dot is clicked
+  };
+
+  const handleSave = (herb) => {
+    if (!savedHerbs.some((saved) => saved.title === herb.title)) {
+      const updatedHerbs = [...savedHerbs, herb];
+      setSavedHerbs(updatedHerbs);
+      localStorage.setItem("savedHerbs", JSON.stringify(updatedHerbs));
+    }
+  };
+
+  const handleRemove = (herb) => {
+    const updatedHerbs = savedHerbs.filter(
+      (saved) => saved.title !== herb.title
+    );
+    setSavedHerbs(updatedHerbs);
+    localStorage.setItem("savedHerbs", JSON.stringify(updatedHerbs)); // Update localStorage
   };
 
   return (
@@ -93,7 +117,10 @@ function App() {
                   {/* Optional overlay for better text visibility */}
                   <div className="absolute inset-0  bg-opacity-30"></div>
                 </div>
-                <CardsSection cartItems={cartItems} setCartItems={setCartItems} />
+                <CardsSection
+                  cartItems={cartItems}
+                  setCartItems={setCartItems}
+                />
                 <Features />
                 <Footer />
               </>
@@ -115,6 +142,12 @@ function App() {
             }
           />
           <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
+          <Route
+            path="/myherbs"
+            element={
+              <MyHerbs savedHerbs={savedHerbs} onRemove={handleRemove} />
+            }
+          />
         </Routes>
       </div>
     </Router>
