@@ -73,42 +73,18 @@ function App() {
               <>
                 <div className="relative min-h-screen rounded-b-2xl overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-full">
-                    <AnimatePresence>
-                      <motion.video
-                        key={currentVideoIndex}
-                        src={videos[currentVideoIndex]}
-                        autoPlay
-                        muted
-                        loop
-                        className="absolute top-0 left-0 w-full h-full object-cover"
-                        initial={currentVideoIndex === 0 ? {} : { x: "100%" }}
-                        animate={{ x: 0 }}
-                        exit={{ x: "-90%" }}
-                        transition={{
-                          duration: 1.5,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    </AnimatePresence>
+                    <motion.video
+                      src="/videos/video2.mp4" // Set video2.mp4 as the source
+                      autoPlay
+                      muted
+                      loop
+                      className="absolute top-0 left-0 w-full h-full object-cover"
+                    />
                   </div>
 
                   <div className="relative z-10">
-                    <Navbar className="text-" />
+                    <Navbar className="text-white" />
                     <Hero />
-                  </div>
-
-                  <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4 z-20">
-                    {videos.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => handleDotClick(index)}
-                        className={`w-3 h-4 rounded-sm ${
-                          currentVideoIndex === index
-                            ? "bg-white"
-                            : "bg-gray-400"
-                        }`}
-                      ></button>
-                    ))}
                   </div>
 
                   <div className="absolute inset-0 bg-opacity-30"></div>
@@ -139,7 +115,12 @@ function App() {
               </div>
             }
           />
-          <Route path="/cart" element={<CartPage cartItems={cartItems} />} />
+          <Route
+            path="/cart"
+            element={
+              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+            }
+          />
           <Route
             path="/myherbs"
             element={
