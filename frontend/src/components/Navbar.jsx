@@ -8,23 +8,12 @@ const Navbar = ({ className = "" }) => {
 
   // Define links with their respective paths
   const links = [
-<<<<<<< HEAD
-    { name: 'Blog', path: '/blog' },
-=======
-<<<<<<< HEAD
-    { name: "Home", path: "/" },
-    { name: "Login", path: "/login" },
+
     { name: "Health", path: "/health" },
     { name: "Gardening", path: "/dashboard/gardening-tips" },
     { name: "Dashboard", path: "/dashboard" },
     { name: "Blog", path: "/blog" }, // New Blog Link
-    { name: "My Herbs", path: "/myherbs" }, // Added My Herbs Link
-=======
->>>>>>> eec85766b466ef805f283a7b31a841640916acd6
-    { name: 'Health', path: '/health' },
-    { name: 'Gardening', path: '/dashboard/gardening-tips' },
-    { name: 'Dashboard', path: '/dashboard' },
->>>>>>> 0eb7cf627efb2be6f368379df5a98019d8dfb5db
+
   ];
 
   // Framer Motion variants for staggered animation

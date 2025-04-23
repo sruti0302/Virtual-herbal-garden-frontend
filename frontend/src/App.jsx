@@ -126,6 +126,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
           <Route path="/oauth/callback" element={<AuthCallback />} />
+          <Route path="/blog" element={<BlogPage />} />
+
           <Route
             path="/health"
             element={
