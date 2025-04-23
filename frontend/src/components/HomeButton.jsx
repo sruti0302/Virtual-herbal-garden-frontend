@@ -1,25 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Button = ({ text, path = '#', onClick, className = '' }) => {
-  const navigate = useNavigate();
-
-  const handleClick = (e) => {
-    const token = localStorage.getItem('token');
-
-    if (!token && path !== '#') {
-      e.preventDefault(); // Stop default navigation
-      alert("Please login first.");
-      return;
-    }
-
-    if (onClick) onClick();
-    if (path !== '#') navigate(path);
-  };
-
+const HomeButton = ({ text, path = '#', onClick, className = '' }) => {
   return (
-    <button
-      onClick={handleClick}
+    <Link
+      to={path}
+      onClick={onClick}
       className={`
         relative inline-flex items-center justify-center
         px-6 py-3 text-base font-medium rounded-full
@@ -36,8 +22,8 @@ const Button = ({ text, path = '#', onClick, className = '' }) => {
       ></span>
 
       <span className="relative z-10">{text}</span>
-    </button>
+    </Link>
   );
 };
 
-export default Button;
+export default HomeButton;
