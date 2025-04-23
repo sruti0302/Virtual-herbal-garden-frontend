@@ -195,14 +195,15 @@ function CardsSection({ cartItems, setCartItems }) {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Plant Details"
-        className="bg-white p-6 rounded shadow-lg max-w-6xl mx-auto"
+        className="bg-white p-4 sm:p-6 rounded shadow-lg max-w-6xl mx-auto"
         overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center border-0"
         style={{ overlay: { overflow: "hidden", zIndex: 9999 } }}
       >
         {selectedCard && (
-          <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] overflow-hidden bg-white rounded-lg shadow-lg">
+          <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] sm:h-[70vh] overflow-hidden bg-white rounded-lg shadow-lg">
+            {/* Left Section */}
             <div className="w-full lg:w-1/2 flex flex-col gap-4 overflow-x-auto lg:overflow-y-auto pr-0 lg:pr-4">
-              <div className="bg-gray-100 h-80 flex items-center justify-center">
+              <div className="bg-gray-100 h-64 sm:h-80 flex items-center justify-center">
                 <iframe
                   title={selectedCard.title}
                   src={selectedCard.modelUrl}
@@ -211,34 +212,50 @@ function CardsSection({ cartItems, setCartItems }) {
                   className="h-full object-contain w-full"
                 ></iframe>
               </div>
-              <div className="flex gap-6 place-items-center justify-center mt-10">
+              <div className="flex flex-col items-center gap-4 mt-6 lg:items-start">
                 <button
                   onClick={() => {
                     navigate("/cart"); // Redirect to the cart page
                   }}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"
+                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 w-full sm:w-auto"
                 >
                   Buy Now
                 </button>
-                <button
-                  onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"
-                >
-                  <BsCart2 className="inline font-extrabold" /> &nbsp; Add to
-                  cart
-                </button>
-                <button
-                  onClick={() => handleRemove(cardsData.indexOf(selectedCard))}
-                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded"
-                >
-                  Remove from cart
-                </button>
+                <div className="flex items-center gap-2 sm:gap-4">
+                  <button
+                    onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
+                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                  >
+                    <BsCart2 className="inline font-extrabold" /> &nbsp; Add to
+                    Cart
+                  </button>
+                  <button
+                    onClick={() =>
+                      handleRemove(cardsData.indexOf(selectedCard))
+                    }
+                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+              <div className="mt-4 text-center">
+                <p className="text-base sm:text-lg font-semibold text-gray-800">
+                  Quantity:{" "}
+                  {cartItems.find((item) => item.title === selectedCard.title)
+                    ?.count || 0}
+                </p>
               </div>
             </div>
 
+            {/* Right Section */}
             <div className="w-full lg:w-1/2 overflow-y-auto p-4 bg-white rounded shadow mt-4 lg:mt-0 h-full">
-              <h1 className="text-3xl font-bold mb-2">{selectedCard.title}</h1>
-              <p className="mb-4 text-gray-700">{selectedCard.description}</p>
+              <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+                {selectedCard.title}
+              </h1>
+              <p className="mb-4 text-sm sm:text-base text-gray-700">
+                {selectedCard.description}
+              </p>
               <p>
                 <span className="font-semibold">Scientific name: </span>{" "}
                 <i>{selectedCard.scientificname}</i>
