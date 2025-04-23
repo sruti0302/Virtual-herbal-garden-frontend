@@ -13,79 +13,79 @@ function CartPage({ cartItems, setCartItems }) {
       .map((item, i) =>
         i === index ? { ...item, count: item.count - 1 } : item
       )
-      .filter((item) => item.count > 0);
+      .filter((item) => item.count > 0); // Remove items with count 0
     setCartItems(updatedCart);
   };
 
   return (
-    <div className="p-8 max-w-7xl mx-auto">
-      <h1 className="text-5xl font-extrabold text-emerald-700 mb-10 text-center">
+    <div className="p-6 max-w-6xl mx-auto">
+      <h1 className="text-4xl font-bold text-green-800 mb-8 text-center">
         Your Cart 🛒
       </h1>
       {cartItems.length === 0 ? (
-        <div className="text-center py-20 bg-gray-100 rounded-xl shadow-inner">
-          <p className="text-xl text-gray-500 mb-6">Your cart is currently empty.</p>
+        <div className="text-center">
+          <p className="text-lg text-gray-600">Your cart is empty.</p>
           <button
             onClick={() => (window.location.href = "/")}
-            className="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-8 py-3 rounded-full shadow-md transition-transform transform hover:scale-105"
+            className="mt-6 bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition"
           >
             Continue Shopping
           </button>
         </div>
       ) : (
-        <div className="bg-white shadow-2xl rounded-3xl p-10">
-          <ul className="divide-y divide-gray-300">
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <ul className="divide-y divide-gray-200">
             {cartItems.map((item, index) => (
               <li
                 key={index}
-                className="flex flex-col md:flex-row md:items-center justify-between py-6 gap-6"
+                className="flex items-center justify-between py-4"
               >
-                <div className="flex items-center gap-6">
+                <div className="flex items-center gap-4">
                   <img
                     src={item.image}
                     alt={item.title}
-                    className="w-24 h-24 md:w-28 md:h-28 object-cover rounded-xl border border-gray-200"
+                    className="w-16 h-16 object-cover rounded-lg shadow"
                   />
                   <div>
-                    <h2 className="text-xl font-semibold text-gray-900">
+                    <h2 className="text-lg font-semibold text-gray-800">
                       {item.title}
                     </h2>
-                    <p className="text-sm text-gray-500 italic">{item.type}</p>
+                    <p className="text-sm text-gray-600">{item.type}</p>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row items-center gap-6">
-                  <div className="flex items-center gap-3">
+                <div className="flex items-center gap-6">
+                  <div className="flex items-center gap-2">
                     <button
                       onClick={() => handleRemove(index)}
-                      className="bg-red-400 hover:bg-red-500 text-white px-3 py-2 rounded-lg transition"
+                      className="bg-red-500 text-white px-2 py-1 rounded"
                     >
                       -
                     </button>
-                    <span className="text-xl font-medium text-gray-800">
+                    <span className="text-lg font-bold text-gray-800">
                       {item.count}
                     </span>
                     <button
                       onClick={() => handleAdd(index)}
-                      className="bg-green-500 hover:bg-green-600 text-white px-3 py-2 rounded-lg transition"
+                      className="bg-green-500 text-white px-2 py-1 rounded"
                     >
                       +
                     </button>
                   </div>
-                  <span className="text-xl font-bold text-emerald-700">
-                    ${(item.count * 10).toFixed(2)}
+                  <span className="text-lg font-semibold text-green-700">
+                    $10.00
                   </span>
                 </div>
               </li>
             ))}
           </ul>
-          <div className="mt-12 flex flex-col sm:flex-row justify-between items-center gap-6">
-            <h2 className="text-3xl font-bold text-gray-900">
+          <div className="mt-8 flex justify-between items-center">
+            <h2 className="text-2xl font-bold text-gray-800">
               Total: $
               {cartItems
                 .reduce((total, item) => total + item.count * 10, 0)
                 .toFixed(2)}
             </h2>
-            <button className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-lg transition-transform transform hover:scale-105">
+            <button className="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition">
               Proceed to Checkout
             </button>
           </div>
