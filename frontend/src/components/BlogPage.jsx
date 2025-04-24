@@ -52,7 +52,7 @@ const BlogPage = () => {
       <div className="absolute top-4 right-4 bg-white shadow-md rounded-full flex items-center p-2">
         <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
         <div className="ml-2">
-          <h2 className="text-sm font-bold">Areesh Zafar</h2>
+          <h2 className="text-sm font-bold">Subha Deep Mishra</h2>
           <p className="text-xs text-gray-600">Kolkata, West Bengal</p>
         </div>
       </div>

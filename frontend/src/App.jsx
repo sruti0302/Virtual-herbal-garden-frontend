@@ -17,6 +17,7 @@ import CartPage from "./components/CartPage";
 import BlogPage from "./components/BlogPage";
 import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
 import AddPlant from "./components/AddPlant";
+import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
 
 function App() {
   const videos = [
@@ -105,6 +106,7 @@ function App() {
           <Route path="/oauth/callback" element={<AuthCallback />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/add-plants" element={<AddPlant />} />
+          <Route path="/my-plants" element={<HerbalistsMyPlants />} />
 
 
           <Route

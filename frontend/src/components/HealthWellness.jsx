@@ -41,7 +41,7 @@ const HealthWellness = () => {
 
     return (
         <>
-        <Navbar className='text-black  '/>
+        <Navbar className='text-white  bg-green-900'/>
             
             <div className="py-8 px-4 text-center pt-36">
                 <h2 className="text-3xl font-bold mb-6 text-main-color">Explore Health & Wellness Categories</h2>
@@ -89,9 +89,7 @@ const HealthWellness = () => {
                         <p className="text-lg text-gray-700 mb-6 max-w-2xl  text-left">
                             Embrace natural living and enhance your well-being by integrating these herbs and practices into your daily life. Join us in a journey towards a healthier, balanced lifestyle.
                         </p>
-                        <button className="py-3 px-6 bg-green-600 text-white font-semibold rounded-lg shadow-md hover:bg-green-700 transition-transform transform hover:scale-105">
-                            Get Started Now
-                        </button>
+                    
                     </div>
                 </div>
 
