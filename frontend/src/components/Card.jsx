@@ -1,16 +1,54 @@
 import React, { useState } from "react";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"; // Import bookmark icons
+import axios from 'axios';
 
-function Card({ image, title, type, onBuyNow, onSave }) {
+
+function Card({ id,image, title, type, onBuyNow, onSave }) {
   const [isSaved, setIsSaved] = useState(false);
 
-  const handleSave = (event) => {
-    event.stopPropagation(); // Prevent the click event from propagating to the parent
-    if (onSave) {
-      setIsSaved(!isSaved);
-      onSave({ image, title, type });
-    } else {
-      console.error("onSave is not defined");
+  const handleSave = async (event) => {
+    event.stopPropagation();
+    const token = localStorage.getItem("token");
+    console.log("Token from localStorage:", token);
+  
+    if (!token) {
+      console.error("No token found. Please log in.");
+      return;
+    }
+  
+    try {
+      if (!isSaved) {
+        // Add bookmark
+        await axios.post(
+          `https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/bookmarks/add/${id}`,
+          {
+            plantId: id
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          }
+        );
+        setIsSaved(true);
+        console.log("Bookmark added successfully");
+      } else {
+        // Remove bookmark
+        await axios.delete(
+          `https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/bookmarks/remove/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json"
+            }
+          }
+        );
+        setIsSaved(false);
+        console.log("Bookmark removed successfully");
+      }
+    } catch (error) {
+      console.error("Bookmark toggle failed:", error);
     }
   };
 

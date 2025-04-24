@@ -99,6 +99,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {cardsData.map((card, index) => (
           <Card
+          id={card.id}
             key={card.id}
             image={card.imageUrl}
             title={card.plantName}
