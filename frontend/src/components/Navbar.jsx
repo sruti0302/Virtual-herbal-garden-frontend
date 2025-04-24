@@ -1,19 +1,17 @@
-import { useState } from 'react';
-import { delay, motion } from 'framer-motion';
-import Button from './Button';
-import HomeButton from './HomeButton';
+import { useState } from "react";
+import { delay, motion } from "framer-motion";
+import Button from "./Button";
+import HomeButton from "./HomeButton";
 
 const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
   const links = [
-
     { name: "Health", path: "/health" },
     { name: "Gardening", path: "/dashboard/gardening-tips" },
     { name: "Dashboard", path: "/dashboard" },
     { name: "Blog", path: "/blog" }, // New Blog Link
-
   ];
 
   // Framer Motion variants for staggered animation
@@ -37,17 +35,10 @@ const Navbar = ({ className = "" }) => {
     },
   };
 
-
-
-  
-
-
-
-  
-
   return (
-
-    <nav className={`flex justify-between items-center px-6 py-6 relative ${className}`}>
+    <nav
+      className={`flex justify-between items-center px-6 py-6 relative ${className}`}
+    >
       <div className="text-2xl font-bold">FloraMed</div>
 
       {/* Desktop menu */}
@@ -57,9 +48,9 @@ const Navbar = ({ className = "" }) => {
         initial="hidden"
         animate="visible"
       >
-        <motion.div key='Home' variants={buttonVariants}>
-            <HomeButton text='Home' path='/' />
-          </motion.div>
+        <motion.div key="Home" variants={buttonVariants}>
+          <HomeButton text="Home" path="/" />
+        </motion.div>
 
         {links.map(({ name, path }) => (
           <motion.div key={name} variants={buttonVariants}>
@@ -72,7 +63,7 @@ const Navbar = ({ className = "" }) => {
       <div className="md:hidden">
         <button
           onClick={() => setOpen(!open)}
-          className="text-2xl focus:outline-none"
+          className="text-3xl  mr-[5vw] font-bold text-white focus:outline-none"
         >
           {open ? "✖" : "☰"}
         </button>
@@ -96,7 +87,7 @@ const Navbar = ({ className = "" }) => {
         <div className="flex justify-end p-4">
           <button
             onClick={() => setOpen(false)}
-            className="text-2xl focus:outline-none text-white"
+            className="text-3xl font-bold mr-[5vw] focus:outline-none text-white"
           >
             ✖
           </button>

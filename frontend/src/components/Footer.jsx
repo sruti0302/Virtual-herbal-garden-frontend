@@ -1,21 +1,20 @@
-
-  import React from 'react'
+import React from "react";
+import { FaMapMarkerAlt, FaEnvelope, FaReact } from "react-icons/fa";
 import {
-  FaMapMarkerAlt,
-  FaEnvelope,
-  FaReact,
-  FaCss3Alt,
-} from 'react-icons/fa'
-import { SiJavascript, SiPostgresql, SiVite } from 'react-icons/si'
+  SiJavascript,
+  SiPostgresql,
+  SiVite,
+  SiTailwindcss,
+} from "react-icons/si";
 
 const Footer = () => {
-    const year = new Date().getFullYear()
+  const year = new Date().getFullYear();
   return (
     <footer className="bg-green-50 text-green-900 px-6 py-10">
       <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3 items-start">
         {/* Logo */}
         <div className="flex flex-col items-start gap-4">
-          <h2 className="text-3xl font-bold text-green-700">ayurherb</h2>
+          <h2 className="text-3xl font-bold text-green-700">FloraMed</h2>
         </div>
 
         {/* Address and email */}
@@ -25,12 +24,12 @@ const Footer = () => {
             <p>
               Techno Main Salt Lake,
               <br />
-              Kolkata, 700068 (West Bengal)
+              Kolkata, 700091 (West Bengal)
             </p>
           </div>
           <div className="flex items-center gap-2">
             <FaEnvelope />
-            <p>ayurherb@gmail.com</p>
+            <p>floramed@gmail.com</p>
           </div>
         </div>
 
@@ -39,10 +38,19 @@ const Footer = () => {
           <p className="font-semibold text-green-800">Technology Stack Used:</p>
           <div className="flex gap-4 text-2xl">
             <FaReact className="text-blue-500" title="React" />
-            <SiJavascript className="text-green-600" title="JavaScript/Node.js" />
-            <SiPostgresql className="text-yellow-500" title="PostgreSQL/Database" />
-            <SiVite className="text-purple-500" title="Vite/VR Icon Placeholder" />
-            <FaCss3Alt className="text-blue-600" title="CSS3" />
+            <SiJavascript
+              className="text-green-600"
+              title="JavaScript/Node.js"
+            />
+            <SiPostgresql
+              className="text-yellow-500"
+              title="PostgreSQL/Database"
+            />
+            <SiVite
+              className="text-purple-500"
+              title="Vite/VR Icon Placeholder"
+            />
+            <SiTailwindcss className="text-blue-400" title="TailwindCSS" />
           </div>
         </div>
       </div>
@@ -52,11 +60,11 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <p className="text-center text-sm">
-        © Copyright {year} <span className="font-semibold">AyurHerb</span> – All Rights Reserved.
-        Designed and Developed by Team AyurHerb
+        © Copyright {year} <span className="font-semibold">FloraMed</span> – All
+        Rights Reserved. Designed and Developed by Team FloraMed
       </p>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
