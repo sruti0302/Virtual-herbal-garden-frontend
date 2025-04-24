@@ -3,10 +3,15 @@ import { Link } from "react-router-dom";
 import { Home, Search, BookOpen, Sprout, Leaf, MessageCircle, LogOut, Menu } from "lucide-react";
 import "./dashboard.css";
 
+
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [newsdata, setNewsdata] = useState(null);
+  const[userData,setUserData]=useState(null);
+  const [loading, setLoading] = useState(true);
+  const [newsLoading, setNewsLoading] = useState(false);
+  
 
   // Collapse sidebar by default on mobile
   useEffect(() => {
@@ -29,6 +34,7 @@ export default function Dashboard() {
       if (!token) {
         console.warn("No token found in localStorage");
         setUser("User");
+        setLoading(false);
         return;
       }
   
@@ -47,6 +53,8 @@ export default function Dashboard() {
   
         const data = await response.json();
         setUser(data.name);
+        setUserData(data);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching user profile:", error);
         setUser("User");
@@ -61,13 +69,14 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
+          // "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         const data = await response.json();
         setNewsdata(data);
+        setNewsLoading(false);
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -75,6 +84,9 @@ export default function Dashboard() {
 
     fetchNews();
   }, []);
+
+  if (loading || newsLoading) return <div className="text-center mt-10">Loading...</div>;
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
@@ -84,16 +96,19 @@ export default function Dashboard() {
           <button onClick={() => setIsCollapsed(!isCollapsed)} className="mb-6 text-white focus:outline-none">
             <Menu size={24} />
           </button>
-          {!isCollapsed && <h1 className="text-3xl font-bold mb-10">Ayurherb</h1>}
+          {!isCollapsed && <h1 className="text-3xl font-bold mb-10">FloraMed</h1>}
 
           {/* Navigation */}
           <nav className="space-y-6">
             <Link to="/" className="flex items-center space-x-2 nav-link" title="Home"><Home size={20} />{!isCollapsed && <span>Home</span>}</Link>
-            <Link to="/dashboard/my-herbs" className="flex items-center space-x-2 nav-link" title="My Herbs"><Sprout size={20} />{!isCollapsed && <span>My Herbs</span>}</Link>
-            <Link to="/dashboard/explore-herbs" className="flex items-center space-x-2 nav-link" title="Explore Herbs"><Search size={20} />{!isCollapsed && <span>Explore Herbs</span>}</Link>
+            <Link to="/myherbs" className="flex items-center space-x-2 nav-link" title="My Herbs"><Sprout size={20} />{!isCollapsed && <span>My Herbs</span>}</Link>
             <Link to="/dashboard/gardening-tips" className="flex items-center space-x-2 nav-link" title="Gardening Tips"><Leaf size={20} />{!isCollapsed && <span>Gardening Tips</span>}</Link>
-            <Link to="/community" className="flex items-center space-x-2 nav-link" title="Community Forum"><MessageCircle size={20} />{!isCollapsed && <span>Community Forum</span>}</Link>
             <Link to="/health" className="flex items-center space-x-2 nav-link" title="Health Tips"><MessageCircle size={20} />{!isCollapsed && <span>Health Tips</span>}</Link>
+            <Link to="/add-plants" className="flex items-center space-x-2 nav-link" title="Health Tips"><Sprout size={20} />{!isCollapsed && <span>Add Plants</span>}</Link>
+
+            {(userData && userData.role=="HERBALIST") ? (<Link to="/my-plants" className="flex items-center space-x-2 nav-link" title="Health Tips"><Sprout size={20} />{!isCollapsed && <span>My Plants</span>}</Link>): (<div></div>)}
+
+
           </nav>
         </div>
 

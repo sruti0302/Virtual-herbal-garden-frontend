@@ -12,10 +12,12 @@ import CardsSection from "./components/CardsSection";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
-import HealthImg from "./assets/Images/Health.webp";
+import HealthImg from "./assets/health/healthybg.jpeg";
 import CartPage from "./components/CartPage";
 import BlogPage from "./components/BlogPage";
 import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
+import AddPlant from "./components/AddPlant";
+import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
 
 function App() {
   const videos = [
@@ -82,28 +84,43 @@ function App() {
                     />
                   </div>
 
+                  {/* Navbar and Hero Section */}
                   <div className="relative z-10">
                     <Navbar className="text-white" />
                     <Hero />
                   </div>
 
-                  <div className="absolute inset-0 bg-opacity-30"></div>
+                  {/* Overlay for better readability */}
+                  <div className="absolute inset-0  bg-opacity-30"></div>
                 </div>
-                <CardsSection
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-                <Features />
+
+                {/* Cards Section */}
+                <div className="px-4 sm:px-6 lg:px-8">
+                  <CardsSection
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                  />
+                </div>
+
+                {/* Features Section */}
+                <div className="px-4 sm:px-6 lg:px-8">
+                  <Features />
+                </div>
+
+                {/* Footer */}
                 <Footer />
               </>
             }
           />
+
+          {/* Other Routes */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
           <Route path="/oauth/callback" element={<AuthCallback />} />
           <Route path="/blog" element={<BlogPage />} />
-
+          <Route path="/add-plants" element={<AddPlant />} />
+          <Route path="/my-plants" element={<HerbalistsMyPlants />} />
           <Route
             path="/health"
             element={
