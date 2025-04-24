@@ -16,6 +16,7 @@ import HealthImg from "./assets/Images/Health.webp";
 import CartPage from "./components/CartPage";
 import BlogPage from "./components/BlogPage";
 import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
+import AddPlant from "./components/AddPlant";
 
 function App() {
   const videos = [
@@ -103,6 +104,8 @@ function App() {
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
           <Route path="/oauth/callback" element={<AuthCallback />} />
           <Route path="/blog" element={<BlogPage />} />
+          <Route path="/add-plants" element={<AddPlant />} />
+
 
           <Route
             path="/health"

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Home, Search, BookOpen, Sprout, Leaf, MessageCircle, LogOut, Menu } from "lucide-react";
 import "./dashboard.css";
 
+
 export default function Dashboard() {
   const [user, setUser] = useState(null);
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -89,11 +90,12 @@ export default function Dashboard() {
           {/* Navigation */}
           <nav className="space-y-6">
             <Link to="/" className="flex items-center space-x-2 nav-link" title="Home"><Home size={20} />{!isCollapsed && <span>Home</span>}</Link>
-            <Link to="/dashboard/my-herbs" className="flex items-center space-x-2 nav-link" title="My Herbs"><Sprout size={20} />{!isCollapsed && <span>My Herbs</span>}</Link>
+            <Link to="/myherbs" className="flex items-center space-x-2 nav-link" title="My Herbs"><Sprout size={20} />{!isCollapsed && <span>My Herbs</span>}</Link>
             <Link to="/dashboard/explore-herbs" className="flex items-center space-x-2 nav-link" title="Explore Herbs"><Search size={20} />{!isCollapsed && <span>Explore Herbs</span>}</Link>
             <Link to="/dashboard/gardening-tips" className="flex items-center space-x-2 nav-link" title="Gardening Tips"><Leaf size={20} />{!isCollapsed && <span>Gardening Tips</span>}</Link>
             <Link to="/community" className="flex items-center space-x-2 nav-link" title="Community Forum"><MessageCircle size={20} />{!isCollapsed && <span>Community Forum</span>}</Link>
             <Link to="/health" className="flex items-center space-x-2 nav-link" title="Health Tips"><MessageCircle size={20} />{!isCollapsed && <span>Health Tips</span>}</Link>
+            <Link to="/add-plants" className="flex items-center space-x-2 nav-link" title="Health Tips"><MessageCircle size={20} />{!isCollapsed && <span>Add Plants</span>}</Link>
           </nav>
         </div>
 
