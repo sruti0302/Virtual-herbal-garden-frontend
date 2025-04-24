@@ -12,7 +12,7 @@ import CardsSection from "./components/CardsSection";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
-import HealthImg from "./assets/Images/Health.webp";
+import HealthImg from "./assets/health/healthybg.jpeg";
 import CartPage from "./components/CartPage";
 import BlogPage from "./components/BlogPage";
 import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
