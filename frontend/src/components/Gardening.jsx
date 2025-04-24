@@ -73,7 +73,7 @@ const Gardening = () => {
   return (
     <>
 
-    <Navbar className="bg-gradient-to-r from-lime-400 to-green-800"/>
+    <Navbar className="bg-gradient-to-l from-green-400 to-green-800"/>
 
     <div className="min-h-screen bg-white p-4 md:p-8">
       
