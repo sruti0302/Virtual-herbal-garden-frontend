@@ -208,7 +208,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
       {cartItems.length > 0 && (
         <div
-          className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
+          className="fixed bottom-8 left-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
           onClick={() => navigate("/cart")}
         >
           <BsCart2 size={24} />
