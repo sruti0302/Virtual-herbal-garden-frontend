@@ -144,9 +144,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
                 </button>
                 <div className="flex items-center gap-2 sm:gap-4">
                   <button
-                    onClick={() =>
-                      handleAdd(cardsData.indexOf(selectedCard))
-                    }
+                    onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
                     className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
                   >
                     <BsCart2 className="inline font-extrabold" /> &nbsp; Add to
@@ -166,7 +164,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
                 <p className="text-base sm:text-lg font-semibold text-gray-800">
                   Quantity:{" "}
                   {cartItems.find(
-                    (item) => item.plantname === selectedCard.plantName
+                    (item) => item.plantname === selectedCard?.plantname
                   )?.count || 0}
                 </p>
               </div>
@@ -196,7 +194,10 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
                 {selectedCard.uses}
               </p>
               <audio controls className="mb-4 w-full">
-                <source src={selectedCard.voiceDescriptionUrl} type="audio/mpeg" />
+                <source
+                  src={selectedCard.voiceDescriptionUrl}
+                  type="audio/mpeg"
+                />
                 Your browser does not support the audio element.
               </audio>
             </div>
@@ -204,15 +205,17 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         )}
       </Modal>
 
-      <div
-        className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
-        onClick={() => navigate("/cart")}
-      >
-        <BsCart2 size={24} />
-        <span className="ml-2 text-lg font-bold">
-          {cartItems.reduce((total, item) => total + item.count, 0)}
-        </span>
-      </div>
+      {cartItems.length > 0 && (
+        <div
+          className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
+          onClick={() => navigate("/cart")}
+        >
+          <BsCart2 size={24} />
+          <span className="ml-2 text-lg font-bold">
+            {cartItems.reduce((total, item) => total + item.count, 0)}
+          </span>
+        </div>
+      )}
     </section>
   );
 }
