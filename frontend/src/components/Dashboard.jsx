@@ -10,7 +10,7 @@ export default function Dashboard() {
   const [newsdata, setNewsdata] = useState(null);
   const[userData,setUserData]=useState(null);
   const [loading, setLoading] = useState(true);
-  const [newsLoading, setNewsLoading] = useState(true);
+  const [newsLoading, setNewsLoading] = useState(false);
   
 
   // Collapse sidebar by default on mobile
@@ -69,7 +69,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
+          // "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

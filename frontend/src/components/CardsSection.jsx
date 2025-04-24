@@ -99,6 +99,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {cardsData.map((card, index) => (
           <Card
+          id={card.id}
             key={card.id}
             image={card.imageUrl}
             title={card.plantName}
@@ -203,6 +204,14 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
           </div>
         )}
       </Modal>
+
+      <div
+        className="fixed bottom-8 left-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
+        
+      >
+        <BsCart2 size={24} />
+        
+      </div>
 
       <div
         className="fixed bottom-8 right-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
