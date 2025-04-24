@@ -10,6 +10,38 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const navigate = useNavigate();
+  const [bookmarkedIds, setBookmarkedIds] = useState([]);
+
+
+
+
+  useEffect(() => {
+    const fetchBookmarks = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      try {
+        const response = await axios.get(
+          "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/bookmarks/my",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        const bookmarks = response.data;
+        const ids = bookmarks.map((b) => b.plant.id);
+        setBookmarkedIds(ids);
+      } catch (error) {
+        console.error("Failed to fetch bookmarks:", error);
+      }
+    };
+
+    fetchBookmarks();
+  }, []);
+
+
 
   // Fetch plant data from API
   useEffect(() => {
@@ -112,6 +144,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
             onRemove={() => handleRemove(index)}
             onBuyNow={() => openModal(card)}
             onSave={() => onSave(card)}
+            isInitiallyBookmarked={bookmarkedIds.includes(card.id)}
           />
         ))}
       </div>

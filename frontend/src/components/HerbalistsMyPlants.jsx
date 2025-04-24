@@ -47,6 +47,10 @@ const HerbalistsMyPlants = () => {
   return (
     <>
       <Navbar className="bg-green-900 text-white" />
+      <div className="min-h-screen">
+      <h2 className="text-3xl font-bold text-center text-green-800 mb-10 mt-10">
+        Your Added Plants 🌱
+      </h2>
       <div className="p-6">
         {cardsData.length === 0 ? (
           <div className="text-center mt-10 text-gray-600 text-lg">
@@ -129,6 +133,7 @@ const HerbalistsMyPlants = () => {
           </div>
         )}
       </Modal>
+      </div>
 
       <Footer />
     </>
