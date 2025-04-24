@@ -5,7 +5,9 @@ import {
   SiPostgresql,
   SiVite,
   SiTailwindcss,
+  SiFramer,
 } from "react-icons/si";
+import { FaIcons } from "react-icons/fa";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -51,6 +53,8 @@ const Footer = () => {
               title="Vite/VR Icon Placeholder"
             />
             <SiTailwindcss className="text-blue-400" title="TailwindCSS" />
+            <SiFramer className="text-pink-500" title="Framer Motion" />
+            <FaIcons className="text-gray-600" title="React Icons" />
           </div>
         </div>
       </div>
