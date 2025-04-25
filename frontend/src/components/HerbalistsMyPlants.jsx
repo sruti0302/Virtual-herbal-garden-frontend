@@ -46,7 +46,7 @@ const HerbalistsMyPlants = () => {
 
   return (
     <>
-      <Navbar className="bg-green-900 text-white" />
+      <Navbar className='text-green-900  bg-gradient-to-r from-green-300 to-green-600'/>
       <div className="min-h-screen">
       <h2 className="text-3xl font-bold text-center text-green-800 mb-10 mt-10">
         Your Added Plants 🌱
