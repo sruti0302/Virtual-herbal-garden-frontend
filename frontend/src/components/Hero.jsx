@@ -59,7 +59,7 @@ const Hero = () => {
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
         <h1
-          className="text-4xl md:text-6xl font-semibold leading-tight text-zinc-200"
+          className="text-4xl md:text-6xl font-semibold leading-tight text-zinc-200 text-shadow-lg text-shadow-gray-900"
           style={{ fontFamily: "'Poppins', sans-serif" }}
         >
           Embrace Nature, Embrace Wellness
@@ -74,7 +74,7 @@ const Hero = () => {
       >
         {/* Animated Subtext */}
         <motion.p
-          className="text-gray-100 text-center md:text-right text-base md:text-xl font-medium"
+          className="text-gray-100 text-center md:text-right text-base md:text-xl font-medium text-shadow-lg text-shadow-gray-900"
           style={{ fontFamily: "'Poppins', sans-serif" }}
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
