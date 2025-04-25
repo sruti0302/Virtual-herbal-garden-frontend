@@ -1,59 +1,116 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { User } from "lucide-react"; // if you're using lucide
+import { User } from "lucide-react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 const DoctorCard = ({ doctor }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+
+  const handleBooking = () => {
+    if (selectedDate) {
+      setIsModalOpen(false);
+      setBookingConfirmed(true);
+      setTimeout(() => setBookingConfirmed(false), 3000);
+    }
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3, ease: "easeOut" }}
-      className="bg-[#f4f9f4] border border-[#cde0c3] rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 items-center"
-    >
-      {/* Doctor Profile Icon */}
+    <>
       <motion.div
-        whileHover={{ scale: 1.1 }}
-        transition={{ type: "spring", stiffness: 200 }}
-        className="w-24 h-24 rounded-full bg-green-100 border-2 border-green-300 flex items-center justify-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        className="bg-[#f4f9f4] border border-[#cde0c3] rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 items-center"
       >
-        <User className="w-10 h-10 text-green-700" />
-      </motion.div>
+        {/* Profile icon */}
+        <motion.div
+          whileHover={{ scale: 1.1 }}
+          transition={{ type: "spring", stiffness: 200 }}
+          className="w-24 h-24 rounded-full bg-green-100 border-2 border-green-300 flex items-center justify-center"
+        >
+          <User className="w-10 h-10 text-green-700" />
+        </motion.div>
 
-      {/* Doctor Info */}
-      <div className="flex-1">
-        <div className="flex items-center gap-2 mb-2">
-          <h2 className="text-xl font-bold text-green-800">{doctor.name}</h2>
-          <span className="text-green-600 font-bold text-sm">🌿 {doctor.rating}</span>
-        </div>
-        <p className="text-green-700">{doctor.qualification}</p>
-        <p className="text-emerald-700 font-semibold mt-1">{doctor.experience} Years Experience</p>
-        <p className="text-green-600 mt-1 text-sm">📍 {doctor.location}</p>
+        {/* Info */}
+        <div className="flex-1">
+          <div className="flex items-center gap-2 mb-2">
+            <h2 className="text-xl font-bold text-green-800">{doctor.name}</h2>
+            <span className="text-green-600 font-bold text-sm">
+              🌿 {doctor.rating}
+            </span>
+          </div>
+          <p className="text-green-700">{doctor.qualification}</p>
+          <p className="text-emerald-700 font-semibold mt-1">
+            {doctor.experience} Years Experience
+          </p>
+          <p className="text-green-600 mt-1 text-sm">📍 {doctor.location}</p>
 
-        <div className="mt-4">
-          <p className="font-semibold mb-1 text-green-800">Specialities</p>
-          <div className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
-            {doctor.speciality}
+          <div className="mt-4">
+            <p className="font-semibold mb-1 text-green-800">Specialities</p>
+            <div className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+              {doctor.speciality}
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Action Buttons */}
-      <div className="flex flex-col gap-3">
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
-        >
-          Book Ayurvedic Appointment
-        </motion.button>
-        <motion.button
-          whileTap={{ scale: 0.95 }}
-          className="bg-amber-500 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition"
-        >
-          Call 📞 {doctor.contact}
-        </motion.button>
-      </div>
-    </motion.div>
+        {/* Action */}
+        <div className="flex flex-col gap-3">
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={() => setIsModalOpen(true)}
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+          >
+            Book Ayurvedic Appointment
+          </motion.button>
+          <button className="text-green-800 font-semibold border border-green-300 px-3 py-1 rounded-md hover:bg-green-50 transition">
+            ₹ {doctor.price}
+          </button>
+        </div>
+      </motion.div>
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50">
+          <div className="bg-white rounded-xl p-6 w-96 shadow-lg">
+            <h2 className="text-xl font-bold text-green-800 mb-4">
+              Select Appointment Date
+            </h2>
+            <DatePicker
+              selected={selectedDate}
+              onChange={(date) => setSelectedDate(date)}
+              minDate={new Date()}
+              placeholderText="Click to select a date"
+              className="border border-green-300 p-2 w-full rounded-md mb-4"
+            />
+            <div className="flex justify-end gap-3">
+              <button
+                className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+                onClick={handleBooking}
+              >
+                Confirm Appointment
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Booking Success Toast */}
+      {bookingConfirmed && (
+        <div className="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg z-50">
+          Your appointment has been booked ✅
+        </div>
+      )}
+    </>
   );
 };
 

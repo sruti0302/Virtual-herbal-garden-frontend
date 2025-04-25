@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DoctorCard from "./DoctorCard";
+import Footer from "./Footer";
 
 const DoctorPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +14,7 @@ const DoctorPage = () => {
       location: "A-12, Green Park, New Delhi",
       speciality: "Heart & Lifestyle Disorders - Ayurvedic Therapies",
       contact: "9988-123-456",
+      price: 799,
     },
     {
       name: "Dr. Ravi Shankar",
@@ -22,6 +24,7 @@ const DoctorPage = () => {
       location: "No. 45, MG Road, Bengaluru",
       speciality: "Panchakarma & Detox Therapies",
       contact: "7890-456-123",
+      price: 999,
     },
     {
       name: "Dr. Meena Joshi",
@@ -31,6 +34,7 @@ const DoctorPage = () => {
       location: "Sector 17, Vashi, Navi Mumbai",
       speciality: "Skin & Digestive Disorders - Ayurvedic Solutions",
       contact: "9123-654-321",
+      price: 799,
     },
     {
       name: "Dr. Arvind Chauhan",
@@ -40,6 +44,7 @@ const DoctorPage = () => {
       location: "Saket, New Delhi",
       speciality: "Cancer Care & Immunity Boosting via Ayurveda",
       contact: "7000-889-111",
+      price: 1199,
     },
     {
       name: "Dr. Ritu Verma",
@@ -49,6 +54,7 @@ const DoctorPage = () => {
       location: "Koregaon Park, Pune",
       speciality: "Women's Health & Hormonal Imbalance (Ayurvedic Gynaecology)",
       contact: "8333-222-111",
+      price: 599,
     },
     {
       name: "Dr. Harsh Vardhan",
@@ -58,8 +64,10 @@ const DoctorPage = () => {
       location: "Banjara Hills, Hyderabad",
       speciality: "Joint Pain, Arthritis, and Lifestyle Disorders",
       contact: "9444-888-777",
+      price: 799,
     },
   ];
+  
 
   const filteredDoctors = doctors.filter((doctor) =>
     `${doctor.name} ${doctor.speciality}`
@@ -110,6 +118,7 @@ const DoctorPage = () => {
           </p>
         )}
       </div>
+      
     </div>
   );
 };
