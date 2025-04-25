@@ -161,81 +161,85 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Plant Details"
-        className="bg-white p-4 sm:p-6 rounded shadow-lg max-w-6xl mx-auto"
-        overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center border-0"
-        style={{ overlay: { overflow: "hidden", zIndex: 9999 } }}
+        className="bg-white rounded-2xl p-6 max-w-6xl w-full mx-auto shadow-2xl overflow-hidden"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50"
       >
         {selectedCard && (
-          <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] sm:h-[70vh] overflow-hidden bg-white rounded-lg ">
-            <div className="w-full lg:w-1/2 flex flex-col gap-4 overflow-x-auto lg:overflow-y-auto pr-0 lg:pr-4">
-              <div className="bg-gray-100 h-64 sm:h-80 flex items-center justify-center">
+          <div className="flex flex-col lg:flex-row gap-8 overflow-hidden h-[80vh] p-3">
+            {/* Left Side - Image and Actions */}
+            <div className="flex-1 flex flex-col gap-6">
+              <div className="bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center h-72 sm:h-96">
                 <iframe
                   title={selectedCard.plantName}
                   src={selectedCard.image3DUrl}
                   frameBorder="0"
                   allow="autoplay; fullscreen; vr"
-                  className="h-full object-contain w-full"
+                  className="h-full w-full object-contain"
                 ></iframe>
               </div>
-              <div className="flex flex-col items-center gap-4 mt-6 lg:items-start">
+
+              <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
                 <button
                   onClick={() => navigate("/cart")}
-                  className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg shadow-md transition-transform transform hover:scale-105 w-full sm:w-auto"
+                  className="w-full sm:flex-1 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
                 >
                   Buy Now
                 </button>
-                <div className="flex items-center gap-2 sm:gap-4">
-                  <button
-                    onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
-                    className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
-                  >
-                    <BsCart2 className="inline font-extrabold" /> &nbsp; Add to
-                    Cart
-                  </button>
-                  <button
-                    onClick={() =>
-                      handleRemove(cardsData.indexOf(selectedCard))
-                    }
-                    className="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-3 sm:px-4 rounded-lg shadow-md transition-transform transform hover:scale-105"
-                  >
-                    Remove
-                  </button>
-                </div>
+
+                <button
+                  onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
+                  className="w-full sm:flex-1 border-2 border-blue-500 text-blue-500 hover:bg-blue-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
+                >
+                  <BsCart2 className="inline mr-2" />
+                  Add to Cart
+                </button>
+
+                <button
+                  onClick={() => handleRemove(cardsData.indexOf(selectedCard))}
+                  className="w-full sm:flex-1 border-2 border-red-500 text-red-500 hover:bg-red-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
+                >
+                  Remove
+                </button>
               </div>
-              <div className="mt-4 text-center">
-                <p className="text-base sm:text-lg font-semibold text-gray-800">
-                  Quantity:{" "}
-                  {cartItems.find(
-                    (item) => item.plantname === selectedCard?.plantname
-                  )?.count || 0}
-                </p>
+
+              <div className="text-center font-semibold text-gray-700 text-lg">
+                Quantity:{" "}
+                {cartItems.find(
+                  (item) => item.plantname === selectedCard?.plantname
+                )?.count || 0}
               </div>
             </div>
 
-            <div className="w-full lg:w-1/2 overflow-y-auto p-4 bg-white rounded shadow mt-4 lg:mt-0 h-full">
-              <h1 className="text-2xl sm:text-3xl font-bold mb-2">
+            {/* Right Side - Details */}
+            <div className="flex-1 overflow-y-auto px-4 sm:px-2 pr-2">
+              <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-green-800">
                 {selectedCard.plantName}
               </h1>
-              <p className="mb-4 text-sm sm:text-base text-gray-700">
+
+              <p className="text-gray-700 mb-6 text-base sm:text-lg">
                 {selectedCard.description}
               </p>
-              <p>
-                <span className="font-semibold">Scientific name: </span>{" "}
-                <i>{selectedCard.scientificName}</i>
-              </p>
-              <p>
-                <span className="font-semibold">Region:</span>{" "}
-                {selectedCard.region}
-              </p>
-              <p>
-                <span className="font-semibold">Type:</span>{" "}
-                {selectedCard.plantType}
-              </p>
-              <p className="mb-4">
-                <span className="font-semibold">Medicinal uses:</span>{" "}
-                {selectedCard.uses}
-              </p>
-              <audio controls className="mb-4 w-full">
+
+              <div className="space-y-3 text-gray-800 text-sm sm:text-base">
+                <p>
+                  <span className="font-semibold">Scientific Name:</span>{" "}
+                  <i>{selectedCard.scientificName}</i>
+                </p>
+                <p>
+                  <span className="font-semibold">Region:</span>{" "}
+                  {selectedCard.region}
+                </p>
+                <p>
+                  <span className="font-semibold">Type:</span>{" "}
+                  {selectedCard.plantType}
+                </p>
+                <p>
+                  <span className="font-semibold">Medicinal Uses:</span>{" "}
+                  {selectedCard.uses}
+                </p>
+              </div>
+
+              <audio controls className="w-full mt-6 rounded-lg">
                 <source
                   src={selectedCard.voiceDescriptionUrl}
                   type="audio/mpeg"
@@ -245,7 +249,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
               <button
                 onClick={closeModal}
-                className="mt-8 w-full py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
+                className="mt-8 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold w-full py-3 rounded-xl shadow-sm transition-transform transform hover:scale-105 active:scale-95"
               >
                 Close
               </button>
