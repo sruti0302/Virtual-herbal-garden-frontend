@@ -18,6 +18,7 @@ import BlogPage from "./components/BlogPage";
 import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
 import AddPlant from "./components/AddPlant";
 import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
+import Subscription from "./components/Subscription";
 
 function App() {
   const videos = [
@@ -130,6 +131,7 @@ function App() {
               <MyHerbs />
             }
           />
+          <Route path="/our-plans" element={<Subscription />} />
         </Routes>
       </div>
     </Router>
