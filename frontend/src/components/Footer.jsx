@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaEnvelope, FaReact } from "react-icons/fa";
 import {
   SiJavascript,
@@ -56,6 +57,7 @@ const Footer = () => {
             <SiFramer className="text-pink-500" title="Framer Motion" />
             <FaIcons className="text-gray-600" title="React Icons" />
           </div>
+          <Link to="/about" className="text-green-700 hover:text-green-900">About Us</Link>
         </div>
       </div>
 

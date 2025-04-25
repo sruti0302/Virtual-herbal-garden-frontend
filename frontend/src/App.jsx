@@ -120,16 +120,16 @@ function App() {
 
 
           <Route
-            path="/health"
-            element={
-              <div
-                className="bg-cover bg-center bg-no-repeat min-h-screen rounded-b-2xl"
-                style={{ backgroundImage: `url(${HealthImg})` }}
-              >
-                <HealthWellness />
-              </div>
-            }
-          />
+  path="/health"
+  element={
+    <div
+      className="min-h-screen rounded-b-2xl bg-gradient-to-r from-green-100 to-white"
+    >
+      <HealthWellness />
+    </div>
+  }
+/>
+
           <Route
             path="/cart"
             element={
@@ -143,6 +143,7 @@ function App() {
             }
           />
           <Route path="/doctors" element={<DoctorsPage />} />
+          <Route path="/about" element={<About/>} />
         </Routes>
       </div>
     </Router>

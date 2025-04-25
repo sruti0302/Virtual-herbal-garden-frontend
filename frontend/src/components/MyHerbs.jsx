@@ -81,7 +81,7 @@ const MyHerbs = () => {
 
   return (
     <>
-    <Navbar className="text-whitebg-gradient-to-l from-green-800 to-green-500"/>
+    <Navbar className='text-green-900  bg-gradient-to-r from-green-300 to-green-600'/>
     <div className="min-h-screen">
     <h2 className="text-3xl font-bold text-center text-green-800 mb-10 mt-10">
         Your Bookmarks 🌱
