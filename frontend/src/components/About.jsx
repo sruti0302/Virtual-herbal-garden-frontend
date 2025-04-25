@@ -64,7 +64,7 @@ const teamMembers = [
     ],
   },
   {
-    name: "Subhadeep Mishra",
+    name: "Subha Deep Mishra",
     role: "Frontend & API Manager",
     tech: [
       <FaReact title="React" className="text-sky-500" />,
@@ -81,10 +81,11 @@ const teamMembers = [
       <FaFileAlt title="Documentation" className="text-blue-600" />,
       <FaFigma title="Figma" className="text-violet-600" />,
       <SiAdobephotoshop title="Photoshop" className="text-blue-800" />,
+      <FaGithub title="GitHub" className="text-black" />,
     ],
   },
   {
-    name: "Suhodeep",
+    name: "Subhodeep Saha",
     role: "Business Analyst",
     tech: [
       <FaBusinessTime title="Business Analyst" className="text-amber-600" />,
@@ -92,7 +93,7 @@ const teamMembers = [
     ],
   },
   {
-    name: "Subhojit",
+    name: "Subhajit Mondal",
     role: "Content Writer",
     tech: [
       <FaPenNib title="Content Writing" className="text-purple-700" />,
