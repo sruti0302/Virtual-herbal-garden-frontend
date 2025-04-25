@@ -41,6 +41,7 @@ const teamMembers = [
       <FaHtml5 title="HTML5" className="text-orange-500" />,
       <FaCss3Alt title="CSS3" className="text-blue-600" />,
       <SiFramer title="Framer Motion" className="text-violet-600" />,
+      <FaGithub title="GitHub" className="text-black" />,
       <img
         src="https://assets.codepen.io/16327/internal/avatars/users/default.png?fit=crop&format=auto&height=256&version=1697554632&width=256"
         alt="GSAP"
@@ -59,6 +60,7 @@ const teamMembers = [
       <SiSupabase title="Supabase" className="text-emerald-500" />,
       <SiKoyeb title="Koyeb" className="text-purple-500" />,
       <SiDocker title="Docker" className="text-blue-500" />,
+      <FaGithub title="GitHub" className="text-black" />,
     ],
   },
   {
@@ -69,6 +71,7 @@ const teamMembers = [
       <FaCss3Alt title="CSS3" className="text-blue-600" />,
       <SiPostman title="Postman" className="text-orange-500" />,
       <FaNodeJs title="Node.js" className="text-green-600" />,
+      <FaGithub title="GitHub" className="text-black" />,
     ],
   },
   {
@@ -85,8 +88,7 @@ const teamMembers = [
     role: "Business Analyst",
     tech: [
       <FaBusinessTime title="Business Analyst" className="text-amber-600" />,
-      <FaGithub title="GitHub" className="text-black" />,
-      <FaNodeJs title="Node.js" className="text-green-600" />,
+
     ],
   },
   {
@@ -94,7 +96,6 @@ const teamMembers = [
     role: "Content Writer",
     tech: [
       <FaPenNib title="Content Writing" className="text-purple-700" />,
-      <FaPython title="Python" className="text-blue-500" />,
       <FaFileAlt title="Documentation" className="text-blue-600" />,
     ],
   },
@@ -103,10 +104,10 @@ const teamMembers = [
 export default function AboutUs() {
   return (
     <>
-      <Navbar className="text-white  bg-gradient-to-l   from-green-900 to-green-600" />
-      <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <Navbar className='text-green-900  bg-gradient-to-r from-green-300 to-green-600'/>
+      <div className="min-h-screen bg-gradient-to-b from-white to-green-100 py-10 px-4">
         <h1 className="text-4xl font-bold text-center mb-12 text-green-700">
-          About Our Team
+          About Our Team 
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -121,7 +122,7 @@ export default function AboutUs() {
               rest: {},
               hover: {
                 transition: {
-                  staggerChildren: 0.07,
+                  staggerChildren: 0.04,
                   delayChildren: 0.1,
                 },
               },
