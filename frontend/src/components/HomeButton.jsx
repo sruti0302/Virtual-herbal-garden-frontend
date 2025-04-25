@@ -8,7 +8,7 @@ const HomeButton = ({ text, path = '#', onClick, className = '' }) => {
       onClick={onClick}
       className={`
         relative inline-flex items-center justify-center
-        px-6 py-3 text-base font-medium rounded-full
+        px-6 py-3 text-base font-bold rounded-full
         bg-transparent bg-opacity-10 backdrop-blur-md border border-white border-opacity-20
         text-white overflow-hidden group transform
         transition-all duration-300 ease-out hover:scale-105
