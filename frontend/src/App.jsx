@@ -20,6 +20,10 @@ import AddPlant from "./components/AddPlant";
 import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
 import Subscription from "./components/Subscription";
 import DoctorsPage from "./components/DoctorsPage";
+import Orders from "./components/Orders";
+import Success from "./components/Success";
+
+
 
 
 function App() {
@@ -62,7 +66,7 @@ function App() {
             path="/"
             element={
               <>
-                <div className="relative min-h-screen rounded-b-2xl overflow-hidden">
+                <div className="relative min-h-screen overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-full">
                     <motion.video
                       src="/videos/video2.mp4" // Set video2.mp4 as the source
@@ -111,6 +115,10 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/add-plants" element={<AddPlant />} />
           <Route path="/my-plants" element={<HerbalistsMyPlants />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/payment-success" element={<Success />} />
+
+
           <Route
   path="/health"
   element={

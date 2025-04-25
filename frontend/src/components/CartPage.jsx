@@ -1,6 +1,13 @@
 import React from "react";
+import { useNavigate } from 'react-router-dom';
+
 
 function CartPage({ cartItems, setCartItems }) {
+    const navigate = useNavigate();
+    const handleClick = (e) => {
+     
+      navigate('/orders');
+    };
   const handleAdd = (index) => {
     const updatedCart = cartItems.map((item, i) =>
       i === index ? { ...item, count: item.count + 1 } : item
@@ -85,7 +92,7 @@ function CartPage({ cartItems, setCartItems }) {
                 .reduce((total, item) => total + item.count * 10, 0)
                 .toFixed(2)}
             </h2>
-            <button className="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition">
+            <button onClick={handleClick} className="bg-green-600 text-white px-6 py-3 rounded-lg shadow hover:bg-green-700 transition">
               Proceed to Checkout
             </button>
           </div>
