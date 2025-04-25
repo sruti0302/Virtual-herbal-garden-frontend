@@ -13,7 +13,8 @@ const Navbar = ({ className = "" }) => {
     { name: "Gardening", path: "/dashboard/gardening-tips" },
     { name: "Dashboard", path: "/dashboard" },
     { name: "Blog", path: "/blog" },
-    {name:"Our Plans", path:"/our-plans"} // New Blog Link
+    {name:"Our Plans", path:"/our-plans"},
+    {name:"Book an appointment", path:"/doctors"} // New Blog Link
   ];
 
   // Framer Motion variants for staggered animation
