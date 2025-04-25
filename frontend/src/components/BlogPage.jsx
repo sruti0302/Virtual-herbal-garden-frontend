@@ -49,14 +49,15 @@ const BlogPage = () => {
     
 
     if (!formData.title || !formData.content) return;
+    
+    const blogTitle=formData.title;
+    const blogContent=formData.content;
+    const addblogdata={title:blogTitle,content:blogContent}
 
     try {
       await axios.post(
         "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/blogs/add",
-        {
-          title: formData.title,
-          content: formData.content,
-        },
+        addblogdata,
         {
           headers: {
             "Content-Type": "application/json",
