@@ -1,10 +1,24 @@
 import { motion } from "framer-motion";
+import { useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 
 const GOOGLE_OAUTH_URL =
   "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/oauth2/authorization/google";
 
+
+
+
 const Hero = () => {
+
+  const [loggenedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setLoggedIn(true);
+    }
+  }, []);
+
   const handleLogin = () => {
     window.location.href = GOOGLE_OAUTH_URL;
   };
@@ -45,13 +59,18 @@ const Hero = () => {
         </motion.p>
 
         {/* Login Button */}
-        <motion.div
-          whileTap={{ scale: 0.95 }}
-          className="bg-green-600 text-white px-4 py-2 text-lg md:text-2xl rounded-md hover:bg-green-700 hover:scale-105 transition"
-          onClick={handleLogin}
-        >
-          <span>Login</span>
-        </motion.div>
+        {loggenedIn ? (
+  <motion.div
+    whileTap={{ scale: 0.95 }}
+    className="bg-green-600 text-white px-4 py-2 text-lg md:text-2xl rounded-md hover:bg-green-700 hover:scale-105 transition"
+    onClick={handleLogin}
+  >
+    Login
+  </motion.div>
+) : null}
+        
+
+        
       </motion.div>
     </section>
   );

@@ -3,6 +3,9 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Navbar from './Navbar';
+import Footer from './Footer';
+
 
 const AddPlant = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -52,9 +55,11 @@ const AddPlant = () => {
   if (userRole !== 'HERBALIST') return <div className="text-center mt-10 text-red-500">Access Denied: Only herbalists can add plants.</div>;
 
   return (
+    <>
+    <Navbar className='text-white bg-green-900'/>
     <div className="w-[100%] mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <ToastContainer />
-      <h2 className="text-4xl font-bold mb-6 text-center">Add a New Plant</h2>
+      <h2 className="text-4xl font-bold mb-6 text-center">Add a New Plant 🌱</h2>
       <form onSubmit={handleSubmit(onSubmit)} className="grid gap-2 w-[100%]">
         {[
           { label: 'Name', name: 'plantName', required: true },
@@ -97,6 +102,8 @@ const AddPlant = () => {
         </button>
       </form>
     </div>
+    <Footer/>
+    </>
   );
 };
 
