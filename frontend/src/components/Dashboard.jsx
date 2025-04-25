@@ -69,7 +69,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
+          // "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -105,6 +105,7 @@ export default function Dashboard() {
             <Link to="/dashboard/gardening-tips" className="flex items-center space-x-2 nav-link" title="Gardening Tips"><Leaf size={20} />{!isCollapsed && <span>Gardening Tips</span>}</Link>
             <Link to="/health" className="flex items-center space-x-2 nav-link" title="Health Tips"><MessageCircle size={20} />{!isCollapsed && <span>Health Tips</span>}</Link>
             <Link to="/add-plants" className="flex items-center space-x-2 nav-link" title="Health Tips"><Sprout size={20} />{!isCollapsed && <span>Add Plants</span>}</Link>
+            <Link to="/doctors" className="flex items-center space-x-2 nav-link" title="Health Tips"><Sprout size={20} />{!isCollapsed && <span>Book an Appointment</span>}</Link>
 
             {(userData && userData.role=="HERBALIST") ? (<Link to="/my-plants" className="flex items-center space-x-2 nav-link" title="Health Tips"><Sprout size={20} />{!isCollapsed && <span>My Plants</span>}</Link>): (<div></div>)}
 

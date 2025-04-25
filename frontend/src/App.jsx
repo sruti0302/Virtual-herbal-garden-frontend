@@ -21,6 +21,7 @@ import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
 import Subscription from "./components/Subscription";
 import DoctorsPage from "./components/DoctorsPage";
 
+
 function App() {
   const videos = [
     "/videos/video1.mp4",
@@ -96,6 +97,7 @@ function App() {
                 </div>
 
                 {/* Footer */}
+                <Subscription/>
                 <Footer />
               </>
             }
@@ -132,7 +134,6 @@ function App() {
               <MyHerbs />
             }
           />
-          <Route path="/our-plans" element={<Subscription />} />
           <Route path="/doctors" element={<DoctorsPage />} />
         </Routes>
       </div>
