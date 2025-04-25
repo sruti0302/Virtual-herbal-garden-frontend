@@ -157,9 +157,15 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center border-0"
         style={{ overlay: { overflow: "hidden", zIndex: 9999 } }}
       >
+
+
         {selectedCard && (
-          <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] sm:h-[70vh] overflow-hidden bg-white rounded-lg shadow-lg">
+          <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] sm:h-[70vh] overflow-hidden bg-white rounded-lg ">
+
+
+
             <div className="w-full lg:w-1/2 flex flex-col gap-4 overflow-x-auto lg:overflow-y-auto pr-0 lg:pr-4">
+
               <div className="bg-gray-100 h-64 sm:h-80 flex items-center justify-center">
                 <iframe
                   title={selectedCard.plantName}
@@ -234,6 +240,13 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
                 />
                 Your browser does not support the audio element.
               </audio>
+
+              <button
+                    onClick={closeModal}
+                    className="mt-8 w-full py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
+                >
+                    Close
+                </button>
             </div>
           </div>
         )}

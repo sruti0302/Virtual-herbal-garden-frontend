@@ -40,7 +40,7 @@ const Navbar = ({ className = "" }) => {
     <nav
       className={`flex justify-between items-center px-6 py-6 relative ${className}`}
     >
-      <div className="text-2xl font-bold">FloraMed</div>
+      <div className="text-3xl font-bold">FloraMed</div>
 
       {/* Desktop menu */}
       <motion.div

@@ -13,10 +13,36 @@ const Hero = () => {
   const [loggenedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setLoggedIn(true);
-    }
+    const fetchUserData = async () => {
+      const token = localStorage.getItem("token"); // or whatever key you're using
+      if (!token) {
+        console.warn("No token found in localStorage");
+        setLoggedIn(false)
+        return;
+      }
+  
+      try {
+        const response = await fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/api/user/profile", {
+          method: "GET",
+          headers: {
+            "Accept": "application/json",
+            "Authorization": `Bearer ${token}`,
+          },
+        });
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+  
+        const data = await response.json();
+        data?(setLoggedIn(true)):(setLoggedIn(false));
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+        setUser("User");
+      }
+    };
+  
+    fetchUserData();
   }, []);
 
   const handleLogin = () => {
@@ -59,7 +85,7 @@ const Hero = () => {
         </motion.p>
 
         {/* Login Button */}
-        {loggenedIn ? (
+        {!loggenedIn ? (
   <motion.div
     whileTap={{ scale: 0.95 }}
     className="bg-green-600 text-white px-4 py-2 text-lg md:text-2xl rounded-md hover:bg-green-700 hover:scale-105 transition"
