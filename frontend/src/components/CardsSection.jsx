@@ -162,7 +162,8 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         onRequestClose={closeModal}
         contentLabel="Plant Details"
         className="bg-white rounded-2xl p-6 max-w-6xl w-full mx-auto shadow-2xl overflow-hidden"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex items-center justify-center z-50"
+        overlayClassName="fixed inset-0 backdrop-blur-md flex items-center justify-center z-50"
+
       >
         {selectedCard && (
           <div className="flex flex-col lg:flex-row gap-8 overflow-hidden h-[80vh] p-3">
