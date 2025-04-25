@@ -4,6 +4,8 @@ import Footer from "./Footer";
 
 const DoctorPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
+
 
   const doctors = [
     {
@@ -67,59 +69,76 @@ const DoctorPage = () => {
       price: 799,
     },
   ];
+
+  const filteredDoctors = doctors.filter((doctor) => {
+    const matchesSearch = `${doctor.name} ${doctor.speciality}`
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+  
+    const matchesCity = selectedCity
+      ? doctor.location.toLowerCase().includes(selectedCity.toLowerCase())
+      : true;
+  
+    return matchesSearch && matchesCity;
+  });
   
 
-  const filteredDoctors = doctors.filter((doctor) =>
-    `${doctor.name} ${doctor.speciality}`
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
-  );
-
   return (
-    <div className="min-h-screen bg-[#f9fdf9] py-10 px-4">
-      {/* Header */}
-      <div className="text-center mb-10">
-        <h1 className="text-3xl font-bold text-green-800 mb-2">
-          🌿 Healing Through Ayurveda
-        </h1>
-        <p className="text-green-600 text-lg">
-          Discover natural care from certified Ayurvedic doctors
-        </p>
-      </div>
-
-      {/* Search Section */}
-      <div className="flex flex-col md:flex-row justify-center gap-4 mb-10">
-        <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-80">
-          <span className="text-green-600 mr-2">📍</span>
-          <select className="flex-1 bg-transparent outline-none text-green-800">
-            <option>Select City</option>
-          </select>
-        </div>
-        <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-96">
-          <input
-            type="text"
-            placeholder="Search By Doctor Name or Disease"
-            className="flex-1 bg-transparent outline-none text-green-800 placeholder-green-500"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-        </div>
-      </div>
-
-      {/* Doctor Cards List */}
-      <div className="grid gap-6 max-w-4xl mx-auto">
-        {filteredDoctors.length > 0 ? (
-          filteredDoctors.map((doctor, index) => (
-            <DoctorCard key={index} doctor={doctor} />
-          ))
-        ) : (
-          <p className="text-center text-green-700">
-            No doctors found matching your search.
+    <>
+      <div className="min-h-screen bg-[#f9fdf9] py-10 px-4">
+        {/* Header */}
+        <div className="text-center mb-10">
+          <h1 className="text-3xl font-bold text-green-800 mb-2">
+            🌿 Healing Through Ayurveda
+          </h1>
+          <p className="text-green-600 text-lg">
+            Discover natural care from certified Ayurvedic doctors
           </p>
-        )}
+        </div>
+
+        {/* Search Section */}
+        <div className="flex flex-col md:flex-row justify-center gap-4 mb-10">
+          <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-80">
+            <span className="text-green-600 mr-2">📍</span>
+            <select
+              className="flex-1 bg-transparent outline-none text-green-800"
+              value={selectedCity}
+              onChange={(e) => setSelectedCity(e.target.value)}
+            >
+              <option value="">Select City</option>
+              <option value="New Delhi">New Delhi</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Navi Mumbai">Navi Mumbai</option>
+              <option value="Pune">Pune</option>
+              <option value="Hyderabad">Hyderabad</option>
+            </select>
+          </div>
+          <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-96">
+            <input
+              type="text"
+              placeholder="Search By Doctor Name or Disease"
+              className="flex-1 bg-transparent outline-none text-green-800 placeholder-green-500"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* Doctor Cards List */}
+        <div className="grid gap-6 max-w-4xl mx-auto">
+          {filteredDoctors.length > 0 ? (
+            filteredDoctors.map((doctor, index) => (
+              <DoctorCard key={index} doctor={doctor} />
+            ))
+          ) : (
+            <p className="text-center text-green-700">
+              No doctors found matching your search.
+            </p>
+          )}
+        </div>
       </div>
-      
-    </div>
+      <Footer />
+    </>
   );
 };
 
