@@ -135,6 +135,7 @@ function App() {
             }
           />
           <Route path="/doctors" element={<DoctorsPage />} />
+          <Route path="/about" element={<About/>} />
         </Routes>
       </div>
     </Router>
