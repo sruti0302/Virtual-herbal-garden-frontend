@@ -11,9 +11,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [selectedCard, setSelectedCard] = useState(null);
   const navigate = useNavigate();
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
-
-
-
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchBookmarks = async () => {
@@ -40,8 +38,6 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
     fetchBookmarks();
   }, []);
-
-
 
   // Fetch plant data from API
   useEffect(() => {
@@ -122,16 +118,28 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       );
     }
   };
-
+  const filteredCards = cardsData.filter((card) =>
+    card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   return (
     <section className="py-12 px-6 bg-green-50 relative">
       <h2 className="text-3xl font-bold text-center text-green-800 mb-10">
         Our Herbal Picks 🌱
       </h2>
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          placeholder="Search plants..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {cardsData.map((card, index) => (
+        {filteredCards.map((card, index) => (
           <Card
-          id={card.id}
+            id={card.id}
             key={card.id}
             image={card.imageUrl}
             title={card.plantName}
@@ -157,15 +165,9 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         overlayClassName="fixed inset-0 backdrop-filter backdrop-blur-md bg-opacity-50 flex justify-center items-center border-0"
         style={{ overlay: { overflow: "hidden", zIndex: 9999 } }}
       >
-
-
         {selectedCard && (
           <div className="flex flex-col lg:flex-row p-4 w-full max-w-5xl h-[80vh] sm:h-[70vh] overflow-hidden bg-white rounded-lg ">
-
-
-
             <div className="w-full lg:w-1/2 flex flex-col gap-4 overflow-x-auto lg:overflow-y-auto pr-0 lg:pr-4">
-
               <div className="bg-gray-100 h-64 sm:h-80 flex items-center justify-center">
                 <iframe
                   title={selectedCard.plantName}
@@ -242,11 +244,11 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
               </audio>
 
               <button
-                    onClick={closeModal}
-                    className="mt-8 w-full py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
-                >
-                    Close
-                </button>
+                onClick={closeModal}
+                className="mt-8 w-full py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 transition-transform transform hover:scale-105"
+              >
+                Close
+              </button>
             </div>
           </div>
         )}
