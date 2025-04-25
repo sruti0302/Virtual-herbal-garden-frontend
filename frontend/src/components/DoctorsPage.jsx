@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DoctorCard from "./DoctorCard";
 import Footer from "./Footer";
+import Navbar from "./Navbar";
 
 const DoctorPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -85,6 +86,7 @@ const DoctorPage = () => {
 
   return (
     <>
+    <Navbar className="bg-gradient-to-l from-green-800 to-green-500 text-white"/>
       <div className="min-h-screen bg-[#f9fdf9] py-10 px-4">
         {/* Header */}
         <div className="text-center mb-10">
