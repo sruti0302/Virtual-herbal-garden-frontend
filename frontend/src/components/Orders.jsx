@@ -30,19 +30,29 @@ const Orders = () => {
     const order = await createOrder();
 
     const options = {
-      key: import.meta.env.VITE_RAZORPAY_KEY,
-      amount: order.amount,
-      currency: "INR",
-      name: "Your Business Name",
-      description: "Test Order",
-      order_id: order.razorpayOrderId,
-      callback_url: "https://changing-edeline-koyebdeployacc1-dbef7306.koyeb.app/paymentCallback",
-      prefill: {
-        name: order.name,
-        email: order.email
-      },
-      theme: { color: "#339900" }
-    };
+        key: import.meta.env.VITE_RAZORPAY_KEY,
+        amount: order.amount,
+        currency: "INR",
+        name: "Your Business Name",
+        description: "Test Order",
+        order_id: order.razorpayOrderId,
+        handler: function (response) {
+          // ✅ This is the right place to handle post-payment success
+          fetch("https://your-backend.com/paymentCallback", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response)
+          }).then(() => {
+            // ✅ Now you can redirect the user yourself
+            window.location.href = "http://localhost:5173/payment-success";
+          });
+        },
+        prefill: {
+          name: order.name,
+          email: order.email
+        },
+        theme: { color: "#339900" }
+      };
 
     const rzp = new window.Razorpay(options);
     rzp.open();
