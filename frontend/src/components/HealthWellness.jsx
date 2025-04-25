@@ -41,7 +41,7 @@ const HealthWellness = () => {
 
     return (
         <>
-        <Navbar className='text-white  bg-gradient-to-l from-green-400 to-green-900'/>
+        <Navbar className='text-white  bg-gradient-to-l from-green-800 to-green-500'/>
             
             <div className="py-8 px-4 text-center pt-36">
                 <h2 className="text-3xl font-bold mb-6 text-main-color">Explore Health & Wellness Categories</h2>
