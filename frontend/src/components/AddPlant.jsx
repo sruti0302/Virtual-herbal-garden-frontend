@@ -56,7 +56,7 @@ const AddPlant = () => {
 
   return (
     <>
-    <Navbar className='text-white bg-green-900'/>
+    <Navbar className='text-white bg-gradient-to-l from-green-800 to-green-500'/>
     <div className="w-[100%] mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
       <ToastContainer />
       <h2 className="text-4xl font-bold mb-6 text-center">Add a New Plant 🌱</h2>
