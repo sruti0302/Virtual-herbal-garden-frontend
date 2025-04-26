@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion"; // For sliding effect
+import { motion } from "framer-motion"; 
+import Loader from "./components/Loader"; // Import the loader
 import Navbar from "./components/Navbar";
 import AuthCallback from "./components/AuthCallback";
 import Hero from "./components/Hero";
@@ -12,10 +13,9 @@ import CardsSection from "./components/CardsSection";
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import HealthWellness from "./components/HealthWellness";
-import HealthImg from "./assets/health/healthybg.jpeg";
 import CartPage from "./components/CartPage";
 import BlogPage from "./components/BlogPage";
-import MyHerbs from "./components/MyHerbs"; // Import MyHerbs page
+import MyHerbs from "./components/MyHerbs";
 import AddPlant from "./components/AddPlant";
 import HerbalistsMyPlants from "./components/HerbalistsMyPlants";
 import Subscription from "./components/Subscription";
@@ -24,39 +24,36 @@ import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
 
-
-
 function App() {
   const videos = [
     "/videos/video1.mp4",
     "/videos/video2.mp4",
     "/videos/video3.mp4",
-  ]; // Array of video paths
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0); // State to track the current video
+  ];
+
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [cartItems, setCartItems] = useState([]);
- 
+  const [loading, setLoading] = useState(true); // <== Loading state
 
   useEffect(() => {
-    const saved = localStorage.getItem("savedHerbs");
-    if (saved) {
-      setSavedHerbs(JSON.parse(saved));
-    }
+    const timer = setTimeout(() => setLoading(false), 2000); // 2 seconds
+    return () => clearTimeout(timer);
   }, []);
 
-  // Automatically transition to the next video every 4 seconds
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length); // Loop back to the first video
-    }, 12000); // 12 seconds
-
-    return () => clearInterval(interval); // Cleanup interval on component unmount
+      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
+    }, 12000);
+    return () => clearInterval(interval);
   }, [videos.length]);
 
   const handleDotClick = (index) => {
-    setCurrentVideoIndex(index); // Update the current video index when a dot is clicked
+    setCurrentVideoIndex(index);
   };
 
-  
+  if (loading) {
+    return <Loader />; // 👈 Show loader while loading
+  }
 
   return (
     <Router>
@@ -69,7 +66,7 @@ function App() {
                 <div className="relative min-h-screen overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-full">
                     <motion.video
-                      src="/videos/video2.mp4" // Set video2.mp4 as the source
+                      src="/videos/video2.mp4"
                       autoPlay
                       muted
                       loop
@@ -84,7 +81,7 @@ function App() {
                   </div>
 
                   {/* Overlay for better readability */}
-                  <div className="absolute inset-0  bg-opacity-30"></div>
+                  <div className="absolute inset-0 bg-opacity-30"></div>
                 </div>
 
                 {/* Cards Section */}
@@ -100,10 +97,8 @@ function App() {
                   <Features />
                 </div>
 
-                {/* Footer */}
-                
-                <Subscription/>
-                <Testimonials/>
+                <Subscription />
+                <Testimonials />
                 <Footer />
               </>
             }
@@ -119,33 +114,18 @@ function App() {
           <Route path="/my-plants" element={<HerbalistsMyPlants />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/payment-success" element={<Success />} />
-
-
-          <Route
-  path="/health"
-  element={
-    <div
-      className="min-h-screen rounded-b-2xl bg-gradient-to-r from-green-100 to-white"
-    >
-      <HealthWellness />
-    </div>
-  }
-/>
-
-          <Route
-            path="/cart"
-            element={
-              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
-            }
-          />
-          <Route
-            path="/myherbs"
-            element={
-              <MyHerbs />
-            }
-          />
+          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route path="/myherbs" element={<MyHerbs />} />
           <Route path="/doctors" element={<DoctorsPage />} />
-          <Route path="/about" element={<About/>} />
+          <Route path="/about" element={<About />} />
+          <Route
+            path="/health"
+            element={
+              <div className="min-h-screen rounded-b-2xl bg-gradient-to-r from-green-100 to-white">
+                <HealthWellness />
+              </div>
+            }
+          />
         </Routes>
       </div>
     </Router>
