@@ -13,6 +13,60 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+ 
+
+  const startListening = () => {
+
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      alert("Please login first.");
+      return;
+    }
+
+    if (!SpeechRecognition) {
+      alert("Your browser does not support voice recognition!");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+
+    recognition.onresult = (event) => {
+      const spokenText = event.results[0][0].transcript.toLowerCase();
+      console.log("Heard:", spokenText);
+
+      const matchedPlant = cardsData.find(card =>
+        spokenText.includes(card.plantName.toLowerCase())
+      );
+
+      if (matchedPlant) {
+        const index = cardsData.indexOf(matchedPlant);
+        handleAdd(index);
+        alert(`✅ Added ${matchedPlant.plantName} to cart!`);
+      } else {
+        alert("❌ Could not recognize the plant name. Please try again!");
+      }
+    };
+
+    recognition.onerror = (event) => {
+      console.error("Speech recognition error:", event.error);
+    };
+
+    recognition.start();
+  };
+
+  const filteredcards = cardsData.filter((card) =>
+    card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
+
+
   useEffect(() => {
     const fetchBookmarks = async () => {
       const token = localStorage.getItem("token");
@@ -126,6 +180,18 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       <h2 className="text-3xl font-bold text-center text-green-800 mb-10">
         Our Herbal Picks 🌱
       </h2>
+
+
+      <div className="flex justify-end mb-6">
+        <button 
+          onClick={startListening}
+          className="flex items-center border-2 border-green-300 hover:border-green-500 bg-transparent text-green-600 px-4 py-2 rounded-full shadow hover:scale-105 transition"
+        >
+          🎤 Speak to Add to cart
+        </button>
+      </div>
+
+
       <div className="flex justify-center mb-6">
         <input
           type="text"
