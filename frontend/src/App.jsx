@@ -22,7 +22,7 @@ import Subscription from "./components/Subscription";
 import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
-
+import Testimonials from "./components/Testimonials";
 
 
 
@@ -101,7 +101,9 @@ function App() {
                 </div>
 
                 {/* Footer */}
+                
                 <Subscription/>
+                <Testimonials/>
                 <Footer />
               </>
             }

@@ -106,7 +106,7 @@ const DoctorCard = ({ doctor }) => {
 
       {/* Booking Success Toast */}
       {bookingConfirmed && (
-        <div className="fixed bottom-6 right-6 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg z-50">
+        <div className="fixed bottom-24 right-6 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg z-50">
           Your appointment has been booked ✅
         </div>
       )}

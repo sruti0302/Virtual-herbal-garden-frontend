@@ -12,3 +12,6 @@ body {
   overflow-x: hidden;
 }
 
+.bg-radial-green {
+  background: radial-gradient(circle at center, #ffffff,#fbfbfb);
+}
