@@ -2,45 +2,80 @@ import React from "react";
 
 const plans = [
   {
-    title: "Basic",
-    price: "$0",
+    title: "Free",
+    price: "₹0",
     description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
     features: [
-      "Full Access to Landingfolio",
-      "100 GB Free Storage",
-      "Unlimited Visitors",
-      "10 Agents",
-      "Live Chat Support",
+      "Full Access to Interactive 3D Models",
+      "Access expert-written blogs and vibrant community forums",
+      "Start your herbal journey at no cost",
     ],
-    buttonText: "Get 14 days free trial",
+    // buttonText: "Get 7 days free trial",
     isPopular: false,
   },
   {
     title: "Pro",
-    price: "$49",
+    price: "₹149",
     description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
     features: [
-      "Full Access to Landingfolio",
-      "100 GB Free Storage",
-      "Unlimited Visitors",
-      "10 Agents",
-      "Live Chat Support",
+      "Get 2 personalized herbal consultations every month",
+      "Receive exclusive wellness tips and healthy living guides",
+      "Get access to Gardening Tips and Videos",
+      "Enjoy special discounts on premium herbal products",
     ],
-    buttonText: "Get 14 days free trial",
+    buttonText: "Get 7 days free trial",
     isPopular: true,
   },
   {
-    title: "Exclusive",
-    price: "$99",
+    title: "Elite",
+    price: "₹399",
     description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
     features: [
-      "Full Access to Landingfolio",
-      "100 GB Free Storage",
-      "Unlimited Visitors",
-      "10 Agents",
-      "Live Chat Support",
+      "All that you get in Pro plan",
+      "Unlimited expert consultations whenever you need",
+      "Access advanced health trackers to monitor your wellness",
+      "Free delivery of herbs, with express 1-day shipping",
     ],
-    buttonText: "Get 14 days free trial",
+    buttonText: "Get 7 days free trial",
+    isPopular: false,
+  },
+];
+
+const herbalistsplans = [
+  {
+    title: "Free",
+    price: "₹0",
+    description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
+    features: [
+      "Create and showcase your professional herbalist profile",
+      "List up to 3 of your herbal products for free",
+      "Connect with a growing community of herbal enthusiasts",
+    ],
+    // buttonText: "Get 7 days free trial",
+    isPopular: false,
+  },
+  {
+    title: "Pro",
+    price: "₹249",
+    description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
+    features: [
+      "Publish up to 10 premium herbal product listings",
+      "Host and attend 2 exclusive webinars to boost your knowledge and visibility",
+      "Get featured in our trusted herbalist network",
+    ],
+    buttonText: "Get 7 days free trial",
+    isPopular: true,
+  },
+  {
+    title: "Elite",
+    price: "₹599",
+    description: "Lorem ipsum dolor sit amet, consec tetur adipis elit",
+    features: [
+      "Unlimited herbal product listings to grow your business without limits",
+      "Attend up to 10 expert-led webinars for deep learning and networking",
+      "Premium visibility among top herbalists and users",
+    ],
+    buttonText: "Get 7 days free trial",
     isPopular: false,
   },
 ];
@@ -49,14 +84,17 @@ const Pricing = () => {
   return (
     <div className="py-16 px-6 bg-white text-center">
       <h2 className="text-4xl font-bold mb-4 text-green-600">
-        Plans that scale with business
+      Flexible Plans for Every Herbal Journey
+
       </h2>
       <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
-        Clarity gives you the blocks & components you need to create a truly
-        professional website, landing page or admin panel for your SaaS.
+      Choose a plan that grows with your wellness goals — from exploring herbs to expert consultations and exclusive benefits.
+
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <h2 className="text-2xl font-bold mb-4 text-green-600">For Normal Users :</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-15">
         {plans.map((plan, idx) => (
           <div
             className={`relative p-8 rounded-2xl shadow-md border border-green-200 transition duration-300 hover:shadow-xl hover:bg-green-100/30 backdrop-blur-md ${
@@ -71,10 +109,10 @@ const Pricing = () => {
             <h3 className="text-xl font-semibold mb-2 text-green-600">
               {plan.title}
             </h3>
-            <p className="text-sm text-gray-500 mb-6">{plan.description}</p>
+
             <div className="text-4xl font-bold mb-4 text-green-600">
               {plan.price}
-              <span className="text-base font-medium">/mo/user</span>
+              <span className="text-base font-medium">/month</span>
             </div>
             <button
               className={`w-full py-2 rounded-lg font-semibold text-sm transition ${
@@ -86,7 +124,52 @@ const Pricing = () => {
               {plan.buttonText}
             </button>
             <div className="mt-6 text-xs font-semibold text-gray-500">
-              BEST FOR FREE
+              BENEFITS
+            </div>
+            <ul className="mt-4 space-y-2 text-sm text-left">
+              {plan.features.map((feature, i) => (
+                <li key={i} className="flex items-center gap-2">
+                  <span className="text-green-600">✔</span> {feature}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <h2 className="text-2xl font-bold mb-4 text-green-600">For Herbalists :</h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {herbalistsplans.map((plan, idx) => (
+          <div
+            className={`relative p-8 rounded-2xl shadow-md border border-green-200 transition duration-300 hover:shadow-xl hover:bg-green-100/30 backdrop-blur-md ${
+              plan.isPopular ? "border-green-500" : ""
+            }`}
+          >
+            {plan.isPopular && (
+              <div className="absolute top-0 right-0 bg-green-500 text-white text-xs px-3 py-1 rounded-bl-lg">
+                Most popular
+              </div>
+            )}
+            <h3 className="text-xl font-semibold mb-2 text-green-600">
+              {plan.title}
+            </h3>
+
+            <div className="text-4xl font-bold mb-4 text-green-600">
+              {plan.price}
+              <span className="text-base font-medium">/month</span>
+            </div>
+            <button
+              className={`w-full py-2 rounded-lg font-semibold text-sm transition ${
+                plan.isPopular
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700"
+              }`}
+            >
+              {plan.buttonText}
+            </button>
+            <div className="mt-6 text-xs font-semibold text-gray-500">
+              BENEFITS
             </div>
             <ul className="mt-4 space-y-2 text-sm text-left">
               {plan.features.map((feature, i) => (

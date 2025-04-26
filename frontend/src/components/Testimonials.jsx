@@ -1,6 +1,5 @@
 import { FaStar } from "react-icons/fa";
-import { motion } from "framer-motion"; // <<< Add this
-// Make sure you have framer-motion installed: npm install framer-motion
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -26,18 +25,42 @@ const testimonials = [
   },
 ];
 
+// Motion variants
+const cardVariants = {
+  rest: { scale: 1 },
+  hover: { scale: 1.05 },
+};
+
+const starsContainer = {
+  rest: {},
+  hover: {
+    transition: {
+      staggerChildren: 0.05,
+    },
+  },
+};
+
+const starItem = {
+  rest: { scale: 1 },
+  hover: { scale: 1.3 },
+};
+
 export default function Testimonials() {
   return (
-    <section className="bg-green-50 py-16">
+    <section className="bg-gradient-to-t from-green-50 to-white py-16">
       <div className="max-w-7xl mx-auto px-6 text-center">
         <h2 className="text-3xl font-bold text-green-800 mb-12">
           What Our Users Say
         </h2>
         <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((testimonial, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="rounded-2xl shadow-md p-8 hover:shadow-lg transition hover:scale-105 bg-white"
+              className="rounded-2xl shadow-md p-8 bg-white"
+              variants={cardVariants}
+              initial="rest"
+              whileHover="hover"
+              animate="rest"
             >
               <img
                 src={testimonial.imgUrl}
@@ -46,24 +69,26 @@ export default function Testimonials() {
               />
               <h3 className="text-lg font-semibold text-green-700">{testimonial.name}</h3>
               <p className="text-sm text-gray-500">{testimonial.role}</p>
-              
-              <div className="flex justify-center my-4 gap-1">
+
+              {/* Stars Container */}
+              <motion.div
+                className="flex justify-center my-4 gap-1"
+                variants={starsContainer}
+              >
                 {Array.from({ length: testimonial.rating }, (_, i) => (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.3 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                  >
-                    <FaStar className="text-yellow-400" size={20} />
+                  <motion.div key={i} variants={starItem}>
+                    <FaStar className="text-yellow-300 px-0.5 " size={20} />
                   </motion.div>
                 ))}
-              </div>
+              </motion.div>
 
               <p className="text-gray-600">{testimonial.comment}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
+        
       </div>
+      <div className="my-8 border-t border-green-200 m-6" />
     </section>
   );
 }

@@ -43,7 +43,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section className="px-6 py-16 bg-white">
+    <section className="px-6 py-16 bg-gradient-to-b from-green-50 to-white ">
       <h2 className="text-3xl font-bold text-center text-green-800 mb-1">
         Let Nature Be Your Healer
       </h2>
