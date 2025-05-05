@@ -17,15 +17,16 @@ Welcome to the **frontend repository** for the **Virtual Herbal Garden** — an 
 
 ## ✨ Features
 
-✅ Interactive 3D herb model viewer using **Sketchfab**  
-✅ Voice-controlled actions via **Web Speech API** (like adding to cart) 🎙️🛒   
-✅ Bookmarking Herbs
-✅ Blogging Page
-✅ Dashboard Access
-✅ Health News
-✅ Gardening Tips
-✅ Health and Wellness Section
-✅ Responsive and clean UI using **Tailwind CSS**
+- ✅ Interactive **3D herb model viewer** using [Sketchfab](https://sketchfab.com) 🌱🎨  
+- ✅ **Voice-controlled actions** via Web Speech API (e.g., *"Add to Cart"*) 🎙️🛒  
+- ✅ 🌿 **Bookmark your favorite herbs**  
+- ✅ 📝 **Blogging page** to share and explore herbal knowledge  
+- ✅ 📊 **Dashboard access** for quick insights  
+- ✅ 🗞️ **Health news updates** delivered to you  
+- ✅ 🌻 **Gardening tips** for enthusiasts  
+- ✅ 🌸 **Health & wellness section** with helpful guides  
+- ✅ 💻 Fully responsive and clean UI with **Tailwind CSS**
+
 
 ---
 
