@@ -29,10 +29,10 @@ Welcome to the **frontend repository** for the **Virtual Herbal Garden** — an 
 
 ---
 
-## 📸 Screenshots
+## 📸 Some Screenshots
 
-| 🌿 Home Page | 🛒 Cart | 📖 Blog |
+| 🌿 Home Page | 🛒 3D Model | 📖 Blog |
 |:------------|:---------|:----------|
-| ![Home](./assets/screenshots/home.png) | ![Cart](./assets/screenshots/cart.png) | ![Blog](./assets/screenshots/blog.png) |
+| ![Home](./FloraMed-Home.jpg) | ![Cart](./FloraMed-3Dmodel.jpg) | ![Blog](./FloraMed-Blog.jpg) |
 
 ---
