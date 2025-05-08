@@ -23,6 +23,7 @@ import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
+import Translator from "./components/Translator";
 
 function App() {
   const videos = [
@@ -126,6 +127,7 @@ function App() {
               </div>
             }
           />
+          <Route path="/translator" element={<Translator />} />
         </Routes>
       </div>
     </Router>
