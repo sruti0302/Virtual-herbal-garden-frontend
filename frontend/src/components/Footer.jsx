@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaMapMarkerAlt, FaEnvelope, FaReact } from "react-icons/fa";
 import {
@@ -12,9 +12,58 @@ import { FaIcons } from "react-icons/fa";
 
 const Footer = () => {
   const year = new Date().getFullYear();
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    profilepic: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const payload = {
+      name: formData.name,
+      email: formData.email,
+      profilePictureUrl: formData.profilepic? formData.profilepic : "https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png", // Default profile image
+      message: formData.message,
+    };
+
+    try {
+      
+      
+      const response = await fetch(
+        "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/feedback/submit",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        }
+      );
+
+      if (response.ok) {
+        alert("Thank you for your feedback!");
+        setFormData({ name: "", email: "", profilePictureUrl: "", message: "" });
+      } else {
+        alert("Submission failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Something went wrong. Please try again later.");
+    }
+    console.log(payload);
+    
+  };
+
   return (
     <footer className="bg-green-50 text-green-900 px-6 py-10">
-      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-3 items-start">
+      <div className="max-w-7xl mx-auto grid gap-10 md:grid-cols-2 lg:grid-cols-4 items-start">
         {/* Logo */}
         <div className="flex flex-col items-start gap-4">
           <h2 className="text-3xl font-bold text-green-700">FloraMed</h2>
@@ -41,24 +90,63 @@ const Footer = () => {
           <p className="font-semibold text-green-800">Technology Stack Used:</p>
           <div className="flex gap-4 text-2xl">
             <FaReact className="text-blue-500" title="React" />
-            <SiJavascript
-              className="text-green-600"
-              title="JavaScript/Node.js"
-            />
-            <SiPostgresql
-              className="text-yellow-500"
-              title="PostgreSQL/Database"
-            />
-            <SiVite
-              className="text-purple-500"
-              title="Vite/VR Icon Placeholder"
-            />
+            <SiJavascript className="text-green-600" title="JavaScript/Node.js" />
+            <SiPostgresql className="text-yellow-500" title="PostgreSQL/Database" />
+            <SiVite className="text-purple-500" title="Vite/VR Icon Placeholder" />
             <SiTailwindcss className="text-blue-400" title="TailwindCSS" />
             <SiFramer className="text-pink-500" title="Framer Motion" />
             <FaIcons className="text-gray-600" title="React Icons" />
           </div>
           <Link to="/about" className="text-green-700 hover:text-green-900">About Us</Link>
         </div>
+
+        {/* Review Form */}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-3 w-full">
+          <p className="font-semibold text-green-800">Leave a Review</p>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Your Name"
+            required
+            className="px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Your Email"
+            required
+            className="px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+          <input
+            type="url"
+            name="profilepic"
+            value={formData.profilepic}
+            onChange={handleChange}
+            placeholder="Your Profile Picture URL (optional)"
+            className="px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          />
+          <textarea
+            name="message"
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Your Review"
+            rows="4"
+            maxLength="200"
+            style={{resize:"none"}}
+            required
+            className="px-3 py-2 border border-green-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-400"
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+          >
+            Submit
+          </button>
+        </form>
       </div>
 
       {/* Divider */}
