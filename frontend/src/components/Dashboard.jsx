@@ -69,7 +69,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
+          //"https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
         );
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -84,6 +84,31 @@ export default function Dashboard() {
 
     fetchNews();
   }, []);
+
+
+  const handleLogout = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+  
+    try {
+      const response = await fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/auth/logout", {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`,
+        },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Logout failed");
+      }
+  
+      localStorage.removeItem("token");
+      window.location.href = "/"; // or use navigate("/login") if using react-router-dom v6+
+    } catch (err) {
+      console.error("Logout error:", err);
+    }
+  };
+  
 
   if (loading || newsLoading) return <div className="text-center mt-10">Loading...</div>;
 
@@ -114,10 +139,13 @@ export default function Dashboard() {
         </div>
 
         {/* Logout */}
-        <button className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded flex items-center justify-center space-x-2">
-          <LogOut size={18} />
-          {!isCollapsed && <span>Logout</span>}
-        </button>
+        <button
+  onClick={handleLogout}
+  className="bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded flex items-center justify-center space-x-2"
+>
+  <LogOut size={18} />
+  {!isCollapsed && <span>Logout</span>}
+</button>
       </aside>
 
       {/* Main content */}
