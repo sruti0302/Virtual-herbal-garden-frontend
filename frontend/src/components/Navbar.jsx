@@ -2,7 +2,7 @@ import { useState } from "react";
 import { delay, motion } from "framer-motion";
 import Button from "./Button";
 import HomeButton from "./HomeButton";
-import logoo from "../assets/logo/logoo.svg";
+import logoo from '../assets/logo/logoo.svg';
 import MarketPlace from "./MarketPlace"; // Import the Marketplace component
 
 const Navbar = ({ className = "" }) => {
@@ -10,7 +10,7 @@ const Navbar = ({ className = "" }) => {
 
   // Define links with their respective paths
   const links = [
-    { name: "Marketplace", path: "/marketplace" },
+    {name: "MarketPlace", path: "/marketPlace"},
     { name: "Health", path: "/health" },
     { name: "Gardening", path: "/dashboard/gardening-tips" },
     { name: "Dashboard", path: "/dashboard" },
