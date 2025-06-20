@@ -58,7 +58,8 @@ export default function Marketplace() {
   });
 
   return (
-    <div className="p-6 max-w-screen-xl mx-auto font-poppins">
+    <div className="p-6 px-6 md:px-10 lg:px-16 font-poppins w-[95%]">
+
       {/* Banner */}
       <div className="bg-green-200 text-green-900 p-6 rounded-lg mb-6 shadow">
         <h1 className="text-3xl font-bold mb-1">🪴 Welcome to the Plant Marketplace</h1>
