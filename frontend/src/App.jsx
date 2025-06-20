@@ -23,6 +23,7 @@ import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
+import MarketPlace from "./components/MarketPlace";
 
 function App() {
   const videos = [
@@ -79,7 +80,7 @@ function App() {
                     <Navbar className="text-white" />
                     <Hero />
                   </div>
-
+                  
                   {/* Overlay for better readability */}
                   <div className="absolute inset-0 bg-opacity-30"></div>
                 </div>
@@ -105,6 +106,7 @@ function App() {
           />
 
           {/* Other Routes */}
+          <Route path="/marketplace" element={<MarketPlace/>} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
