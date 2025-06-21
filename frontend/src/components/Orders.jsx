@@ -28,6 +28,7 @@ const Orders = () => {
   const handlePayment = async (e) => {
     e.preventDefault();
     const order = await createOrder();
+    console.log("Order creation response:", order);
 
     const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY,
@@ -38,7 +39,7 @@ const Orders = () => {
         order_id: order.razorpayOrderId,
         handler: function (response) {
           // ✅ This is the right place to handle post-payment success
-          fetch("https://your-backend.com/paymentCallback", {
+          fetch("https://changing-edeline-koyebdeployacc1-dbef7306.koyeb.app/paymentCallback", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(response)

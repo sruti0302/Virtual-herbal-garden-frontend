@@ -24,6 +24,7 @@ import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
 import MarketPlace from "./components/MarketPlace";
+import HerbIdentifier from "./components/HerbIdentifier";
 
 function App() {
   const videos = [
@@ -97,6 +98,8 @@ function App() {
                 <div className="px-4 sm:px-6 lg:px-8">
                   <Features />
                 </div>
+                
+                <HerbIdentifier/>
 
                 <Subscription />
                 <Testimonials />
