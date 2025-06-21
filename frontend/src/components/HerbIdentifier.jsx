@@ -86,44 +86,44 @@ If No herb or plant is visible in the image then just return the response as No 
 
 
   return (
+    <>
+          <div className="my-8 border-t border-green-200" />
     <div className="min-h-screen w-full  flex flex-col items-center justify-center p-4">
 
-      <div className="min-h-screen bg-white shadow-xl rounded-2xl p-8  w-full bg-gradient-to-br from-gray-50 to-gray-100">
-          <h1 className="text-6xl font-extrabold text-green-800 mb-[-0.4rem] text-center">~BotanIQ~</h1>
-          <p className="text-center text-green-600 mb-8 italic"><small>Your Pocket Herbalist, Powered by AI.</small></p>
+
+      <div className="min-h-screen bg-white  rounded-2xl p-8  w-full ">
+          <h1 className="text-6xl font-extrabold text-green-800 mb-[-0.05rem] text-center">BotanIQ</h1>
+          <p className="text-center text-green-600 mb-8 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
 
           <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8">
           {/* Left Column: Content */}
-          <div className="text-gray-700 text-lg space-y-4 w-[100%]">
+          <div className="text-gray-700 text-lg space-y-4 w-[100%] lg:mt-[30%] md:mt-[15%]">
             <p className="font-bold text-4xl text-emerald-800 mb-10"><strong>"Discover Nature with AI,,     </strong></p>
-            <p className="font-mono ">
+            <p>
               <strong>Welcome to BotanIQ</strong> – an AI-powered plant and herb identification system designed to reconnect you with nature.
             </p>
-            <p className="font-mono mt-12">
-              Whether you're a gardening enthusiast, a student of Ayurveda, or just curious about the green wonders around you, HerbWise helps you discover detailed insights into plants simply by uploading a photo.
-            </p>
-            <p className="font-mono mt-12">
+            
+            <p className="mt-12">
               It’s more than identification – it's a bridge between tradition and technology, powered by cutting-edge AI and a deep respect for the healing world of herbs.
             </p>
             <p className="font-bold text-green-700 font-mono italic mt-12 ">
               Snap a leaf • Upload the image • Learn the wisdom of nature
             </p>
-            <details className="mt-6 bg-green-100 p-4 rounded-lg text-sm text-green-800">
-          <summary className="font-semibold cursor-pointer">💡 How to get the best result?</summary>
-          <ul className="list-disc list-inside mt-2">
-            <li>Capture the herb in good lighting (preferably daylight).</li>
-            <li>Avoid background clutter or multiple plants.</li>
-            <li>Ensure the image is not blurry or overexposed.</li>
-            <li>Leaf close-ups work better for identification.</li>
-          </ul>
-        </details>
+            
+
+        {fact && (
+          <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
+            <h2 className="font-semibold text-yellow-700 mb-1">🌱 Fun Herbal Fact</h2>
+            <p className="text-gray-700 text-sm">{fact}</p>
+          </div>
+        )}
           </div>
 
           {/* Right Column: Image Upload and Result */}
         <div>
 
           <div className=" flex items-center justify-center  ">
-  <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center w-full  ">
+  <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center w-full mb-2 ">
     
     <input
       type="file"
@@ -131,6 +131,11 @@ If No herb or plant is visible in the image then just return the response as No 
       onChange={handleImageChange}
       className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-green-700 hover:file:bg-green-200 mb-4"
     />
+    {!previewImage && (
+      <div className="mb-4 rounded-xl w-64 h-72 border-2 border-gray-300 text-center pt-[10%]">
+        No image selected. Please upload an image of a herb or plant.
+      </div>
+    )}
 
     {previewImage && (
       <div className="mb-4">
@@ -153,20 +158,31 @@ If No herb or plant is visible in the image then just return the response as No 
   </div>
 </div>
 
-        {result && (
-          <div className="text-left font-semibold text bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
+{!result && (
+          <div className="min-h-70 font-semibold bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
+     
+          💡 How to get the best result?
+          <ul className="list-disc list-inside mt-2">
+            <li>Capture the herb in good lighting (preferably daylight).</li>
+            <li>Avoid background clutter or multiple plants.</li>
+            <li>Ensure the image is not blurry or overexposed.</li>
+            <li>Leaf close-ups work better for identification.</li>
+          </ul>
+ 
+          </div>
+        )}
+
+
+  {result && (
+          <div className="text-left font-semibold bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
             {result.replaceAll("*" , " ").split("|").map((line, index) => (
               <p key={index}>{line}</p>
             ))}
           </div>
         )}
 
-        {fact && (
-          <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-            <h2 className="font-semibold text-yellow-700 mb-1">🌱 Fun Herbal Fact</h2>
-            <p className="text-gray-700 text-sm">{fact}</p>
-          </div>
-        )}
+        
+        
 
         
         </div>
@@ -174,5 +190,8 @@ If No herb or plant is visible in the image then just return the response as No 
 
       </div>
     </div>
+              <div className="my-8 border-t border-green-200" />
+
+    </>
   );
 }
