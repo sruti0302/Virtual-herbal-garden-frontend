@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { delay, motion } from "framer-motion";
+
 import Button from "./Button";
 import HomeButton from "./HomeButton";
-import logoo from '../assets/logo/logoo.svg';
+
 import MarketPlace from "./MarketPlace"; // Import the Marketplace component
 
 const Navbar = ({ className = "" }) => {
