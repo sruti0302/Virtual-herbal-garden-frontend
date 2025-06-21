@@ -13,13 +13,11 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-
- 
+  const SpeechRecognition =
+    window.SpeechRecognition || window.webkitSpeechRecognition;
 
   const startListening = () => {
-
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
 
     if (!token) {
       alert("Please login first.");
@@ -33,14 +31,14 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
-    recognition.lang = 'en-US';
+    recognition.lang = "en-US";
     recognition.interimResults = false;
 
     recognition.onresult = (event) => {
       const spokenText = event.results[0][0].transcript.toLowerCase();
       console.log("Heard:", spokenText);
 
-      const matchedPlant = cardsData.find(card =>
+      const matchedPlant = cardsData.find((card) =>
         spokenText.includes(card.plantName.toLowerCase())
       );
 
@@ -63,9 +61,6 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const filteredcards = cardsData.filter((card) =>
     card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-
-
 
   useEffect(() => {
     const fetchBookmarks = async () => {
@@ -181,16 +176,14 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         Our Herbal Picks 🌱
       </h2>
 
-
       <div className="flex justify-end mb-6">
-        <button 
+        <button
           onClick={startListening}
           className="flex items-center border-2 border-green-300 hover:border-green-500 bg-transparent text-green-600 px-4 py-2 rounded-full shadow hover:scale-105 transition"
         >
           🎤 Speak to Add to cart
         </button>
       </div>
-
 
       <div className="flex justify-center mb-6">
         <input
@@ -229,7 +222,6 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         contentLabel="Plant Details"
         className="bg-white rounded-2xl p-6 max-w-6xl w-full mx-auto shadow-2xl overflow-hidden"
         overlayClassName="fixed inset-0 backdrop-blur-md flex items-center justify-center z-50"
-
       >
         {selectedCard && (
           <div className="flex flex-col lg:flex-row gap-8 overflow-hidden h-[80vh] p-3">
@@ -247,7 +239,25 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
               <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
                 <button
-                  onClick={() => navigate("/cart")}
+                  onClick={() => {
+                    // Add to cart if not already present
+                    const existingItem = cartItems.find(
+                      (item) => item.id === selectedCard.id
+                    );
+                    if (!existingItem) {
+                      setCartItems([
+                        ...cartItems,
+                        {
+                          id: selectedCard.id,
+                          image: selectedCard.imageUrl,
+                          title: selectedCard.plantName,
+                          type: selectedCard.plantType,
+                          count: 1,
+                        },
+                      ]);
+                    }
+                    navigate("/cart");
+                  }}
                   className="w-full sm:flex-1 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
                 >
                   Buy Now
