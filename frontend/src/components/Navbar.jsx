@@ -3,14 +3,14 @@ import { delay, motion } from "framer-motion";
 import Button from "./Button";
 import HomeButton from "./HomeButton";
 import logoo from "../assets/logo/logoo.svg";
-import MarketPlace from "./Marketplace"; // Import the Marketplace component
+import Marketplace from "./Marketplace"; // Import the Marketplace component
 
 const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
 
   // Define links with their respective paths
   const links = [
-    { name: "MarketPlace", path: "/marketPlace" },
+    { name: "Marketplace", path: "/marketplace" },
     { name: "Health", path: "/health" },
     { name: "Gardening", path: "/dashboard/gardening-tips" },
     { name: "Dashboard", path: "/dashboard" },

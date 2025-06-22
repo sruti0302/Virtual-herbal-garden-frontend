@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/Card";
+import Card from "./Card";
 import Modal from "react-modal";
 import { BsCart2 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Navbar from "./Navbar";
+
 
 function Marketplace({ cartItems, setCartItems, onSave }) {
   const [cardsData, setCardsData] = useState([]);
