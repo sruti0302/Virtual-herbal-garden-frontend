@@ -23,7 +23,7 @@ import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
-import Marketplace from "./components/Marketplace";
+import MarketPlace from "./components/MarketPlace";
 import HerbIdentifier from "./components/HerbIdentifier";
 
 function App() {
@@ -109,7 +109,7 @@ function App() {
           />
 
           {/* Other Routes */}
-          <Route path="/marketplace" element={<Marketplace cartItems={cartItems}
+          <Route path="/marketplace" element={<MarketPlace cartItems={cartItems}
                     setCartItems={setCartItems} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
