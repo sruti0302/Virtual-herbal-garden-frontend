@@ -13,51 +13,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-  const startListening = () => {
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      alert("Please login first.");
-      return;
-    }
-
-    if (!SpeechRecognition) {
-      alert("Your browser does not support voice recognition!");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.continuous = false;
-    recognition.lang = "en-US";
-    recognition.interimResults = false;
-
-    recognition.onresult = (event) => {
-      const spokenText = event.results[0][0].transcript.toLowerCase();
-      console.log("Heard:", spokenText);
-
-      const matchedPlant = cardsData.find((card) =>
-        spokenText.includes(card.plantName.toLowerCase())
-      );
-
-      if (matchedPlant) {
-        const index = cardsData.indexOf(matchedPlant);
-        handleAdd(index);
-        alert(`✅ Added ${matchedPlant.plantName} to cart!`);
-      } else {
-        alert("❌ Could not recognize the plant name. Please try again!");
-      }
-    };
-
-    recognition.onerror = (event) => {
-      console.error("Speech recognition error:", event.error);
-    };
-
-    recognition.start();
-  };
-
+ 
   const filteredcards = cardsData.filter((card) =>
     card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -176,14 +132,6 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
         Our Herbal Picks 🌱
       </h2>
 
-      <div className="flex justify-end mb-6">
-        <button
-          onClick={startListening}
-          className="flex items-center border-2 border-green-300 hover:border-green-500 bg-transparent text-green-600 px-4 py-2 rounded-full shadow hover:scale-105 transition"
-        >
-          🎤 Speak to Add to cart
-        </button>
-      </div>
 
       <div className="flex justify-center mb-6">
         <input
@@ -217,123 +165,79 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       </div>
 
       <Modal
-        isOpen={isModalOpen}
-        onRequestClose={closeModal}
-        contentLabel="Plant Details"
-        className="bg-white rounded-2xl p-6 max-w-6xl w-full mx-auto shadow-2xl overflow-hidden"
-        overlayClassName="fixed inset-0 backdrop-blur-md flex items-center justify-center z-50"
-      >
-        {selectedCard && (
-          <div className="flex flex-col lg:flex-row gap-8 overflow-hidden h-[80vh] p-3">
-            {/* Left Side - Image and Actions */}
-            <div className="flex-1 flex flex-col gap-6">
-              <div className="bg-gray-100 rounded-xl overflow-hidden flex items-center justify-center h-72 sm:h-96">
-                <iframe
-                  title={selectedCard.plantName}
-                  src={selectedCard.image3DUrl}
-                  frameBorder="0"
-                  allow="autoplay; fullscreen; vr"
-                  className="h-full w-full object-contain"
-                ></iframe>
-              </div>
+  isOpen={isModalOpen}
+  onRequestClose={closeModal}
+  contentLabel="Plant Details"
+  className="bg-white rounded-2xl p-4 md:p-6 max-w-6xl w-full mx-auto shadow-2xl overflow-hidden"
+  overlayClassName="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50"
+>
+  {selectedCard && (
+    <div className="flex flex-col md:flex-row gap-6 h-[80vh] overflow-hidden">
+      {/* LEFT: 3D View */}
+      <div className="w-full md:w-1/2 h-72 md:h-full flex items-center justify-center bg-gray-100 rounded-xl overflow-hidden">
+        <iframe
+          title={selectedCard.plantName}
+          src={selectedCard.image3DUrl}
+          frameBorder="0"
+          allow="autoplay; fullscreen; vr"
+          className="w-full h-full object-contain"
+        />
+      </div>
 
-              <div className="flex flex-col sm:flex-row items-center gap-4 w-full">
-                <button
-                  onClick={() => {
-                    // Add to cart if not already present
-                    const existingItem = cartItems.find(
-                      (item) => item.id === selectedCard.id
-                    );
-                    if (!existingItem) {
-                      setCartItems([
-                        ...cartItems,
-                        {
-                          id: selectedCard.id,
-                          image: selectedCard.imageUrl,
-                          title: selectedCard.plantName,
-                          type: selectedCard.plantType,
-                          count: 1,
-                        },
-                      ]);
-                    }
-                    navigate("/cart");
-                  }}
-                  className="w-full sm:flex-1 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
-                >
-                  Buy Now
-                </button>
+      {/* RIGHT: Details */}
+      <div className="w-full md:w-1/2 flex flex-col overflow-y-auto pr-2">
+        <h1 className="text-2xl md:text-3xl font-bold text-green-800 mb-4">
+          {selectedCard.plantName}
+        </h1>
 
-                <button
-                  onClick={() => handleAdd(cardsData.indexOf(selectedCard))}
-                  className="w-full sm:flex-1 border-2 border-blue-500 text-blue-500 hover:bg-blue-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
-                >
-                  <BsCart2 className="inline mr-2" />
-                  Add to Cart
-                </button>
+        <p className="text-gray-700 text-base md:text-lg mb-4 leading-relaxed">
+          {selectedCard.description}
+        </p>
 
-                <button
-                  onClick={() => handleRemove(cardsData.indexOf(selectedCard))}
-                  className="w-full sm:flex-1 border-2 border-red-500 text-red-500 hover:bg-red-50 font-bold py-2 rounded-xl shadow-sm transition-transform transform hover:scale-105"
-                >
-                  Remove
-                </button>
-              </div>
+        <div className="space-y-2 text-gray-800 text-sm md:text-base">
+          <p>
+            <span className="font-semibold">🌿 Scientific Name:</span>{" "}
+            <i>{selectedCard.scientificName}</i>
+          </p>
+          <p>
+            <span className="font-semibold">📍 Region:</span>{" "}
+            {selectedCard.region}
+          </p>
+          <p>
+            <span className="font-semibold">🧬 Type:</span>{" "}
+            {selectedCard.plantType}
+          </p>
+          <p>
+            <span className="font-semibold">💊 Medicinal Uses:</span>{" "}
+            {selectedCard.uses}
+          </p>
+        </div>
 
-              <div className="text-center font-semibold text-gray-700 text-lg">
-                Quantity:{" "}
-                {cartItems.find(
-                  (item) => item.plantname === selectedCard?.plantname
-                )?.count || 0}
-              </div>
-            </div>
-
-            {/* Right Side - Details */}
-            <div className="flex-1 overflow-y-auto px-4 sm:px-2 pr-2">
-              <h1 className="text-2xl sm:text-3xl font-extrabold mb-4 text-green-800">
-                {selectedCard.plantName}
-              </h1>
-
-              <p className="text-gray-700 mb-6 text-base sm:text-lg">
-                {selectedCard.description}
-              </p>
-
-              <div className="space-y-3 text-gray-800 text-sm sm:text-base">
-                <p>
-                  <span className="font-semibold">Scientific Name:</span>{" "}
-                  <i>{selectedCard.scientificName}</i>
-                </p>
-                <p>
-                  <span className="font-semibold">Region:</span>{" "}
-                  {selectedCard.region}
-                </p>
-                <p>
-                  <span className="font-semibold">Type:</span>{" "}
-                  {selectedCard.plantType}
-                </p>
-                <p>
-                  <span className="font-semibold">Medicinal Uses:</span>{" "}
-                  {selectedCard.uses}
-                </p>
-              </div>
-
-              <audio controls className="w-full mt-6 rounded-lg">
-                <source
-                  src={selectedCard.voiceDescriptionUrl}
-                  type="audio/mpeg"
-                />
-                Your browser does not support the audio element.
-              </audio>
-
-              <button
-                onClick={closeModal}
-                className="mt-8 border-2 border-green-600 text-green-600 hover:bg-green-50 font-bold w-full py-3 rounded-xl shadow-sm transition-transform transform hover:scale-105 active:scale-95"
-              >
-                Close
-              </button>
-            </div>
-          </div>
+        {selectedCard.voiceDescriptionUrl && (
+          <audio
+            controls
+            className="w-full mt-6 rounded-md border border-gray-300"
+          >
+            <source
+              src={selectedCard.voiceDescriptionUrl}
+              type="audio/mpeg"
+            />
+            Your browser does not support the audio element.
+          </audio>
         )}
-      </Modal>
+
+        <button
+          onClick={closeModal}
+          className="mt-6 self-center md:self-end border border-green-600 text-green-600 hover:bg-green-50 font-medium px-6 py-2 rounded-lg shadow-sm transition-transform transform hover:scale-105 active:scale-95"
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  )}
+</Modal>
+ 
+
 
       {cartItems.length > 0 && (
         <div
