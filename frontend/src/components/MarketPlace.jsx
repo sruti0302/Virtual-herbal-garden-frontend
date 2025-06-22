@@ -8,7 +8,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 
-function Marketplace({ cartItems, setCartItems, onSave }) {
+function MarketPlace({ cartItems, setCartItems, onSave }) {
   const [cardsData, setCardsData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
@@ -391,4 +391,4 @@ function Marketplace({ cartItems, setCartItems, onSave }) {
   );
 }
 
-export default Marketplace;
+export default MarketPlace;
