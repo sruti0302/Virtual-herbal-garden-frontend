@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion"; 
+import { motion } from "framer-motion";
 import Loader from "./components/Loader"; // Import the loader
 import Navbar from "./components/Navbar";
 import AuthCallback from "./components/AuthCallback";
@@ -23,7 +23,7 @@ import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
-import MarketPlace from "./components/MarketPlace";
+import MarketPlace from "./components/Marketplace";
 import HerbIdentifier from "./components/HerbIdentifier";
 
 function App() {
@@ -81,7 +81,7 @@ function App() {
                     <Navbar className="text-white" />
                     <Hero />
                   </div>
-                  
+
                   {/* Overlay for better readability */}
                   <div className="absolute inset-0 bg-opacity-30"></div>
                 </div>
@@ -98,8 +98,8 @@ function App() {
                 <div className="px-4 sm:px-6 lg:px-8">
                   <Features />
                 </div>
-                
-                <HerbIdentifier/>
+
+                <HerbIdentifier />
 
                 <Subscription />
                 <Testimonials />
@@ -109,7 +109,8 @@ function App() {
           />
 
           {/* Other Routes */}
-          <Route path="/marketplace" element={<MarketPlace/>} />
+          <Route path="/marketplace" element={<MarketPlace cartItems={cartItems}
+                    setCartItems={setCartItems} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
@@ -119,7 +120,12 @@ function App() {
           <Route path="/my-plants" element={<HerbalistsMyPlants />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/payment-success" element={<Success />} />
-          <Route path="/cart" element={<CartPage cartItems={cartItems} setCartItems={setCartItems} />} />
+          <Route
+            path="/cart"
+            element={
+              <CartPage cartItems={cartItems} setCartItems={setCartItems} />
+            }
+          />
           <Route path="/myherbs" element={<MyHerbs />} />
           <Route path="/doctors" element={<DoctorsPage />} />
           <Route path="/about" element={<About />} />
