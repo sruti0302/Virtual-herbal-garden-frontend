@@ -2,8 +2,8 @@ import { useState } from "react";
 import { delay, motion } from "framer-motion";
 import Button from "./Button";
 import HomeButton from "./HomeButton";
-
- // Import the Marketplace component
+import logoo from "../assets/logo/logoo.svg";
+import MarketPlace from "./MarketPlace"; // Import the Marketplace component
 
 const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
