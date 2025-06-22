@@ -23,7 +23,7 @@ import DoctorsPage from "./components/DoctorsPage";
 import Orders from "./components/Orders";
 import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
-import MarketPlace from "./components/Marketplace";
+import Marketplace from "./components/Marketplace";
 import HerbIdentifier from "./components/HerbIdentifier";
 
 function App() {
