@@ -109,7 +109,7 @@ function App() {
           />
 
           {/* Other Routes */}
-          <Route path="/marketplace" element={<MarketPlace cartItems={cartItems}
+          <Route path="/marketplace" element={<Marketplace cartItems={cartItems}
                     setCartItems={setCartItems} />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
