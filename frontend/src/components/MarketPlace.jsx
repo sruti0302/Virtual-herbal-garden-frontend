@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/Card";
+import Card from "./Card";
 import Modal from "react-modal";
 import { BsCart2 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
