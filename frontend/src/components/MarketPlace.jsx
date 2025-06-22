@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import Navbar from "./Navbar";
+
 
 function Marketplace({ cartItems, setCartItems, onSave }) {
   const [cardsData, setCardsData] = useState([]);
