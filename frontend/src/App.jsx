@@ -33,7 +33,7 @@ function App() {
     "/videos/video3.mp4",
   ];
 
-  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
+  const [ setCurrentVideoIndex] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true); // <== Loading state
 
@@ -49,9 +49,7 @@ function App() {
     return () => clearInterval(interval);
   }, [videos.length]);
 
-  const handleDotClick = (index) => {
-    setCurrentVideoIndex(index);
-  };
+  
 
   if (loading) {
     return <Loader />; // 👈 Show loader while loading
