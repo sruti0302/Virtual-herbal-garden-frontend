@@ -171,16 +171,14 @@ import React, { useState } from 'react';
 
 const Orders = () => {
   const [formData, setFormData] = useState({
-    productIds: [], // 👈 corrected to match backend
+    productIds: [],
     name: '',
-    email: '',
-    amount: ''
+    email: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Handle plantId separately since it's an array
     if (name === 'productIds') {
       setFormData((prev) => ({
         ...prev,
@@ -195,9 +193,9 @@ const Orders = () => {
   };
 
   const createOrder = async () => {
-    const token = localStorage.getItem("token"); // assuming JWT is stored here
+    const token = localStorage.getItem("token");
 
-    const response = await fetch("http://localhost:8080/payment/create", {
+    const response = await fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/create", {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -222,15 +220,15 @@ const Orders = () => {
 
       const options = {
         key: import.meta.env.VITE_RAZORPAY_KEY,
-        amount: order.amount,
+        amount: order.amount, // from backend
         currency: "INR",
         name: "Your Business Name",
-        description: "Test Order",
+        description: "Order Payment",
         order_id: order.razorpayOrderId,
         handler: function (response) {
           const token = localStorage.getItem("token");
 
-          fetch("http://localhost:8080/payment/update-status", {
+          fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/update-status", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -296,18 +294,6 @@ const Orders = () => {
               type="email"
               name="email"
               value={formData.email}
-              onChange={handleChange}
-              required
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium text-gray-700">Amount (in paise)</label>
-            <input
-              type="number"
-              name="amount"
-              value={formData.amount}
               onChange={handleChange}
               required
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
