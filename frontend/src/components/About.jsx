@@ -29,7 +29,6 @@ import { FaHtml5, FaCss3Alt } from "react-icons/fa";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
 
-
 const teamMembers = [
   {
     name: "Areesh Zafar",
@@ -84,72 +83,77 @@ const teamMembers = [
       <FaGithub title="GitHub" className="text-black" />,
     ],
   },
-  {
-    name: "Subhodip Saha",
-    role: "Business Analyst",
-    tech: [
-      <FaBusinessTime title="Business Analyst" className="text-amber-600" />,
-
-    ],
-  },
-  {
-    name: "Subhajit Mondal",
-    role: "Content Writer",
-    tech: [
-      <FaPenNib title="Content Writing" className="text-purple-700" />,
-      <FaFileAlt title="Documentation" className="text-blue-600" />,
-    ],
-  },
 ];
 
 export default function About() {
   return (
     <>
-      <Navbar className='text-white bg-gradient-to-b from-green-800 to-green-500'/>
+      <Navbar className="text-white bg-gradient-to-b from-green-800 to-green-500" />
       <div className="min-h-screen bg-gradient-to-b from-white to-green-100 py-10 px-4">
         <h1 className="text-4xl font-bold text-center mb-12 text-green-700">
-          About Our Team 
+          About Our Team
         </h1>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
-            key={index}
-            className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-[0_0_20px_5px_rgba(34,197,94,0.2)]"
-            whileHover="hover"
-            initial="rest"
-            animate="rest"
-            variants={{
-              rest: {},
-              hover: {
-                transition: {
-                  staggerChildren: 0.04,
-                  delayChildren: 0.1,
+              key={index}
+              className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center transition-all duration-500 ease-in-out transform hover:-translate-y-2 hover:shadow-[0_0_20px_5px_rgba(34,197,94,0.2)]"
+              whileHover="hover"
+              initial="rest"
+              animate="rest"
+              variants={{
+                rest: {},
+                hover: {
+                  transition: {
+                    staggerChildren: 0.04,
+                    delayChildren: 0.1,
+                  },
                 },
-              },
-            }}
-          >
-            <div className="text-5xl mb-4 text-green-600">
-              {member.tech[0]}
-            </div>
-            <h2 className="text-2xl font-bold text-gray-800">{member.name}</h2>
-            <p className="text-green-700 font-semibold mb-4">{member.role}</p>
-            <div className="flex flex-wrap justify-center gap-3 text-2xl text-gray-600 mt-2">
-              {member.tech.map((icon, i) => (
-                <motion.div
-                  key={i}
+              }}
+            >
+              {/* Main static image */}
+              <div className="relative mb-4">
+                <img
+                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+                  alt="Profile"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-green-200 shadow"
+                  draggable={false}
+                />
+                {/* Floating/enlarged image on hover */}
+                <motion.img
+                  src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+                  alt="Profile Floating"
+                  className="w-20 h-20 rounded-full object-cover border-4 border-green-400 shadow-lg absolute left-1/2 -translate-x-1/2 z-20"
+                  style={{ top: 0 }}
+                  initial={{ opacity: 0, y: 0, scale: 1 }}
                   variants={{
-                    rest: { scale: 1 },
-                    hover: { scale: 1.3 },
+                    rest: { opacity: 0, y: 0, scale: 1 },
+                    hover: { opacity: 1, y: -70, scale: 1.5 },
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                >
-                  {icon}
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-          
+                  draggable={false}
+                />
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">
+                {member.name}
+              </h2>
+              <p className="text-green-700 font-semibold mb-4">{member.role}</p>
+              <div className="flex flex-wrap justify-center gap-3 text-2xl text-gray-600 mt-2">
+                {member.tech.map((icon, i) => (
+                  <motion.div
+                    key={i}
+                    variants={{
+                      rest: { scale: 1 },
+                      hover: { scale: 1.3 },
+                    }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  >
+                    {icon}
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
