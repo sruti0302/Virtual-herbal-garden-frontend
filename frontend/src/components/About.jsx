@@ -24,6 +24,7 @@ import {
   SiSupabase,
   SiKoyeb,
   SiDocker,
+  SiRazorpay,
 } from "react-icons/si";
 import { FaHtml5, FaCss3Alt } from "react-icons/fa";
 import Navbar from "./Navbar";
@@ -60,6 +61,7 @@ const teamMembers = [
       <SiKoyeb title="Koyeb" className="text-purple-500" />,
       <SiDocker title="Docker" className="text-blue-500" />,
       <FaGithub title="GitHub" className="text-black" />,
+      <SiRazorpay title="Razorpay" className="text-blue-500" />,
     ],
   },
   {
