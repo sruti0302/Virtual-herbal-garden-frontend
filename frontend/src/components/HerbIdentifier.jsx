@@ -181,7 +181,26 @@ If No herb or plant is visible in the image then just return the response as No 
 </div>
 
 {!result && (
-          <div className="min-h-70 font-semibold bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
+          <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-8  min-h-70 font-semibold bg-white p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
+     
+          <div className="text-left flex flex-col">
+            💡 How to get the best result?
+          <ul className="list-disc list-inside mt-2">
+            <li>Capture the herb in good lighting (preferably daylight).</li>
+            <li>Avoid background clutter or multiple plants.</li>
+            <li>Ensure the image is not blurry or overexposed.</li>
+            <li>Leaf close-ups work better for identification.</li>
+          </ul>
+          </div>
+          
+
+          <img src="https://i.pinimg.com/originals/08/18/a2/0818a2dfa9859144ebd35dd885226576.gif" alt="" className=" w-100 md:w-95 sm:w-80 h-70 md:h-70 sm:h-68" />
+ 
+          </div>
+        )}
+
+{/* {!result && !loading && (
+          <div className="flex flex-col min-h-70 font-semibold bg-white p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
      
           💡 How to get the best result?
           <ul className="list-disc list-inside mt-2">
@@ -190,10 +209,12 @@ If No herb or plant is visible in the image then just return the response as No 
             <li>Ensure the image is not blurry or overexposed.</li>
             <li>Leaf close-ups work better for identification.</li>
           </ul>
+          
+
+          <img src="https://cdn.pixabay.com/animation/2023/08/21/15/08/15-08-12-734_512.gif" alt="" className=" w-50 md:w-55 sm:w-40 h-60 md:h-60 sm:h-60" />
  
           </div>
-        )}
-
+        )} */}
 
   {result && (
           <div className="text-left font-semibold bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
