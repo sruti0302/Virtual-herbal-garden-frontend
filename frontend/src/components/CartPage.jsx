@@ -1,8 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 function CartPage({ cartItems, setCartItems }) {
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
+  // const [paymentOngoing, setpaymentOngoing] = useState(false);
+  const token = localStorage.getItem("token");
+
+  // Fetch user profile
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(
+          "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/api/user/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUser(response.data);
+      } catch (error) {
+        console.error("Error fetching user profile", error);
+      }
+    };
+
+    if (token) {
+      fetchUserDetails();
+    }
+  }, [token]);
 
   // Increase item quantity
   const handleAdd = (index) => {
@@ -34,12 +61,135 @@ function CartPage({ cartItems, setCartItems }) {
     setCartItems([]);
   };
 
-  // Calculate total price
+  const totalItems = cartItems.reduce((total, item) => total + item.count, 0);
+
   const totalAmount = cartItems.reduce(
     (total, item) =>
       total + item.count * (typeof item.price === "number" ? item.price : 0),
     0
   );
+
+  const createOrder = async () => {
+    const productIds = cartItems.flatMap((item) =>
+  Array(item.count).fill(item.id || item._id)
+);
+
+console.log("Product IDs for order:", productIds);
+
+
+    const payload = {
+      // orderId: 0,
+      productIds,
+      name: user.name,
+      email: user.email,
+      // amount: totalAmount,
+      // orderStatus: "PENDING",
+      // razorpayOrderId: "rzp_order_dummy" // replace with real one if using Razorpay
+    };
+
+    try {
+      const response = await axios.post(
+        "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/create",
+        payload,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      console.log("Order creation response:", response.data);
+      
+      return await response.data;
+      // console.log("Order created:", response.data);
+      // navigate("/orders");
+    } catch (error) {
+      console.error("Error creating order", error);
+      alert("Something went wrong while creating order.");
+    }
+  };
+
+  // Proceed to Checkout (create order)
+  const handleCheckout = async (e) => {
+    if (!user || !token) {
+      alert("Please login first");
+      return;
+    }
+
+    try {
+      const order = await createOrder();
+      console.log("✅ Order creation response:", order);
+
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY,
+        amount: order.amount, // from backend
+        currency: "INR",
+        name: "FloraMed",
+        description: "Order Payment",
+        order_id: order.razorpayOrderId,
+        handler: function (response) {
+          const token = localStorage.getItem("token");
+
+          fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/update-status", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify(response)
+          })
+          .then(res => res.json())
+          .then(data => {
+            console.log("✅ Order status updated", data);
+            // window.location.href = "http://localhost:5173/payment-success";
+            navigate("/payment-success");
+          })
+          .catch(error => {
+            console.error("❌ Failed to update order status", error);
+          });
+        },
+        prefill: {
+          name: user.name,
+          email: user.email
+        },
+        theme: { color: "#339900" }
+      };
+      // setpaymentOngoing(true);
+
+      const rzp = new window.Razorpay(options);
+
+      
+      rzp.open();
+      console.log(rzp);
+      
+    } catch (error) {
+      console.error("❌ Payment initiation failed", error);
+
+    }
+  
+  };
+
+  if(!user){
+    return(
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+        <img src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=612x612&w=0&k=20&c=lFMSnfCGyDY_75OSYECSZEII1HR3gJ7lum4br6B3VHQ=" alt="Loading" className="w-35 h-35 mb-4" />
+        <p className="text-green-700 text-xl font-bold">Making your cart ready!</p>
+      </div>
+    )
+  }
+
+  // if(paymentOngoing){
+  //   return (
+  //     <div className="flex flex-col items-center justify-center min-h-screen bg-white">
+  //       <img
+  //         src="https://media.istockphoto.com/id/898295684/vector/shopping-cart-icon-silhouette-2.jpg?s=612x612&w=0&k=20&c=lFMSnfCGyDY_75OSYECSZEII1HR3gJ7lum4br6B3VHQ="
+  //         alt="Loading"
+  //         className="w-35 h-35 mb-4"
+  //       />
+  //       <p className="text-green-700 text-xl font-bold">Processing your payment...</p>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-white py-8 px-2">
@@ -92,7 +242,7 @@ function CartPage({ cartItems, setCartItems }) {
                         </div>
                         <div className="text-xs text-gray-400">{item.type}</div>
                         <div className="text-green-700 font-bold mt-1 text-base">
-                          $
+                          ₹
                           {typeof item.price === "number"
                             ? item.price.toFixed(2)
                             : "0.00"}
@@ -103,7 +253,6 @@ function CartPage({ cartItems, setCartItems }) {
                       <button
                         onClick={() => handleRemove(index)}
                         className="px-3 py-1 rounded bg-gray-100 text-gray-500 hover:bg-gray-200 transition text-lg"
-                        aria-label="Decrease quantity"
                       >
                         -
                       </button>
@@ -113,14 +262,12 @@ function CartPage({ cartItems, setCartItems }) {
                       <button
                         onClick={() => handleAdd(index)}
                         className="px-3 py-1 rounded bg-gray-100 text-gray-500 hover:bg-gray-200 transition text-lg"
-                        aria-label="Increase quantity"
                       >
                         +
                       </button>
                       <button
                         onClick={() => handleDelete(index)}
                         className="ml-4 px-3 py-1 rounded bg-red-50 text-red-500 hover:bg-red-100 transition text-sm"
-                        aria-label="Remove item"
                       >
                         Remove
                       </button>
@@ -135,6 +282,7 @@ function CartPage({ cartItems, setCartItems }) {
                 Clear Cart
               </button>
             </div>
+
             {/* Cart Summary */}
             <div className="w-full lg:w-80 bg-green-50 rounded-2xl shadow-md p-6 flex flex-col justify-between">
               <div>
@@ -144,24 +292,24 @@ function CartPage({ cartItems, setCartItems }) {
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-gray-600">Items</span>
                   <span className="text-gray-800 font-semibold">
-                    {cartItems.length}
+                    {totalItems}
                   </span>
                 </div>
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-gray-600">Subtotal</span>
                   <span className="text-gray-800 font-semibold">
-                    ${totalAmount.toFixed(2)}
+                    ₹{totalAmount.toFixed(2)}
                   </span>
                 </div>
                 <div className="flex justify-between items-center border-t pt-4 mt-4">
                   <span className="text-lg font-bold text-gray-700">Total</span>
                   <span className="text-lg font-bold text-green-700">
-                    ${totalAmount.toFixed(2)}
+                    ₹{totalAmount.toFixed(2)}
                   </span>
                 </div>
               </div>
               <button
-                onClick={() => navigate("/orders")}
+                onClick={handleCheckout}
                 className="mt-8 w-full py-3 rounded-xl bg-green-600 text-white font-semibold hover:bg-green-700 transition text-lg shadow"
               >
                 Proceed to Checkout

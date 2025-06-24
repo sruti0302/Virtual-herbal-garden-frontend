@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
+import { CheckCircle } from "lucide-react";
 
 
 const ai = new GoogleGenAI({ apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k" });
@@ -12,6 +13,13 @@ const herbalFacts = [
   "Ashwagandha is known as Indian Ginseng and is used to manage stress and anxiety.",
   "Neem leaves are used in Ayurvedic medicine for their anti-bacterial and skin-healing properties."
 ];
+
+const steps = [
+    "Capture or upload a clear image of the herb showing leaves, flowers, or distinctive features",
+    "Our botanical AI analyzes the plant morphology against thousands of species",
+    "Get detailed information including scientific name, medicinal properties, and growing conditions",
+    "Learn about traditional uses and fascinating folklore surrounding the plant",
+  ];
 
 export default function HerbIdentifier() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -92,14 +100,15 @@ If No herb or plant is visible in the image then just return the response as No 
 
 
       <div className="min-h-screen bg-white  rounded-2xl p-8  w-full ">
-          <h1 className="text-6xl font-extrabold text-green-800 mb-[-0.05rem] text-center">BotanIQ</h1>
-          <p className="text-center text-green-600 mb-8 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
+          <h1 className="text-6xl font-extrabold text-[#45ad01] mb-[-0.05rem] text-center">BotanIQ</h1>
+          <p className="text-center text-[#45ad01] mb-8 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
 
           <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8">
           {/* Left Column: Content */}
-          <div className="text-gray-700 text-lg space-y-4 w-[100%] lg:mt-[30%] md:mt-[15%]">
-            <p className="font-bold text-4xl text-emerald-800 mb-10"><strong>"Discover Nature with AI,,     </strong></p>
-            <p>
+          <div className="flex flex-col items-center text-gray-700 text-lg space-y-4 w-[100%] ">
+            <img src="https://cdn-icons-png.flaticon.com/512/5382/5382875.png" alt="" className="w-20 md:w-25 sm:w-22 "/>
+            <p className="font-bold text-4xl text-[#54bc11] mb-10"><strong>"Let's Identify Your Herb,,     </strong></p>
+            {/* <p>
               <strong>Welcome to BotanIQ</strong> – an AI-powered plant and herb identification system designed to reconnect you with nature.
             </p>
             
@@ -108,7 +117,20 @@ If No herb or plant is visible in the image then just return the response as No 
             </p>
             <p className="font-bold text-green-700 font-mono italic mt-12 ">
               Snap a leaf • Upload the image • Learn the wisdom of nature
-            </p>
+            </p> */}
+
+            <div className="flex flex-col  rounded-lg bg-green-100 p-6 shadow-md w-full ">
+              <div className="flex items-center gap-2 mb-4">
+                <CheckCircle className="text-green-600" size={24} />
+              <h2 className="font-bold text-2xl text-gray-700">The Identification Process</h2>
+              </div>
+              
+              <ol className="list-decimal list-inside space-y-3 text-gray-700 pl-5">
+        {steps.map((step, index) => (
+          <li key={index}>{step}</li>
+        ))}
+      </ol>
+            </div>
             
 
         {fact && (

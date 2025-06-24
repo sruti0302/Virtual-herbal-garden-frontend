@@ -15,7 +15,7 @@ const Hero = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       const token = localStorage.getItem("token"); // or whatever key you're using
-      console.log(token);
+      // console.log(token);
       if (!token) {
         console.warn("No token found in localStorage");
         setLoggedIn(false)
