@@ -11,7 +11,22 @@ const herbalFacts = [
   "Turmeric contains curcumin, a powerful anti-inflammatory compound.",
   "Peppermint is not just refreshing but also helps relieve indigestion and headaches.",
   "Ashwagandha is known as Indian Ginseng and is used to manage stress and anxiety.",
-  "Neem leaves are used in Ayurvedic medicine for their anti-bacterial and skin-healing properties."
+  "Neem leaves are used in Ayurvedic medicine for their anti-bacterial and skin-healing properties.",
+  "Holy Basil (Tulsi) emits ozone and purifies the air around it—revered as a sacred plant in India.",
+  "Ginger contains gingerol, a bioactive compound with powerful antioxidant and anti-inflammatory effects.",
+  "Moringa leaves have 7 times more vitamin C than oranges and 15 times more potassium than bananas.",
+  "Licorice root can soothe the stomach and is used to treat ulcers and respiratory problems.",
+  "Echinacea is widely used to boost the immune system and reduce the duration of colds.",
+  "Fenugreek seeds can help regulate blood sugar and increase breast milk production in lactating mothers.",
+  "Ginseng boosts brain function, fights fatigue, and may improve sexual performance.",
+  "Lavender not only promotes relaxation but also has antimicrobial properties for skin health.",
+  "Cinnamon contains cinnamaldehyde, which may reduce the risk of heart disease and has anti-diabetic effects.",
+  "Gotu Kola is called the 'herb of longevity' in Chinese and Ayurvedic medicine for enhancing memory and healing wounds.",
+  "Brahmi (Bacopa monnieri) is traditionally used to enhance cognitive performance and reduce anxiety.",
+  "Calendula flowers are edible and their extract promotes wound healing and reduces inflammation.",
+  "Dandelion is a natural diuretic and detoxifier that supports liver and kidney function.",
+  "Milk Thistle protects the liver and is often used to treat liver cirrhosis and hepatitis.",
+  "Hibiscus tea is rich in antioxidants and can help lower blood pressure naturally."
 ];
 
 const steps = [
@@ -100,13 +115,13 @@ If No herb or plant is visible in the image then just return the response as No 
 
 
       <div className="min-h-screen bg-white  rounded-2xl p-8  w-full ">
-          <h1 className="text-6xl font-extrabold text-[#45ad01] mb-[-0.05rem] text-center">BotanIQ</h1>
-          <p className="text-center text-[#45ad01] mb-8 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
+          <h1 className="text-7xl font-extrabold text-[#45ad01] mb-[-0.05rem] text-center">BotanIQ</h1>
+          <p className="text-center text-[#45ad01] mb-2 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
 
           <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8">
           {/* Left Column: Content */}
           <div className="flex flex-col items-center text-gray-700 text-lg space-y-4 w-[100%] ">
-            <img src="https://cdn-icons-png.flaticon.com/512/5382/5382875.png" alt="" className="w-20 md:w-25 sm:w-22 "/>
+            <img src="https://cdn-icons-png.flaticon.com/512/5382/5382875.png" alt="" className="w-15 md:w-18 sm:w-14 "/>
             <p className="font-bold text-4xl text-[#54bc11] mb-10"><strong>"Let's Identify Your Herb,,     </strong></p>
             {/* <p>
               <strong>Welcome to BotanIQ</strong> – an AI-powered plant and herb identification system designed to reconnect you with nature.
@@ -135,7 +150,7 @@ If No herb or plant is visible in the image then just return the response as No 
 
         {fact && (
           <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-            <h2 className="font-semibold text-yellow-700 mb-1">🌱 Fun Herbal Fact</h2>
+            <h2 className="font-semibold text-yellow-700 mb-1">🌱 Do you know ?</h2>
             <p className="text-gray-700 text-sm">{fact}</p>
           </div>
         )}
@@ -151,16 +166,16 @@ If No herb or plant is visible in the image then just return the response as No 
       type="file"
       accept="image/*"
       onChange={handleImageChange}
-      className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-green-700 hover:file:bg-green-200 mb-4"
+      className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-green-700 hover:file:bg-green-200 mb-2"
     />
     {!previewImage && (
-      <div className="mb-4 rounded-xl w-64 h-72 border-2 border-gray-300 text-center pt-[10%]">
+      <div className="mb-2 rounded-xl w-64 h-72 border-2 border-gray-300 text-center pt-[10%]">
         No image selected. Please upload an image of a herb or plant.
       </div>
     )}
 
     {previewImage && (
-      <div className="mb-4">
+      <div className="mb-2">
         <img
           src={previewImage}
           alt="Preview"
