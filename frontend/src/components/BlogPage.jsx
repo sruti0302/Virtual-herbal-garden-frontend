@@ -10,10 +10,32 @@ const BlogPage = () => {
   });
   const [activeCommentBox, setActiveCommentBox] = useState(null);
   const [commentText, setCommentText] = useState("");
+  const [userData, setUserData] = useState(null);
+  const [likedBlogs, setLikedBlogs] = useState([]); // Track liked blogs
 
   const token = localStorage.getItem("token");
 
-  // Fetch blogs function (can be reused)
+  // Fetch profile data
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const res = await axios.get(
+          "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/api/user/profile",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setUserData(res.data);
+      } catch (err) {
+        console.error("Failed to fetch user profile", err);
+      }
+    };
+    if (token) fetchUserData();
+  }, [token]);
+
+  // Fetch blogs
   const fetchBlogs = async () => {
     try {
       const res = await axios.get(
@@ -30,34 +52,24 @@ const BlogPage = () => {
     }
   };
 
-  // Initial fetch
   useEffect(() => {
     if (token) {
       fetchBlogs();
     }
   }, [token]);
 
-  // Form input handler
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  // Submit blog to API
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(token);
-
     if (!formData.title || !formData.content) return;
-
-    const blogTitle = formData.title;
-    const blogContent = formData.content;
-    const addblogdata = { title: blogTitle, content: blogContent };
-
     try {
       await axios.post(
         "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/blogs/add",
-        addblogdata,
+        formData,
         {
           headers: {
             "Content-Type": "application/json",
@@ -65,25 +77,33 @@ const BlogPage = () => {
           },
         }
       );
-
-      // Refresh blogs after posting
       await fetchBlogs();
-      setFormData({ title: "", content: "" }); // Reset form
+      setFormData({ title: "", content: "" });
     } catch (error) {
       console.error("Error adding blog:", error);
     }
   };
 
-  // Like button
   const handleLike = (id) => {
-    setBlogs((prevBlogs) =>
-      prevBlogs.map((blog) =>
-        blog.id === id ? { ...blog, likes: (blog.likes || 0) + 1 } : blog
-      )
-    );
+    if (likedBlogs.includes(id)) {
+      // Unlike
+      setBlogs((prevBlogs) =>
+        prevBlogs.map((blog) =>
+          blog.id === id ? { ...blog, likes: (blog.likes || 1) - 1 } : blog
+        )
+      );
+      setLikedBlogs(likedBlogs.filter((blogId) => blogId !== id));
+    } else {
+      // Like
+      setBlogs((prevBlogs) =>
+        prevBlogs.map((blog) =>
+          blog.id === id ? { ...blog, likes: (blog.likes || 0) + 1 } : blog
+        )
+      );
+      setLikedBlogs([...likedBlogs, id]);
+    }
   };
 
-  // Comment handling
   const handleComment = (id) => {
     if (commentText.trim() === "") return;
     setBlogs((prevBlogs) =>
@@ -98,31 +118,46 @@ const BlogPage = () => {
   };
 
   return (
-    <>
-      <Navbar className="text-green-900  bg-gradient-to-r from-green-300 to-green-600" />
-
-      <div className="flex flex-col bg-gradient-to-r from-green-100 to-white min-h-screen relative">
-        <div className="absolute top-4 right-4 bg-white shadow-md rounded-full flex items-center p-2">
-          <div className="w-10 h-10 bg-gray-300 rounded-full"></div>
-          <div className="ml-2">
-            <h2 className="text-sm font-bold">Subha Deep Mishra</h2>
-            <p className="text-xs text-gray-600">Kolkata, West Bengal</p>
+    <div className="bg-[#f6f8ed] min-h-screen">
+      <Navbar />
+      <div className="flex flex-col min-h-screen relative">
+        {/* Dynamic Profile Card */}
+        {userData && (
+          <div className="absolute top-4 right-4 bg-[#f3f9f4] border border-[#d2e3c8] shadow rounded-full flex items-center p-2 z-10">
+            <img
+              src={
+                userData.profileImageUrl ||
+                "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
+              }
+              alt="Profile"
+              className="w-10 h-10 rounded-full object-cover border-2 border-green-200"
+            />
+            <div className="ml-2">
+              <h2 className="text-sm font-bold text-[#3b5d3b]">
+                {userData.name || "Floramed User"}
+              </h2>
+              <p className="text-xs text-[#6b705c]">
+                {userData.location || "India"}
+              </p>
+            </div>
           </div>
-        </div>
+        )}
 
         <div className="flex-grow p-6">
           <form
             onSubmit={handleSubmit}
-            className="bg-white shadow-md rounded-lg p-4 mb-6"
+            className="w-[93vw] mx-auto bg-[#e6f4ea] border border-[#d2e3c8] shadow rounded-xl p-6 mb-8"
           >
-            <h2 className="text-lg font-semibold mb-4">Start a post</h2>
+            <h2 className="text-lg font-semibold mb-4 text-[#3b5d3b]">
+              Start a post
+            </h2>
             <input
               type="text"
               name="title"
               value={formData.title}
               onChange={handleInputChange}
               placeholder="Enter blog title"
-              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 mb-4 border border-[#d2e3c8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b7d7b0] bg-white text-[#3b5d3b]"
               required
             />
             <textarea
@@ -131,38 +166,43 @@ const BlogPage = () => {
               onChange={handleInputChange}
               placeholder="What do you want to talk about?"
               rows="4"
-              className="w-full px-4 py-2 mb-4 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
+              className="w-full px-4 py-2 mb-4 border border-[#d2e3c8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b7d7b0] bg-white text-[#3b5d3b]"
               required
             ></textarea>
             <button
               type="submit"
-              className="bg-green-600 text-white px-6 py-2 rounded-lg shadow hover:bg-green-700 transition"
+              className="bg-[#7ca982] text-white px-6 py-2 rounded-lg shadow hover:bg-[#3b5d3b] transition"
             >
               Post
             </button>
           </form>
 
-          <div className="space-y-6">
+          <div className="space-y-6 w-[93vw] mx-auto">
             {blogs.length === 0 ? (
-              <p className="text-center text-gray-600">
+              <p className="text-center text-[#6b705c]">
                 No posts yet. Be the first to share something!
               </p>
             ) : (
               blogs.map((blog) => (
                 <div
                   key={blog.id}
-                  className="bg-white shadow-md rounded-lg p-4"
+                  className="bg-[#f3f9f4] border border-[#d2e3c8] shadow rounded-xl p-6"
                 >
-                  <h2 className="text-xl font-semibold text-green-700 mb-2">
+                  <h2 className="text-xl font-semibold text-[#3b5d3b] mb-2">
                     {blog.title}
                   </h2>
-                  <p className="text-gray-600 mb-4">{blog.content}</p>
+                  <p className="text-[#6b705c] mb-4">{blog.content}</p>
                   <div className="flex items-center justify-between">
                     <button
                       onClick={() => handleLike(blog.id)}
-                      className="text-green-600 hover:text-green-800"
+                      className={`font-semibold ${
+                        likedBlogs.includes(blog.id)
+                          ? "text-[#3b5d3b]"
+                          : "text-[#7ca982] hover:text-[#3b5d3b]"
+                      }`}
                     >
-                      👍 {blog.likes || 0} Likes
+                      👍 {blog.likes || 0}{" "}
+                      {likedBlogs.includes(blog.id) ? "Liked" : "Like"}
                     </button>
                     <button
                       onClick={() =>
@@ -170,7 +210,7 @@ const BlogPage = () => {
                           activeCommentBox === blog.id ? null : blog.id
                         )
                       }
-                      className="text-blue-600 hover:text-blue-800"
+                      className="text-[#3b5d3b] hover:text-[#7ca982] font-semibold"
                     >
                       💬 {blog.comments?.length || 0} Comments
                     </button>
@@ -182,11 +222,11 @@ const BlogPage = () => {
                         onChange={(e) => setCommentText(e.target.value)}
                         placeholder="Write a comment..."
                         rows="2"
-                        className="w-full px-4 py-2 mb-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 mb-2 border border-[#d2e3c8] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#b7d7b0] bg-white text-[#3b5d3b]"
                       ></textarea>
                       <button
                         onClick={() => handleComment(blog.id)}
-                        className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+                        className="bg-[#7ca982] text-white px-4 py-2 rounded-lg shadow hover:bg-[#3b5d3b] transition"
                       >
                         Post Comment
                       </button>
@@ -194,10 +234,10 @@ const BlogPage = () => {
                   )}
                   {blog.comments && blog.comments.length > 0 && (
                     <div className="mt-4">
-                      <h3 className="text-sm font-semibold text-gray-700">
+                      <h3 className="text-sm font-semibold text-[#3b5d3b]">
                         Comments:
                       </h3>
-                      <ul className="list-disc list-inside text-gray-600">
+                      <ul className="list-disc list-inside text-[#6b705c]">
                         {blog.comments.map((comment, index) => (
                           <li key={index}>{comment}</li>
                         ))}
@@ -210,7 +250,7 @@ const BlogPage = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

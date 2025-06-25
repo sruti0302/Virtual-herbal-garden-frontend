@@ -1,114 +1,107 @@
 import { useState } from "react";
-import { delay, motion } from "framer-motion";
-import Button from "./Button";
-import HomeButton from "./HomeButton";
-import logoo from "../assets/logo/logoo.svg";
-import MarketPlace from "./MarketPlace"; // Import the Marketplace component
+import { Link, useLocation } from "react-router-dom";
+
+const links = [
+  { name: "Marketplace", path: "/marketplace" },
+  { name: "Health", path: "/health" },
+  { name: "Gardening", path: "/dashboard/gardening-tips" },
+  { name: "Dashboard", path: "/dashboard" },
+  { name: "Blog", path: "/blog" },
+];
 
 const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
-
-  // Define links with their respective paths
-  const links = [
-    { name: "Marketplace", path: "/marketplace" },
-    { name: "Health", path: "/health" },
-    { name: "Gardening", path: "/dashboard/gardening-tips" },
-    { name: "Dashboard", path: "/dashboard" },
-    { name: "Blog", path: "/blog" }, // New Blog Link
-  ];
-
-  // Framer Motion variants for staggered animation
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delay: 0, // Stagger each child by 0.2 seconds
-      },
-    },
-  };
-
-  const buttonVariants = {
-    hidden: { opacity: 0, y: -50 }, // Start above the screen
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5, ease: "easeOut" },
-    },
-  };
+  const location = useLocation();
 
   return (
     <nav
-      className={`flex justify-between items-center px-6 py-6 relative ${className}`}
+      className={`backdrop-blur-md bg-white/80 border border-gray-200 shadow-md rounded-2xl px-6 py-3 w-[93vw] mx-auto mt-[2vh] ${className}`}
     >
-      <div className="text-3xl font-bold">FloraMed</div>
+      <div className="flex items-center justify-between">
+        {/* Logo */}
+        <Link
+          to="/"
+          className="text-xl font-bold tracking-wide text-gray-800 select-none"
+        >
+          FloraMed
+        </Link>
 
-      {/* Desktop menu */}
-      <motion.div
-        className="hidden md:flex gap-6"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.div key="Home" variants={buttonVariants}>
-          <HomeButton text="Home" path="/" />
-        </motion.div>
+        {/* Desktop links */}
+        <div className="hidden md:flex gap-6 items-center">
+          <Link
+            to="/"
+            className={`relative text-sm font-medium uppercase tracking-wide ${
+              location.pathname === "/" ? "text-green-700" : "text-gray-700"
+            } hover:text-green-700 transition group`}
+          >
+            Home
+            <span
+              className={`absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-[2px] bg-green-700 transition-all duration-300 ${
+                location.pathname === "/"
+                  ? "w-[90%]"
+                  : "w-0 group-hover:w-[90%]"
+              }`}
+              style={{ transformOrigin: "center" }}
+            ></span>
+          </Link>
+          {links.map(({ name, path }) => (
+            <Link
+              key={name}
+              to={path}
+              className={`relative text-sm font-medium uppercase tracking-wide ${
+                location.pathname === path ? "text-green-700" : "text-gray-700"
+              } hover:text-green-700 transition group`}
+            >
+              {name}
+              <span
+                className={`absolute left-1/2 -translate-x-1/2 -bottom-0.5 h-[2px] bg-green-700 transition-all duration-300 ${
+                  location.pathname === path
+                    ? "w-[90%]"
+                    : "w-0 group-hover:w-[90%]"
+                }`}
+                style={{ transformOrigin: "center" }}
+              ></span>
+            </Link>
+          ))}
+        </div>
 
-        {links.map(({ name, path }) => (
-          <motion.div key={name} variants={buttonVariants}>
-            <Button text={name} path={path} />
-          </motion.div>
-        ))}
-      </motion.div>
-
-      {/* Mobile menu button */}
-      <div className="md:hidden">
+        {/* Mobile menu button */}
         <button
           onClick={() => setOpen(!open)}
-          className="text-3xl  mr-[5vw] font-bold text-white focus:outline-none"
+          className="md:hidden text-2xl text-gray-700 focus:outline-none"
         >
           {open ? "✖" : "☰"}
         </button>
       </div>
 
-      {/* Background blur when sidebar is open */}
-      {open && (
-        <div
-          className="fixed inset-0 bg-transparent bg-opacity-50 backdrop-blur-sm z-40"
-          onClick={() => setOpen(false)} // Close sidebar when clicking outside
-        ></div>
-      )}
-
       {/* Mobile menu */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-gradient-to-b from-transparent to-black text-white transform ${
-          open ? "translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out z-50`}
-      >
-        {/* Close button inside the menu */}
-        <div className="flex justify-end p-4">
-          <button
+      {open && (
+        <div className="md:hidden mt-3 border-t pt-4">
+          <Link
+            to="/"
+            className={`block mb-2 text-base font-medium ${
+              location.pathname === "/" ? "text-green-700" : "text-gray-700"
+            } hover:text-green-700 transition`}
             onClick={() => setOpen(false)}
-            className="text-3xl font-bold mr-[5vw] focus:outline-none text-white"
           >
-            ✖
-          </button>
-        </div>
-
-        {/* Menu links */}
-        <div className="flex flex-col items-center gap-4 p-6">
+            Home
+          </Link>
           {links.map(({ name, path }) => (
-            <Button
+            <Link
               key={name}
-              text={name}
-              path={path}
+              to={path}
+              className={`block mb-2 text-base font-medium ${
+                location.pathname === path
+                  ? "text-green-700 border-b border-green-700"
+                  : "text-gray-700"
+              } hover:text-green-700 transition`}
               onClick={() => setOpen(false)}
-              className="text-zinc-100"
-            />
+            >
+              {name}
+            </Link>
           ))}
         </div>
-      </div>
+      )}
     </nav>
   );
 };

@@ -90,7 +90,7 @@ const teamMembers = [
 export default function About() {
   return (
     <>
-      <Navbar className="text-white bg-gradient-to-b from-green-800 to-green-500" />
+      <Navbar className="" />
       <div className="min-h-screen bg-gradient-to-b from-white to-green-100 py-10 px-4">
         <h1 className="text-4xl font-bold text-center mb-12 text-green-700">
           About Our Team
