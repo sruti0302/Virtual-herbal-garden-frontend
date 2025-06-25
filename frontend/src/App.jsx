@@ -25,6 +25,7 @@ import Success from "./components/Success";
 import Testimonials from "./components/Testimonials";
 import MarketPlace from "./components/MarketPlace";
 import HerbIdentifier from "./components/HerbIdentifier";
+import Contact from "./components/Contact";
 
 function App() {
   const videos = [
@@ -33,7 +34,7 @@ function App() {
     "/videos/video3.mp4",
   ];
 
-  const [ setCurrentVideoIndex] = useState(0);
+  const [setCurrentVideoIndex] = useState(0);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true); // <== Loading state
 
@@ -48,8 +49,6 @@ function App() {
     }, 12000);
     return () => clearInterval(interval);
   }, [videos.length]);
-
-  
 
   if (loading) {
     return <Loader />; // 👈 Show loader while loading
@@ -80,8 +79,8 @@ function App() {
                     <Hero />
                   </div>
 
-                  {/* Overlay for better readability */}
-                  <div className="absolute inset-0 bg-opacity-30"></div>
+                  {/* Grayish Overlay */}
+                  {<div className="absolute inset-0 bg-gray-900/50 z-0"></div>}
                 </div>
 
                 {/* Cards Section */}
@@ -107,8 +106,13 @@ function App() {
           />
 
           {/* Other Routes */}
-          <Route path="/marketplace" element={<MarketPlace cartItems={cartItems}
-                    setCartItems={setCartItems} />} />
+          <Route
+            path="/marketplace"
+            element={
+              <MarketPlace cartItems={cartItems} setCartItems={setCartItems} />
+            }
+          />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard/gardening-tips" element={<Gardening />} />
@@ -129,10 +133,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route
             path="/health"
-            element={
-              <div className="min-h-screen rounded-b-2xl bg-gradient-to-r from-green-100 to-white">
-                <HealthWellness />
-              </div>
+            element={<HealthWellness />
             }
           />
         </Routes>
