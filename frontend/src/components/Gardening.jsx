@@ -133,7 +133,7 @@ const Gardening = () => {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                variants={fadeIn}
+                // variants={fadeIn}
                 whileHover="hover"
                 variants={{ ...fadeIn, ...scaleUp }}
               >

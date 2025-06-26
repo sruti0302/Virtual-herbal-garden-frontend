@@ -68,7 +68,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=3"
+          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=4"
         );
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -112,7 +112,7 @@ export default function Dashboard() {
       <header className="bg-[#e6f4ea] border border-[#d2e3c8] px-4 py-3 rounded-xl w-[94vw] mx-auto mt-[2vh]">
         <div className="flex items-center justify-between w-full">
           {/* Center: Floramed */}
-          <span className=" text-lg sm:text-xl font-bold text-[#3b5d3b] tracking-tight select-none">
+          <span className=" text-2xl sm:text-2xl font-bold text-[#3b5d3b] tracking-tight select-none">
             Floramed
           </span>
           {/* Right: Marketplace & Blog */}
@@ -164,10 +164,10 @@ export default function Dashboard() {
               "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg"
             }
             alt="Profile"
-            className="w-10 h-10 rounded-full object-cover border-2 border-green-200"
+            className="w-15 h-15 rounded-full object-cover border-2 border-green-200"
             draggable={false}
           />
-          <span className="flex flex-col text-[#6b705c] text-xs">
+          <span className="flex flex-col text-[#6b705c] text-md">
             <span className="flex items-center gap-1">
               Welcome <span className="font-bold uppercase ml-1">{user}</span>
             </span>
