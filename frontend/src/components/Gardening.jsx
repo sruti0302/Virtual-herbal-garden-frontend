@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import gardeningImage from "../assets/Images/gardening.jpeg"; 
 
 const tips = [
   {
@@ -115,7 +116,7 @@ const Gardening = () => {
             </div>
             <motion.img
               whileHover={{ scale: 1.03 }}
-              src="https://ideogram.ai/assets/progressive-image/balanced/response/NJw1wxWVT3WlWdd8iyDJtw"
+              src={gardeningImage}
               alt="Gardening"
               className="rounded-lg shadow w-full"
             />
