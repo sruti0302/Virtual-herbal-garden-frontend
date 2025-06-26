@@ -1,3 +1,4 @@
+// ✅ Updated DoctorPage.jsx with Dashboard theme
 import React, { useState } from "react";
 import DoctorCard from "./DoctorCard";
 import Footer from "./Footer";
@@ -6,7 +7,6 @@ import Navbar from "./Navbar";
 const DoctorPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCity, setSelectedCity] = useState("");
-
 
   const doctors = [
     {
@@ -75,35 +75,32 @@ const DoctorPage = () => {
     const matchesSearch = `${doctor.name} ${doctor.speciality}`
       .toLowerCase()
       .includes(searchTerm.toLowerCase());
-  
+
     const matchesCity = selectedCity
       ? doctor.location.toLowerCase().includes(selectedCity.toLowerCase())
       : true;
-  
+
     return matchesSearch && matchesCity;
   });
-  
 
   return (
-    <>
-    <Navbar className='text-green-900  bg-gradient-to-r from-green-300 to-green-600'/>
-      <div className="min-h-screen bg-[#f9fdf9] py-10 px-4">
-        {/* Header */}
+    <div className="bg-[#f6f8ed]">
+      <Navbar />
+      <div className="min-h-screen  py-10 px-4">
         <div className="text-center mb-10">
-          <h1 className="text-3xl font-bold text-green-800 mb-2">
+          <h1 className="text-3xl font-bold text-[#3b5d3b] mb-2">
             🌿 Healing Through Ayurveda
           </h1>
-          <p className="text-green-600 text-lg">
+          <p className="text-[#6b705c] text-lg">
             Discover natural care from certified Ayurvedic doctors
           </p>
         </div>
 
-        {/* Search Section */}
         <div className="flex flex-col md:flex-row justify-center gap-4 mb-10">
-          <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-80">
-            <span className="text-green-600 mr-2">📍</span>
+          <div className="flex items-center bg-[#e6f4ea] rounded-md shadow-sm border border-[#d2e3c8] px-4 py-3 w-full md:w-80">
+            <span className="text-[#3b5d3b] mr-2">📍</span>
             <select
-              className="flex-1 bg-transparent outline-none text-green-800"
+              className="flex-1 bg-transparent outline-none text-[#3b5d3b]"
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
             >
@@ -115,32 +112,31 @@ const DoctorPage = () => {
               <option value="Hyderabad">Hyderabad</option>
             </select>
           </div>
-          <div className="flex items-center bg-[#f4f9f4] rounded-md shadow-sm border border-[#cde0c3] px-4 py-3 w-full md:w-96">
+          <div className="flex items-center bg-[#e6f4ea] rounded-md shadow-sm border border-[#d2e3c8] px-4 py-3 w-full md:w-96">
             <input
               type="text"
               placeholder="Search By Doctor Name or Disease"
-              className="flex-1 bg-transparent outline-none text-green-800 placeholder-green-500"
+              className="flex-1 bg-transparent outline-none text-[#3b5d3b] placeholder-[#8a958a]"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
         </div>
 
-        {/* Doctor Cards List */}
         <div className="grid gap-6 max-w-4xl mx-auto">
           {filteredDoctors.length > 0 ? (
             filteredDoctors.map((doctor, index) => (
               <DoctorCard key={index} doctor={doctor} />
             ))
           ) : (
-            <p className="text-center text-green-700">
+            <p className="text-center text-[#3b5d3b]">
               No doctors found matching your search.
             </p>
           )}
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 
