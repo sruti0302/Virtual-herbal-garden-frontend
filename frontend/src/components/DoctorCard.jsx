@@ -1,3 +1,4 @@
+// ✅ Updated DoctorCard.jsx with Dashboard theme
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { User } from "lucide-react";
@@ -24,59 +25,53 @@ const DoctorCard = ({ doctor }) => {
         animate={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="bg-[#f4f9f4] border border-[#cde0c3] rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 items-center"
+        className="bg-[#e6f4ea] border border-[#d2e3c8] rounded-2xl shadow-sm p-6 flex flex-col md:flex-row gap-6 items-center"
       >
-        {/* Profile icon */}
         <motion.div
           whileHover={{ scale: 1.1 }}
           transition={{ type: "spring", stiffness: 200 }}
-          className="w-24 h-24 rounded-full bg-green-100 border-2 border-green-300 flex items-center justify-center"
+          className="w-24 h-24 rounded-full bg-[#f6f8ed] border-2 border-[#b7d7b0] flex items-center justify-center"
         >
-          <User className="w-10 h-10 text-green-700" />
+          <User className="w-10 h-10 text-[#3b5d3b]" />
         </motion.div>
 
-        {/* Info */}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-2">
-            <h2 className="text-xl font-bold text-green-800">{doctor.name}</h2>
-            <span className="text-green-600 font-bold text-sm">
-              🌿 {doctor.rating}
-            </span>
+            <h2 className="text-xl font-bold text-[#3b5d3b]">{doctor.name}</h2>
+            <span className="text-[#6b705c] font-bold text-sm">🌿 {doctor.rating}</span>
           </div>
-          <p className="text-green-700">{doctor.qualification}</p>
-          <p className="text-emerald-700 font-semibold mt-1">
+          <p className="text-[#6b705c]">{doctor.qualification}</p>
+          <p className="text-[#7ca982] font-semibold mt-1">
             {doctor.experience} Years Experience
           </p>
-          <p className="text-green-600 mt-1 text-sm">📍 {doctor.location}</p>
+          <p className="text-[#6b705c] mt-1 text-sm">📍 {doctor.location}</p>
 
           <div className="mt-4">
-            <p className="font-semibold mb-1 text-green-800">Specialities</p>
-            <div className="inline-block bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">
+            <p className="font-semibold mb-1 text-[#3b5d3b]">Specialities</p>
+            <div className="inline-block bg-[#f6f8ed] text-[#3b5d3b] px-3 py-1 rounded-full text-sm">
               {doctor.speciality}
             </div>
           </div>
         </div>
 
-        {/* Action */}
         <div className="flex flex-col gap-3">
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsModalOpen(true)}
-            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition"
+            className="bg-[#3b5d3b] text-white px-4 py-2 rounded-md hover:bg-[#2f4e2f] transition"
           >
             Book Ayurvedic Appointment
           </motion.button>
-          <button className="text-green-800 font-semibold border border-green-300 px-3 py-1 rounded-md hover:bg-green-50 transition">
+          <button className="text-[#3b5d3b] font-semibold border border-[#b7d7b0] px-3 py-1 rounded-md hover:bg-[#f6f8ed] transition">
             ₹ {doctor.price}
           </button>
         </div>
       </motion.div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 backdrop-blur-sm bg-white/30 flex items-center justify-center z-50">
           <div className="bg-white rounded-xl p-6 w-96 shadow-lg">
-            <h2 className="text-xl font-bold text-green-800 mb-4">
+            <h2 className="text-xl font-bold text-[#3b5d3b] mb-4">
               Select Appointment Date
             </h2>
             <DatePicker
@@ -84,7 +79,7 @@ const DoctorCard = ({ doctor }) => {
               onChange={(date) => setSelectedDate(date)}
               minDate={new Date()}
               placeholderText="Click to select a date"
-              className="border border-green-300 p-2 w-full rounded-md mb-4"
+              className="border border-[#d2e3c8] p-2 w-full rounded-md mb-4"
             />
             <div className="flex justify-end gap-3">
               <button
@@ -94,7 +89,7 @@ const DoctorCard = ({ doctor }) => {
                 Cancel
               </button>
               <button
-                className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
+                className="px-4 py-2 bg-[#3b5d3b] text-white rounded-md hover:bg-[#2f4e2f]"
                 onClick={handleBooking}
               >
                 Confirm Appointment
@@ -104,9 +99,8 @@ const DoctorCard = ({ doctor }) => {
         </div>
       )}
 
-      {/* Booking Success Toast */}
       {bookingConfirmed && (
-        <div className="fixed bottom-24 right-6 bg-green-600 text-white px-4 py-3 rounded-lg shadow-lg z-50">
+        <div className="fixed bottom-24 right-6 bg-[#3b5d3b] text-white px-4 py-3 rounded-lg shadow-lg z-50">
           Your appointment has been booked ✅
         </div>
       )}
