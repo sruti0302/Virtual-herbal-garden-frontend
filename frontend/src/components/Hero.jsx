@@ -6,12 +6,15 @@ const GOOGLE_OAUTH_URL =
   "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/oauth2/authorization/google";
 
 const Hero = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
       const token = sessionStorage.getItem("token");
-      if (!token) return;
+      if (!token) {
+        setLoggedIn(false);
+        return;
+      }
 
       try {
         const response = await fetch(
@@ -25,7 +28,9 @@ const Hero = () => {
         );
 
         const data = await response.json();
+  
         data ? setLoggedIn(true) : setLoggedIn(false);
+        
       } catch (error) {
         console.error("Error fetching user profile:", error);
         setLoggedIn(false);
@@ -38,6 +43,8 @@ const Hero = () => {
   const handleLogin = () => {
     window.location.href = GOOGLE_OAUTH_URL;
   };
+
+  
 
   return (
     <section className="relative flex flex-col items-center justify-center text-center px-6 py-24 md:py-40">
