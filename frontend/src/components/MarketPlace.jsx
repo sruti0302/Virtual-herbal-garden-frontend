@@ -262,6 +262,7 @@ function Marketplace({ cartItems, setCartItems }) {
           </div>
         )}
       </div>
+      <Footer />
     </>
   );
 }
