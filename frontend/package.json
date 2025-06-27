@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/genai": "^1.6.0",
     "@google/generative-ai": "^0.24.1",
+    "@studio-freight/lenis": "^1.0.42",
     "@tailwindcss/vite": "^4.1.4",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
