@@ -27,13 +27,18 @@ const Navbar = ({ className = "" }) => {
       Swal.fire({
 html: `
     <div class="flex flex-col items-center">
-      <img src="${logo}" alt="FloraMed Logo" style="width: 15rem; height: 15rem;" />
+      <img src="${logo}" alt="FloraMed Logo" style="width: 15rem; height: 10rem;" />
     <h2 style=" color: #065f46;">Please login first.</h2>
     </div>
   `,  text: 'Please login first.',
   icon: 'warning',
   confirmButtonText: 'OK',
-  confirmButtonColor: 'green',
+  confirmButtonColor: '#3b5d3b',
+  confirmButtonAriaLabel: 'OK',
+  backdrop: `rgba(0,20,0,0.4)  left top no-repeat`,
+  customClass: {
+    popup: 'bg-[#e6f4ea] hover:bg-[#b7d7b0] text-[#3b5d3b]'
+  }
 });
       return;
     };};
