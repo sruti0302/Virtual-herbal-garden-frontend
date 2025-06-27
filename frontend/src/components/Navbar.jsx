@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Swal from 'sweetalert2';
+import logo from '../assets/logo/logoo.svg'
+
+
 
 const links = [
   { name: "Marketplace", path: "/marketplace" },
@@ -17,9 +21,32 @@ const Navbar = ({ className = "" }) => {
     const token = sessionStorage.getItem("token");
     if (!token) {
       e.preventDefault(); // Stop default navigation
-      alert("Please login first.");
+      // alert("Please login first.");
+      // console.log("Please login first.");
+      
+      Swal.fire({
+html: `
+    <div class="flex flex-col items-center">
+      <img src="${logo}" alt="FloraMed Logo" style="width: 15rem; height: 10rem;" />
+    <h2 style=" color: #065f46;">Please login first.</h2>
+    </div>
+  `,  text: 'Please login first.',
+  icon: 'warning',
+  confirmButtonText: 'OK',
+  confirmButtonColor: '#3b5d3b',
+  confirmButtonAriaLabel: 'OK',
+  backdrop: `rgba(0,20,0,0.4)  left top no-repeat`,
+  customClass: {
+    popup: 'bg-[#e6f4ea] hover:bg-[#b7d7b0] text-[#3b5d3b]'
+  }
+});
       return;
     };};
+
+    const handleClickMobile = (e) => {
+      handleClick(e);
+      setOpen(false); // Close the mobile menu after clicking a link
+    };
 
   return (
     <nav
@@ -104,7 +131,7 @@ const Navbar = ({ className = "" }) => {
                   ? "text-green-700 border-b border-green-700"
                   : "text-gray-700"
               } hover:text-green-700 transition`}
-              onClick={() => setOpen(false)}
+              onClick={handleClickMobile}
             >
               {name}
             </Link>
