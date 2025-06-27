@@ -82,7 +82,7 @@ const Gardening = () => {
   return (
     <div className="bg-[#f6f8ed]">
       <Navbar />
-      <div className="min-h-screen bg-[#f6f8ed] px-2 py-6">
+      <div className="min-h-screen mt-[12vh]  bg-[#f6f8ed] px-2 py-6">
         {/* Hero Section */}
         <div className="w-[93vw] mx-auto mb-8 rounded-xl bg-[#e6f4ea] border border-[#d2e3c8] shadow p-6">
           <motion.section

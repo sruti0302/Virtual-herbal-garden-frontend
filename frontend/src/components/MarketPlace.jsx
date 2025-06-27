@@ -90,7 +90,7 @@ function Marketplace({ cartItems, setCartItems }) {
   return (
     <>
       <Navbar className="" />
-      <div className="p-6 rounded-xl mx-auto w-[93vw] my-[2vh] min-h-screen bg-[#f6f8ed]">
+      <div className="p-6 mt-[12vh] rounded-xl mx-auto w-[93vw] my-[2vh] min-h-screen bg-[#f6f8ed]">
         <h1 className="text-3xl font-bold text-[#3b5d3b] mb-6 text-center">
           Herbal Marketplace
         </h1>

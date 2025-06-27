@@ -81,7 +81,7 @@ const HealthWellness = () => {
     <div className="bg-[#f6f8ed]">
       <Navbar />
 
-      <div className="min-h-screen  px-2 py-8">
+      <div className="min-h-screen mt-[12vh]   px-2 py-8">
         {/* Hero Section */}
         <div className="w-[93vw] mx-auto mb-8 rounded-xl bg-[#e6f4ea] border border-[#d2e3c8] shadow p-6 flex flex-col items-center text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-4 text-[#3b5d3b]">

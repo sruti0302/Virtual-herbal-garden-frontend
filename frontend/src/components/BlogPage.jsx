@@ -120,7 +120,7 @@ const BlogPage = () => {
   return (
     <div className="bg-[#f6f8ed] min-h-screen">
       <Navbar />
-      <div className="flex flex-col min-h-screen relative">
+      <div className="mt-[12vh] flex flex-col min-h-screen relative">
         {/* Dynamic Profile Card */}
         {userData && (
           <div className="absolute top-4 right-4 bg-[#f3f9f4] border border-[#d2e3c8] shadow rounded-full flex items-center p-2 z-10">
