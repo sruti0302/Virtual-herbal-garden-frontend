@@ -6,6 +6,7 @@ import axios from "axios";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 function Marketplace({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
