@@ -84,12 +84,12 @@ function App() {
                 </div>
 
                 {/* Cards Section */}
-                <div className="px-4 sm:px-6 lg:px-8">
+                
                   <CardsSection
                     cartItems={cartItems}
                     setCartItems={setCartItems}
                   />
-                </div>
+                
 
                 {/* Features Section */}
                 <div className="px-4 sm:px-6 lg:px-8">

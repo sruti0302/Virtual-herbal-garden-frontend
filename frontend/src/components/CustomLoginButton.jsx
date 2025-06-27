@@ -92,7 +92,7 @@ const StyledWrapper = styled.div`
     padding: 15px 45px;
     background: #e6f9ea;
     font-size: 17px;
-    font-weight: bold; // changed from 500 to bold
+    font-weight: bold;
     color: #14532d;
     cursor: pointer;
     border: 1.5px solid #34d399;
@@ -126,11 +126,7 @@ const StyledWrapper = styled.div`
     transform: rotate(10deg);
     transition: all 0.5s ease-in-out;
     filter: drop-shadow(2px 2px 3px rgba(16, 185, 129, 0.18));
-  }
-
-  button:hover .icon-1 {
     animation: slay-1 3s cubic-bezier(0.52, 0, 0.58, 1) infinite;
-    transform: rotate(10deg);
   }
 
   @keyframes slay-1 {
@@ -154,11 +150,7 @@ const StyledWrapper = styled.div`
     transform: rotate(10deg);
     transition: all 1s ease-in-out;
     filter: drop-shadow(2px 2px 3px rgba(16, 185, 129, 0.18));
-  }
-
-  button:hover .icon-2 {
     animation: slay-2 3s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
-    transform: rotate(0);
   }
 
   @keyframes slay-2 {
@@ -182,11 +174,7 @@ const StyledWrapper = styled.div`
     transform: rotate(-5deg);
     transition: all 1s ease-in-out;
     filter: drop-shadow(2px 2px 3px rgba(16, 185, 129, 0.18));
-  }
-
-  button:hover .icon-3 {
     animation: slay-3 2s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
-    transform: rotate(0);
   }
 
   @keyframes slay-3 {

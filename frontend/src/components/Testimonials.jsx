@@ -13,7 +13,9 @@ export default function Testimonials() {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const res = await fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/feedback/all");
+        const res = await fetch(
+          "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/feedback/all"
+        );
         const data = await res.json();
         setTestimonials(data);
       } catch (err) {
@@ -27,7 +29,7 @@ export default function Testimonials() {
     const interval = setInterval(() => {
       handleNext();
     }, 4500);
-  
+
     return () => clearInterval(interval); // Cleanup on unmount
   }, [testimonials, currentIndex]);
 
@@ -36,11 +38,12 @@ export default function Testimonials() {
     setCurrentIndex((prev) => (prev + visibleCount) % testimonials.length);
     setPage((prev) => prev + 1);
   };
-  
+
   const handlePrev = () => {
     setDirection(-1);
-    setCurrentIndex((prev) =>
-      (prev - visibleCount + testimonials.length) % testimonials.length
+    setCurrentIndex(
+      (prev) =>
+        (prev - visibleCount + testimonials.length) % testimonials.length
     );
     setPage((prev) => prev - 1);
   };
@@ -71,22 +74,31 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="bg-gradient-to-t from-green-50 to-white py-16">
+    <section className="bg-gradient-to-b from-white to-[#f6f8ed] ">
       <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-green-800 mb-12">What Our Users Say</h2>
+        <h2 className="text-3xl font-bold text-green-800 mb-12">
+          What Our Users Say
+        </h2>
 
         {testimonials.length > 0 ? (
-          <div className="relative flex items-center justify-center">
-            {/* Left Button */}
-            <button
-              onClick={handlePrev}
-              className="absolute left-0 z-10 bg-green-100 hover:bg-green-200 p-3 rounded-full shadow-md"
-            >
-              <FaChevronLeft size={20} className="text-green-700" />
-            </button>
-
+          <div className="relative flex items-center justify-center w-full">
             {/* Sliding Section */}
-            <div className="overflow-hidden w-full px-8 sm:px-12 relative h-[320px] mt-20">
+            <div className="overflow-hidden w-full px-2 sm:px-4 md:px-8 mb-3 relative h-auto min-h-[60vh] flex items-center">
+              {/* Left Button */}
+              <button
+                onClick={handlePrev}
+                className="z-10 bg-green-100 hover:bg-green-200 p-3 rounded-full shadow-md disabled:opacity-50 mr-2 self-center"
+                aria-label="Previous testimonials"
+                style={{
+                  position: "absolute",
+                  left: 0,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              >
+                <FaChevronLeft size={20} className="text-green-700" />
+              </button>
+
               <AnimatePresence custom={direction} mode="wait">
                 <motion.div
                   key={page}
@@ -95,41 +107,52 @@ export default function Testimonials() {
                   initial="initial"
                   animate="animate"
                   exit="exit"
-                  className="flex gap-6 justify-center absolute left-0 top-0 w-full"
+                  className="flex gap-4 sm:gap-6 justify-center items-stretch pt-2 w-full"
                 >
                   {getVisibleTestimonials().map((testimonial) => (
                     <div
                       key={testimonial.id}
-                      className="w-[300px] shrink-0 rounded-2xl shadow-md p-8 bg-white min-h-65"
+                      className="flex flex-col items-center w-full max-w-xs sm:max-w-sm md:max-w-[300px] shrink-0 rounded-2xl shadow-md p-6 sm:p-8 bg-white min-h-[260px] sm:min-h-[290px] mx-auto"
                     >
                       <img
-                        src={testimonial.profilePictureUrl || "https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png"}
+                        src={
+                          testimonial.profilePictureUrl ||
+                          "https://www.iconpacks.net/icons/2/free-user-icon-3297-thumb.png"
+                        }
                         alt={testimonial.name}
-                        className="w-16 h-16 rounded-full mx-auto mb-4 object-cover"
+                        className="w-14 h-14 sm:w-16 sm:h-16 rounded-full mx-auto mb-3 object-cover"
                       />
-                      <h3 className="text-lg font-semibold text-green-700">{testimonial.name}</h3>
-                      
-                      <p className="text-gray-600 mt-3">{testimonial.message}</p>
+                      <h3 className="text-base sm:text-lg font-semibold text-green-700 text-center">
+                        {testimonial.name}
+                      </h3>
+                      <p className="text-gray-600 mt-2 text-sm sm:text-base text-center break-words">
+                        {testimonial.message}
+                      </p>
                     </div>
                   ))}
                 </motion.div>
               </AnimatePresence>
-            </div>
 
-            {/* Right Button */}
-            <button
-              onClick={handleNext}
-              className="absolute right-0 z-10 bg-green-100 hover:bg-green-200 p-3 rounded-full shadow-md"
-            >
-              <FaChevronRight size={20} className="text-green-700" />
-            </button>
+              {/* Right Button */}
+              <button
+                onClick={handleNext}
+                className="z-10 bg-green-100 hover:bg-green-200 p-3 rounded-full shadow-md disabled:opacity-50 ml-2 self-center"
+                aria-label="Next testimonials"
+                style={{
+                  position: "absolute",
+                  right: 0,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                }}
+              >
+                <FaChevronRight size={20} className="text-green-700" />
+              </button>
+            </div>
           </div>
         ) : (
           <p className="text-gray-500 mt-10">No testimonials available yet.</p>
         )}
       </div>
-
-      <div className="my-8 border-t border-green-200 m-6" />
     </section>
   );
 }

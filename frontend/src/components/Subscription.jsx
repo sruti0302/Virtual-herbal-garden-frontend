@@ -82,54 +82,56 @@ const herbalistsplans = [
 
 const Pricing = () => {
   return (
-    <div className="py-16 px-6 bg-white text-center">
-      <h2 className="text-4xl font-bold mb-4 text-green-600">
-      Flexible Plans for Every Herbal Journey
-
+    <div className="py-16 px-6  text-center rounded-3xl w-[96vw] mx-auto my-8 ">
+      <h2 className="text-4xl font-bold mb-4 text-[#3b5d3b]">
+        Flexible Plans for Every Herbal Journey
       </h2>
-      <p className="text-gray-500 mb-10 max-w-2xl mx-auto">
-      Choose a plan that grows with your wellness goals — from exploring herbs to expert consultations and exclusive benefits.
-
+      <p className="text-[#6b705c] mb-10 max-w-2xl mx-auto">
+        Choose a plan that grows with your wellness goals — from exploring herbs
+        to expert consultations and exclusive benefits.
       </p>
 
-      <h2 className="text-2xl font-bold mb-4 text-green-600">For Normal Users :</h2>
+      <h2 className="text-2xl font-bold mb-4 text-[#3b5d3b]">
+        For Normal Users :
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto mb-15">
         {plans.map((plan, idx) => (
           <div
-            className={`relative p-8 rounded-2xl shadow-md border border-green-200 transition duration-300 hover:shadow-xl hover:bg-green-100/30 backdrop-blur-md ${
-              plan.isPopular ? "border-green-500" : ""
+            key={idx}
+            className={`relative p-8 rounded-2xl shadow-md border border-[#d2e3c8] transition duration-300 hover:shadow-xl hover:bg-[#e6f4ea] backdrop-blur-md ${
+              plan.isPopular ? "border-[#7ca982]" : ""
             }`}
           >
             {plan.isPopular && (
-              <div className="absolute top-0 right-0 bg-green-500 text-white text-xs px-3 py-1 rounded-bl-lg">
+              <div className="absolute top-0 right-0 bg-[#7ca982] text-white text-xs px-3 py-1 rounded-bl-lg">
                 Most popular
               </div>
             )}
-            <h3 className="text-xl font-semibold mb-2 text-green-600">
+            <h3 className="text-xl font-semibold mb-2 text-[#3b5d3b]">
               {plan.title}
             </h3>
 
-            <div className="text-4xl font-bold mb-4 text-green-600">
+            <div className="text-4xl font-bold mb-4 text-[#3b5d3b]">
               {plan.price}
               <span className="text-base font-medium">/month</span>
             </div>
             <button
               className={`w-full py-2 rounded-lg font-semibold text-sm transition ${
                 plan.isPopular
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700"
+                  ? "bg-[#7ca982] text-white"
+                  : "bg-[#f3f9f4] text-[#3b5d3b] border border-[#d2e3c8]"
               }`}
             >
               {plan.buttonText}
             </button>
-            <div className="mt-6 text-xs font-semibold text-gray-500">
+            <div className="mt-6 text-xs font-semibold text-[#7ca982]">
               BENEFITS
             </div>
             <ul className="mt-4 space-y-2 text-sm text-left">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-600">✔</span> {feature}
+                  <span className="text-[#7ca982]">✔</span> {feature}
                 </li>
               ))}
             </ul>
@@ -137,44 +139,47 @@ const Pricing = () => {
         ))}
       </div>
 
-      <h2 className="text-2xl font-bold mb-4 text-green-600">For Herbalists :</h2>
+      <h2 className="text-2xl font-bold mb-4 text-[#3b5d3b]">
+        For Herbalists :
+      </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {herbalistsplans.map((plan, idx) => (
           <div
-            className={`relative p-8 rounded-2xl shadow-md border border-green-200 transition duration-300 hover:shadow-xl hover:bg-green-100/30 backdrop-blur-md ${
-              plan.isPopular ? "border-green-500" : ""
+            key={idx}
+            className={`relative p-8 rounded-2xl shadow-md border border-[#d2e3c8] transition duration-300 hover:shadow-xl hover:bg-[#e6f4ea] backdrop-blur-md ${
+              plan.isPopular ? "border-[#7ca982]" : ""
             }`}
           >
             {plan.isPopular && (
-              <div className="absolute top-0 right-0 bg-green-500 text-white text-xs px-3 py-1 rounded-bl-lg">
+              <div className="absolute top-0 right-0 bg-[#7ca982] text-white text-xs px-3 py-1 rounded-bl-lg">
                 Most popular
               </div>
             )}
-            <h3 className="text-xl font-semibold mb-2 text-green-600">
+            <h3 className="text-xl font-semibold mb-2 text-[#3b5d3b]">
               {plan.title}
             </h3>
 
-            <div className="text-4xl font-bold mb-4 text-green-600">
+            <div className="text-4xl font-bold mb-4 text-[#3b5d3b]">
               {plan.price}
               <span className="text-base font-medium">/month</span>
             </div>
             <button
               className={`w-full py-2 rounded-lg font-semibold text-sm transition ${
                 plan.isPopular
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700"
+                  ? "bg-[#7ca982] text-white"
+                  : "bg-[#f3f9f4] text-[#3b5d3b] border border-[#d2e3c8]"
               }`}
             >
               {plan.buttonText}
             </button>
-            <div className="mt-6 text-xs font-semibold text-gray-500">
+            <div className="mt-6 text-xs font-semibold text-[#7ca982]">
               BENEFITS
             </div>
             <ul className="mt-4 space-y-2 text-sm text-left">
               {plan.features.map((feature, i) => (
                 <li key={i} className="flex items-center gap-2">
-                  <span className="text-green-600">✔</span> {feature}
+                  <span className="text-[#7ca982]">✔</span> {feature}
                 </li>
               ))}
             </ul>
