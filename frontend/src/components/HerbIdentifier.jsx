@@ -81,9 +81,9 @@ If No herb or plant is visible in the image then just return the response as No 
           },
         ];
 
-        const ai = new GoogleGenAI({
-          apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k",
-        });
+      const ai = new GoogleGenAI({
+        apiKey: import.meta.env.VITE_GEMINI_KEY,
+      });
 
         const response = await ai.models.generateContent({
           model: "gemini-2.5-flash",
