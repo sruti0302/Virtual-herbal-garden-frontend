@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Swal from 'sweetalert2';
+import logo from '../assets/logo/logoo.svg'
+
+
 
 const links = [
   { name: "Marketplace", path: "/marketplace" },
@@ -18,6 +22,7 @@ const Navbar = ({ className = "" }) => {
     if (!token) {
       e.preventDefault(); // Stop default navigation
       alert("Please login first.");
+      
       return;
     };};
 
