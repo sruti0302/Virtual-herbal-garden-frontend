@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import { motion } from "framer-motion";
 import Loader from "./components/Loader"; // Import the loader
 import Navbar from "./components/Navbar";
@@ -58,6 +59,7 @@ function App() {
     <Router>
       <div className="bg-white text-gray-900 min-h-screen flex flex-col">
         <Routes>
+          
           <Route
             path="/"
             element={
@@ -106,6 +108,7 @@ function App() {
           />
 
           {/* Other Routes */}
+          
           <Route
             path="/marketplace"
             element={

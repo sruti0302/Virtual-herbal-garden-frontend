@@ -86,7 +86,7 @@ const DoctorPage = () => {
   return (
     <div className="bg-[#f6f8ed] ">
       <Navbar />
-      <div className="min-h-screen  py-10 px-4">
+      <div className="min-h-screen mt-[12vh]  py-10 px-4">
         <div className="text-center mb-10">
           <h1 className="text-3xl font-bold text-[#3b5d3b] mb-2">
             🌿 Healing Through Ayurveda

@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import Swal from 'sweetalert2';
-import logo from '../assets/logo/logoo.svg'
-
-
+import Swal from "sweetalert2";
+import logo from "../assets/logo/logoo.svg";
+import useScrollDirection from "../hooks/useScrollDirection";
 
 const links = [
   { name: "Marketplace", path: "/marketplace" },
@@ -16,6 +15,7 @@ const links = [
 const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const scrollDirection = useScrollDirection();
 
   const handleClick = (e) => {
     const token = sessionStorage.getItem("token");
@@ -23,35 +23,40 @@ const Navbar = ({ className = "" }) => {
       e.preventDefault(); // Stop default navigation
       // alert("Please login first.");
       // console.log("Please login first.");
-      
+
       Swal.fire({
-html: `
+        html: `
     <div class="flex flex-col items-center">
       <img src="${logo}" alt="FloraMed Logo" style="width: 15rem; height: 10rem;" />
     <h2 style=" color: #065f46;">Please login first.</h2>
     </div>
-  `,  text: 'Please login first.',
-  icon: 'warning',
-  confirmButtonText: 'OK',
-  confirmButtonColor: '#3b5d3b',
-  confirmButtonAriaLabel: 'OK',
-  backdrop: `rgba(0,20,0,0.4)  left top no-repeat`,
-  customClass: {
-    popup: 'bg-[#e6f4ea] hover:bg-[#b7d7b0] text-[#3b5d3b]'
-  }
-});
+  `,
+        text: "Please login first.",
+        icon: "warning",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#3b5d3b",
+        confirmButtonAriaLabel: "OK",
+        backdrop: `rgba(0,20,0,0.4)  left top no-repeat`,
+        customClass: {
+          popup: "bg-[#e6f4ea] hover:bg-[#b7d7b0] text-[#3b5d3b]",
+        },
+      });
       return;
-    };};
+    }
+  };
 
-    const handleClickMobile = (e) => {
-      handleClick(e);
-      setOpen(false); // Close the mobile menu after clicking a link
-    };
+  const handleClickMobile = (e) => {
+    handleClick(e);
+    setOpen(false); // Close the mobile menu after clicking a link
+  };
 
   return (
     <nav
-      className={`backdrop-blur-md bg-white/80 border border-gray-200 shadow-md rounded-2xl px-6 py-3 w-[93vw] mx-auto mt-[2vh] ${className}`}
-    >
+  className={`backdrop-blur-md bg-white/80 border border-gray-200 shadow-md rounded-2xl px-6 py-3 w-[93vw] mx-auto mt-[2vh] fixed left-1/2 -translate-x-1/2 z-50 transition-transform duration-300 ease-in-out will-change-transform ${
+    scrollDirection === "down" ? "-translate-y-[200%]" : "translate-y-0"
+  } ${className}`}
+>
+
       <div className="flex items-center justify-between">
         {/* Logo */}
         <Link
