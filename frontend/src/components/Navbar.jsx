@@ -13,6 +13,14 @@ const Navbar = ({ className = "" }) => {
   const [open, setOpen] = useState(false);
   const location = useLocation();
 
+  const handleClick = (e) => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      e.preventDefault(); // Stop default navigation
+      alert("Please login first.");
+      return;
+    };};
+
   return (
     <nav
       className={`backdrop-blur-md bg-white/80 border border-gray-200 shadow-md rounded-2xl px-6 py-3 w-[93vw] mx-auto mt-[2vh] ${className}`}
@@ -51,6 +59,7 @@ const Navbar = ({ className = "" }) => {
               className={`relative text-sm font-medium uppercase tracking-wide ${
                 location.pathname === path ? "text-green-700" : "text-gray-700"
               } hover:text-green-700 transition group`}
+              onClick={handleClick}
             >
               {name}
               <span
