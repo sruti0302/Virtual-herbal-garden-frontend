@@ -1,3 +1,3 @@
 export const isLoggedIn = () => {
-    return !!localStorage.getItem("token");
+    return !!sessionStorage.getItem("token");
   };

@@ -17,10 +17,10 @@ const AddPlant = () => {
       try {
         const res = await axios.get('https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/api/user/profile', {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`
+            Authorization: `Bearer ${sessionStorage.getItem('token')}`
           }
         });
-        console.log('token :', localStorage.getItem('token'));
+        console.log('token :', sessionStorage.getItem('token'));
         
         setUserRole(res.data.role);
         setLoading(false);
@@ -41,7 +41,7 @@ const AddPlant = () => {
       await axios.post('https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/plants/add', data, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${sessionStorage.getItem('token')}`
         }
       });
       toast.success('Plant added successfully!');

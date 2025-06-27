@@ -20,7 +20,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
 
   useEffect(() => {
     const fetchBookmarks = async () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (!token) return;
 
       try {
@@ -48,7 +48,7 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         const response = await axios.get(
           "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/plants/all",
           {

@@ -5,7 +5,7 @@ const Button = ({ text, path = '#', onClick, className = '' }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
 
     if (!token && path !== '#') {
       e.preventDefault(); // Stop default navigation

@@ -49,7 +49,7 @@ function Login() {
         const finalToken = data.token; // Assuming your backend returns a token now
       
         if (finalToken) {
-          localStorage.setItem("token", finalToken);
+          sessionStorage.setItem("token", finalToken);
           navigate("/dashboard"); // Redirect to dashboard
         } else {
           alert("Signup completed, but login token not received. Please login again.");

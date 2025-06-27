@@ -12,12 +12,12 @@ function AuthCallback() {
     const tempToken = params.get("tempToken");
 
     if (token) {
-      localStorage.setItem("token", token);
-      console.log("Token:", token);
+      sessionStorage.setItem("token", token);
+      // console.log("Token:", token);
       
       navigate("/dashboard");
     } else if (tempToken) {
-      localStorage.setItem("tempToken", tempToken);
+      sessionStorage.setItem("tempToken", tempToken);
       navigate(`/login?tempToken=${tempToken}`); // <-- pass token to URL
     } else {
       alert("Login failed. Please try again.");

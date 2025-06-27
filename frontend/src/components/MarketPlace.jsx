@@ -18,7 +18,7 @@ function Marketplace({ cartItems, setCartItems }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const token = localStorage.getItem("token");
+        const token = sessionStorage.getItem("token");
         const res = await axios.get(
           "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/marketplace/products/all",
           {
