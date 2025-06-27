@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const BlogPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -250,6 +251,7 @@ const BlogPage = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

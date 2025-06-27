@@ -302,6 +302,7 @@ export default function Dashboard() {
           }
         }
       `}</style>
+      <Footer/>
     </div>
   );
 }

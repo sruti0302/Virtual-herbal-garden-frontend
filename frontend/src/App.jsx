@@ -29,14 +29,14 @@ import HerbIdentifier from "./components/HerbIdentifier";
 import Contact from "./components/Contact";
 
 function App() {
-  const videos = [
+  /* const videos = [
     "/videos/video1.mp4",
     "/videos/video2.mp4",
     "/videos/video3.mp4",
-  ];
+  ]; */
 
-  const [setCurrentVideoIndex] = useState(0);
-  const [cartItems, setCartItems] = useState([]);
+/*   const [setCurrentVideoIndex] = useState(0);
+ */  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true); // <== Loading state
 
   useEffect(() => {
@@ -44,12 +44,12 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const interval = setInterval(() => {
       setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
     }, 12000);
     return () => clearInterval(interval);
-  }, [videos.length]);
+  }, [videos.length]); */
 
   if (loading) {
     return <Loader />; // 👈 Show loader while loading

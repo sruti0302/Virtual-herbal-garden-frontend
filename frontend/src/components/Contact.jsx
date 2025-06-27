@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
@@ -75,6 +76,7 @@ export default function Contact() {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }
