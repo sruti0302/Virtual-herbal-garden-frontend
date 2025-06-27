@@ -19,7 +19,7 @@ const MyHerbs = () => {
 
   useEffect(() => {
     const fetchBookmarkedPlants = async () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       try {
         const response = await axios.get(
           "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/bookmarks/my",

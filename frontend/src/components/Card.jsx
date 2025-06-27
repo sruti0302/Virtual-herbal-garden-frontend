@@ -7,7 +7,7 @@ function Card({ id, image, title, type, onBuyNow,isInitiallyBookmarked }) {
 
   useEffect(() => {
     const fetchBookmarks = async () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (!token) return;
 
       try {
@@ -33,7 +33,7 @@ function Card({ id, image, title, type, onBuyNow,isInitiallyBookmarked }) {
 
   const handleSave = async (event) => {
     event.stopPropagation();
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     if (!token) {
       console.error("No token found. Please log in.");

@@ -13,7 +13,7 @@ const BlogPage = () => {
   const [userData, setUserData] = useState(null);
   const [likedBlogs, setLikedBlogs] = useState([]); // Track liked blogs
 
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   // Fetch profile data
   useEffect(() => {
@@ -137,7 +137,7 @@ const BlogPage = () => {
                 {userData.name || "Floramed User"}
               </h2>
               <p className="text-xs text-[#6b705c]">
-                {userData.location || "India"}
+                {userData.role || "User"}
               </p>
             </div>
           </div>

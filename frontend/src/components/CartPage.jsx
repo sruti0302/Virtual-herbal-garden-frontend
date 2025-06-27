@@ -6,7 +6,7 @@ function CartPage({ cartItems, setCartItems }) {
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   // const [paymentOngoing, setpaymentOngoing] = useState(false);
-  const token = localStorage.getItem("token");
+  const token = sessionStorage.getItem("token");
 
   // Fetch user profile
   useEffect(() => {
@@ -128,7 +128,7 @@ console.log("Product IDs for order:", productIds);
         description: "Order Payment",
         order_id: order.razorpayOrderId,
         handler: function (response) {
-          const token = localStorage.getItem("token");
+          const token = sessionStorage.getItem("token");
 
           fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/update-status", {
             method: "POST",

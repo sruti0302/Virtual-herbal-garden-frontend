@@ -33,7 +33,7 @@ export default function Dashboard() {
   // Fetch user data
   useEffect(() => {
     const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
+      const token = sessionStorage.getItem("token");
       if (!token) {
         setUser("User");
         setLoading(false);
@@ -56,6 +56,8 @@ export default function Dashboard() {
         setUser(data.name);
         setUserData(data);
         setLoading(false);
+        // console.log("User data fetched successfully:", data);
+        
       } catch (error) {
         setUser("User");
       }
@@ -68,7 +70,7 @@ export default function Dashboard() {
     const fetchNews = async () => {
       try {
         const response = await fetch(
-          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=4"
+          "https://newsdata.io/api/1/news?apikey=pub_81924bea37683a2602e8855a2c144f6c1c31a&q=medicinal%20herbs%20OR%20medicinal%20herbs%20OR%20herbs%20OR%20ayurveda%20OR%20homeopathy&country=in&language=en&category=health,science&size=6"
         );
         if (!response.ok)
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -83,7 +85,7 @@ export default function Dashboard() {
   }, []);
 
   const handleLogout = async () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (!token) return;
     try {
       const response = await fetch(
@@ -94,7 +96,7 @@ export default function Dashboard() {
         }
       );
       if (!response.ok) throw new Error("Logout failed");
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
       window.location.href = "/";
     } catch (err) {}
   };

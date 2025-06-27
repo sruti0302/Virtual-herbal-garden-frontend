@@ -193,7 +193,7 @@ const Orders = () => {
   };
 
   const createOrder = async () => {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
 
     const response = await fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/create", {
       method: 'POST',
@@ -226,7 +226,7 @@ const Orders = () => {
         description: "Order Payment",
         order_id: order.razorpayOrderId,
         handler: function (response) {
-          const token = localStorage.getItem("token");
+          const token = sessionStorage.getItem("token");
 
           fetch("https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/payment/update-status", {
             method: "POST",

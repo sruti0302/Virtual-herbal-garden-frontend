@@ -22,7 +22,7 @@ const HerbalistsMyPlants = () => {
           "https://quarrelsome-mae-subham-org-14444f5f.koyeb.app/plants/my-plants",
           {
             headers: {
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+              Authorization: `Bearer ${sessionStorage.getItem("token")}`,
             },
           }
         );
