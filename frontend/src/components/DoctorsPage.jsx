@@ -84,7 +84,7 @@ const DoctorPage = () => {
   });
 
   return (
-    <div className="bg-[#f6f8ed]">
+    <div className="bg-[#f6f8ed] ">
       <Navbar />
       <div className="min-h-screen  py-10 px-4">
         <div className="text-center mb-10">

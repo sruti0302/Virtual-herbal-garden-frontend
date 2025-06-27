@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
 import axios from "axios";
 
-function Card({ id, image, title, type, onBuyNow,isInitiallyBookmarked }) {
+function Card({ id, image, title, type, onBuyNow, isInitiallyBookmarked }) {
   const [isSaved, setIsSaved] = useState(isInitiallyBookmarked || false);
 
   useEffect(() => {
@@ -72,23 +72,30 @@ function Card({ id, image, title, type, onBuyNow,isInitiallyBookmarked }) {
 
   return (
     <div
-      className="bg-white shadow-md rounded-2xl overflow-hidden transform transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+      className="bg-[#f3f9f4] border border-[#d2e3c8] rounded-md shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer flex flex-col"
       onClick={onBuyNow}
     >
-      <img src={image} alt={title} className="w-full h-48 object-cover" />
-      <div className="p-4">
-        <h3 className="text-xl font-semibold text-green-700">{title}</h3>
-        <p className="text-sm text-gray-600 mt-2">{type}</p>
-        <button
-          className="mt-4 px-4 py-2 rounded bg-gray-200 text-gray-700 flex items-center"
-          onClick={handleSave}
-        >
-          {isSaved ? (
-            <FaBookmark className="text-green-500" />
-          ) : (
-            <FaRegBookmark className="text-gray-700" />
-          )}
-        </button>
+      <img
+        src={image}
+        alt={title}
+        className="w-full h-44 object-cover rounded-md"
+      />
+      <div className="p-4 flex flex-col flex-1">
+        <div className="flex items-center justify-between mb-2">
+          <h3 className="text-lg font-semibold text-[#3b5d3b]">{title}</h3>
+          <button
+            className="p-1 rounded-full hover:bg-[#e6f4ea] transition"
+            onClick={handleSave}
+            aria-label={isSaved ? "Remove Bookmark" : "Add Bookmark"}
+          >
+            {isSaved ? (
+              <FaBookmark className="text-[#7ca982] text-xl" />
+            ) : (
+              <FaRegBookmark className="text-[#8a958a] text-xl" />
+            )}
+          </button>
+        </div>
+        <p className="text-xs text-[#7ca982]">{type}</p>
       </div>
     </div>
   );

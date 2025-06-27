@@ -2,9 +2,10 @@ import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { CheckCircle } from "lucide-react";
 
-
-const ai = new GoogleGenAI({ apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k" });
-const star="*";
+const ai = new GoogleGenAI({
+  apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k",
+});
+const star = "*";
 
 const herbalFacts = [
   "Aloe Vera gel contains over 75 active ingredients including vitamins, enzymes, and amino acids.",
@@ -26,15 +27,15 @@ const herbalFacts = [
   "Calendula flowers are edible and their extract promotes wound healing and reduces inflammation.",
   "Dandelion is a natural diuretic and detoxifier that supports liver and kidney function.",
   "Milk Thistle protects the liver and is often used to treat liver cirrhosis and hepatitis.",
-  "Hibiscus tea is rich in antioxidants and can help lower blood pressure naturally."
+  "Hibiscus tea is rich in antioxidants and can help lower blood pressure naturally.",
 ];
 
 const steps = [
-    "Capture or upload a clear image of the herb showing leaves, flowers, or distinctive features",
-    "Our botanical AI analyzes the plant morphology against thousands of species",
-    "Get detailed information including scientific name, medicinal properties, and growing conditions",
-    "Learn about traditional uses and fascinating folklore surrounding the plant",
-  ];
+  "Capture or upload a clear image of the herb showing leaves, flowers, or distinctive features",
+  "Our botanical AI analyzes the plant morphology against thousands of species",
+  "Get detailed information including scientific name, medicinal properties, and growing conditions",
+  "Learn about traditional uses and fascinating folklore surrounding the plant",
+];
 
 export default function HerbIdentifier() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -42,7 +43,6 @@ export default function HerbIdentifier() {
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [fact, setFact] = useState(null);
-
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -53,203 +53,181 @@ export default function HerbIdentifier() {
   };
 
   const handleSubmit = async () => {
-  if (!selectedImage) return;
-  setLoading(true);
-  setResult("");
+    if (!selectedImage) return;
+    setLoading(true);
+    setResult("");
 
-  try {
-    const reader = new FileReader();
+    try {
+      const reader = new FileReader();
 
-    reader.onloadend = async () => {
-      const base64ImageFile = reader.result.split(",")[1]; // Remove data prefix
+      reader.onloadend = async () => {
+        const base64ImageFile = reader.result.split(",")[1];
 
-      const contents = [
-        {
-          inlineData: {
-            mimeType: selectedImage.type,
-            data: base64ImageFile,
+        const contents = [
+          {
+            inlineData: {
+              mimeType: selectedImage.type,
+              data: base64ImageFile,
+            },
           },
-        },
-        {
-          text: `Identify the herb or plant shown in the image. Provide the following details in a clean, bullet-point format:
+          {
+            text: `Identify the herb or plant shown in the image. Provide the following details in a clean, bullet-point format:
 • Common Name
 • Scientific Name
 • Brief Description
 • Key Medicinal Uses (3 to 5 points)
 Keep the total response within 200 words. Do not include any extra text outside the bullet points.Use | as delimeter to separate lines or bullets
 If No herb or plant is visible in the image then just return the response as No herb or plant is visible in the image.`,
-        },
-      ];
+          },
+        ];
 
       const ai = new GoogleGenAI({
         apiKey: import.meta.env.VITE_GEMINI_KEY,
       });
 
-      const response = await ai.models.generateContent({
-        model: "gemini-2.5-flash",
-        contents: contents,
-      });
+        const response = await ai.models.generateContent({
+          model: "gemini-2.5-flash",
+          contents: contents,
+        });
 
-      const resultText = await response.text;
-      setResult(resultText);
+        const resultText = await response.text;
+        setResult(resultText);
 
-      const randomFact = herbalFacts[Math.floor(Math.random() * herbalFacts.length)];
-      setFact(randomFact);
+        const randomFact =
+          herbalFacts[Math.floor(Math.random() * herbalFacts.length)];
+        setFact(randomFact);
 
+        setLoading(false);
+      };
+
+      reader.readAsDataURL(selectedImage);
+    } catch (err) {
+      console.error(err);
+      setResult("Failed to identify the herb. Please try again.");
       setLoading(false);
-    };
-
-    reader.readAsDataURL(selectedImage);
-  } catch (err) {
-    console.error(err);
-    setResult("Failed to identify the herb. Please try again.");
-    setLoading(false);
-  }
-};
-
+    }
+  };
 
   return (
     <>
-          <div className="my-8 border-t border-green-200" />
-    <div className="min-h-screen w-full  flex flex-col items-center justify-center p-4">
-
-
-      <div className="min-h-screen bg-white  rounded-2xl p-8  w-full ">
-          <h1 className="text-7xl font-extrabold text-[#45ad01] mb-[-0.05rem] text-center">BotanIQ</h1>
-          <p className="text-center text-[#45ad01] mb-2 italic font-semibold"><small>Your Pocket Herbalist, Powered by AI.</small></p>
+      
+      <div className="bg-[#f6f8ed] border border-[#d2e3c8] shadow rounded-3xl p-4 min-h-screen w-[96vw] mx-auto flex flex-col items-center justify-center">
+        <div className="w-full max-w-6xl mx-auto  rounded-2xl p-8 ">
+          {/* Header */}
+          <h1 className="text-5xl md:text-7xl font-extrabold text-[#3b5d3b] mb-2 text-center">
+            BotanIQ
+          </h1>
+          <p className="text-center text-[#7ca982] mb-4 italic font-semibold">
+            <small>Your Pocket Herbalist, Powered by AI.</small>
+          </p>
 
           <div className="grid grid-cols-1 md:grid-cols-[30%_70%] gap-8">
-          {/* Left Column: Content */}
-          <div className="flex flex-col items-center text-gray-700 text-lg space-y-4 w-[100%] ">
-            <img src="https://cdn-icons-png.flaticon.com/512/5382/5382875.png" alt="" className="w-15 md:w-18 sm:w-14 "/>
-            <p className="font-bold text-4xl text-[#54bc11] mb-10"><strong>"Let's Identify Your Herb,,     </strong></p>
-            {/* <p>
-              <strong>Welcome to BotanIQ</strong> – an AI-powered plant and herb identification system designed to reconnect you with nature.
-            </p>
-            
-            <p className="mt-12">
-              It’s more than identification – it's a bridge between tradition and technology, powered by cutting-edge AI and a deep respect for the healing world of herbs.
-            </p>
-            <p className="font-bold text-green-700 font-mono italic mt-12 ">
-              Snap a leaf • Upload the image • Learn the wisdom of nature
-            </p> */}
-
-            <div className="flex flex-col  rounded-lg bg-green-100 p-6 shadow-md w-full ">
-              <div className="flex items-center gap-2 mb-4">
-                <CheckCircle className="text-green-600" size={24} />
-              <h2 className="font-bold text-2xl text-gray-700">The Identification Process</h2>
+            {/* Left Column: Info & Steps */}
+            <div className="flex flex-col items-center text-[#3b5d3b] text-lg space-y-4 w-full">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/5382/5382875.png"
+                alt=""
+                className="w-16 md:w-20 sm:w-14"
+              />
+              <p className="font-bold text-3xl md:text-4xl text-[#7ca982] mb-6">
+                "Let's Identify Your Herb"
+              </p>
+              <div className="flex flex-col rounded-lg bg-[#e6f4ea] p-6 shadow-md w-full">
+                <div className="flex items-center gap-2 mb-4">
+                  <CheckCircle className="text-[#7ca982]" size={24} />
+                  <h2 className="font-bold text-xl text-[#3b5d3b]">
+                    The Identification Process
+                  </h2>
+                </div>
+                <ol className="list-decimal list-inside space-y-3 text-[#3b5d3b] pl-5">
+                  {steps.map((step, index) => (
+                    <li key={index}>{step}</li>
+                  ))}
+                </ol>
               </div>
-              
-              <ol className="list-decimal list-inside space-y-3 text-gray-700 pl-5">
-        {steps.map((step, index) => (
-          <li key={index}>{step}</li>
-        ))}
-      </ol>
+              {fact && (
+                <div className="mt-6 p-4 bg-[#fffbe6] border-l-4 border-[#ffe066] rounded">
+                  <h2 className="font-semibold text-[#b7d7b0] mb-1">
+                    🌱 Did you know?
+                  </h2>
+                  <p className="text-[#3b5d3b] text-sm">{fact}</p>
+                </div>
+              )}
             </div>
-            
 
-        {fact && (
-          <div className="mt-6 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded">
-            <h2 className="font-semibold text-yellow-700 mb-1">🌱 Do you know ?</h2>
-            <p className="text-gray-700 text-sm">{fact}</p>
+            {/* Right Column: Upload & Result */}
+            <div>
+              <div className="flex items-center justify-center">
+                <div className="bg-white p-6 rounded-xl shadow-md flex flex-col items-center justify-center w-full mb-2 border border-[#d2e3c8]">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="block text-sm text-[#3b5d3b] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#e6f4ea] file:text-[#7ca982] hover:file:bg-[#b7d7b0] mb-2"
+                  />
+                  {!previewImage && (
+                    <div className="mb-2 rounded-xl w-64 h-72 border-2 border-[#d2e3c8] text-center pt-[10%] text-[#8a958a] bg-[#f6f8ed]">
+                      No image selected. Please upload an image of a herb or
+                      plant.
+                    </div>
+                  )}
+
+                  {previewImage && (
+                    <div className="mb-2">
+                      <img
+                        src={previewImage}
+                        alt="Preview"
+                        className="rounded-xl w-64 h-72 object-cover mx-auto border border-[#d2e3c8]"
+                      />
+                    </div>
+                  )}
+
+                  <button
+                    onClick={handleSubmit}
+                    disabled={loading || !selectedImage}
+                    className="bg-[#7ca982] hover:bg-[#3b5d3b] text-white font-semibold py-2 px-6 rounded-lg mb-2 transition"
+                  >
+                    {loading ? "Identifying..." : "Identify Herb"}
+                  </button>
+                </div>
+              </div>
+
+              {!result && (
+                <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-8 min-h-70 font-semibold bg-[#f3f9f4] p-4 rounded-lg border border-[#d2e3c8] text-[#3b5d3b] whitespace-pre-wrap mt-4">
+                  <div className="text-left flex flex-col">
+                    💡 How to get the best result?
+                    <ul className="list-disc list-inside mt-2">
+                      <li>
+                        Capture the herb in good lighting (preferably daylight).
+                      </li>
+                      <li>Avoid background clutter or multiple plants.</li>
+                      <li>Ensure the image is not blurry or overexposed.</li>
+                      <li>Leaf close-ups work better for identification.</li>
+                    </ul>
+                  </div>
+                  <img
+                    src="https://i.pinimg.com/originals/08/18/a2/0818a2dfa9859144ebd35dd885226576.gif"
+                    alt=""
+                    className="w-100 md:w-95 sm:w-80 h-70 md:h-70 sm:h-68"
+                  />
+                </div>
+              )}
+
+              {result && (
+                <div className="text-left font-semibold bg-[#e6f4ea] p-4 rounded-lg border border-[#d2e3c8] text-[#3b5d3b] whitespace-pre-wrap mt-4">
+                  {result
+                    .replaceAll("*", " ")
+                    .split("|")
+                    .map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))}
+                </div>
+              )}
+            </div>
           </div>
-        )}
-          </div>
-
-          {/* Right Column: Image Upload and Result */}
-        <div>
-
-          <div className=" flex items-center justify-center  ">
-  <div className="bg-white p-6 rounded-lg shadow-md flex flex-col items-center justify-center w-full mb-2 ">
-    
-    <input
-      type="file"
-      accept="image/*"
-      onChange={handleImageChange}
-      className="block text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-green-100 file:text-green-700 hover:file:bg-green-200 mb-2"
-    />
-    {!previewImage && (
-      <div className="mb-2 rounded-xl w-64 h-72 border-2 border-gray-300 text-center pt-[10%]">
-        No image selected. Please upload an image of a herb or plant.
-      </div>
-    )}
-
-    {previewImage && (
-      <div className="mb-2">
-        <img
-          src={previewImage}
-          alt="Preview"
-          className="rounded-xl w-64 h-72 object-cover mx-auto"
-        />
-      </div>
-    )}
-
-    <button
-      onClick={handleSubmit}
-      disabled={loading || !selectedImage}
-      className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg mb-2"
-    >
-      {loading ? "Identifying..." : "Identify Herb"}
-    </button>
-
-  </div>
-</div>
-
-{!result && (
-          <div className="grid grid-cols-1 md:grid-cols-[60%_40%] gap-8  min-h-70 font-semibold bg-white p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
-     
-          <div className="text-left flex flex-col">
-            💡 How to get the best result?
-          <ul className="list-disc list-inside mt-2">
-            <li>Capture the herb in good lighting (preferably daylight).</li>
-            <li>Avoid background clutter or multiple plants.</li>
-            <li>Ensure the image is not blurry or overexposed.</li>
-            <li>Leaf close-ups work better for identification.</li>
-          </ul>
-          </div>
-          
-
-          <img src="https://i.pinimg.com/originals/08/18/a2/0818a2dfa9859144ebd35dd885226576.gif" alt="" className=" w-100 md:w-95 sm:w-80 h-70 md:h-70 sm:h-68" />
- 
-          </div>
-        )}
-
-{/* {!result && !loading && (
-          <div className="flex flex-col min-h-70 font-semibold bg-white p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
-     
-          💡 How to get the best result?
-          <ul className="list-disc list-inside mt-2">
-            <li>Capture the herb in good lighting (preferably daylight).</li>
-            <li>Avoid background clutter or multiple plants.</li>
-            <li>Ensure the image is not blurry or overexposed.</li>
-            <li>Leaf close-ups work better for identification.</li>
-          </ul>
-          
-
-          <img src="https://cdn.pixabay.com/animation/2023/08/21/15/08/15-08-12-734_512.gif" alt="" className=" w-50 md:w-55 sm:w-40 h-60 md:h-60 sm:h-60" />
- 
-          </div>
-        )} */}
-
-  {result && (
-          <div className="text-left font-semibold bg-green-100 p-4 rounded-lg border border-green-200 text-emerald-800 whitespace-pre-wrap">
-            {result.replaceAll("*" , " ").split("|").map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
-          </div>
-        )}
-
-        
-        
-
-        
         </div>
-        </div>
-
       </div>
-    </div>
-              <div className="my-8 border-t border-green-200" />
-
+      
     </>
   );
 }

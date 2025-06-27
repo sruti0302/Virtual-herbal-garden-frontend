@@ -13,11 +13,6 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
- 
-  const filteredcards = cardsData.filter((card) =>
-    card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   useEffect(() => {
     const fetchBookmarks = async () => {
       const token = sessionStorage.getItem("token");
@@ -123,27 +118,28 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
       );
     }
   };
+
   const filteredCards = cardsData.filter((card) =>
     card.plantName.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   return (
-    <section className="py-12 px-6 bg-green-50 relative">
-      <h2 className="text-3xl font-bold text-center text-green-800 mb-10">
-        Our Herbal Picks 🌱
+    <section className="py-10 px-2 bg-[#f6f8ed] min-h-screen rounded-3xl mt-8 mx-auto w-[96vw] shadow border border-[#d2e3c8]">
+      <h2 className="text-3xl font-bold text-center text-[#3b5d3b] mb-10">
+        Our Herbal Picks <span className="text-[#7ca982]">🌱</span>
       </h2>
 
-
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-8">
         <input
           type="text"
           placeholder="Search plants..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full max-w-md px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500"
+          className="w-full max-w-md px-4 py-2 border border-[#d2e3c8] rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#b7d7b0] bg-white text-[#3b5d3b] placeholder:text-[#8a958a] transition"
         />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {filteredCards.map((card, index) => (
           <Card
             id={card.id}
@@ -236,12 +232,10 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
     </div>
   )}
 </Modal>
- 
-
 
       {cartItems.length > 0 && (
         <div
-          className="fixed bottom-8 left-8 bg-green-600 text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer"
+          className="fixed bottom-8 left-8 bg-[#7ca982] text-white p-4 rounded-full shadow-lg flex items-center justify-center cursor-pointer z-50"
           onClick={() => navigate("/cart")}
         >
           <BsCart2 size={24} />
