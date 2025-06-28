@@ -16,13 +16,14 @@
     "@tailwindcss/vite": "^4.1.4",
     "aos": "^2.3.4",
     "axios": "^1.8.4",
+    "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "framer-motion": "^12.7.4",
     "frontend": "file:",
     "gsap": "^3.12.7",
     "i18next": "^25.0.0",
     "lucide-react": "^0.501.0",
-    "motion": "^12.7.4",
+    "motion": "^12.19.2",
     "react": "^19.0.0",
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.0.0",
@@ -36,6 +37,7 @@
     "styled-components": "^6.1.19",
     "sweetalert2": "^11.22.1",
     "swiper": "^11.2.6",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {

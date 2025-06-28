@@ -2,6 +2,7 @@ import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { CheckCircle } from "lucide-react";
 
+
 const ai = new GoogleGenAI({
   apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k",
 });
@@ -107,6 +108,8 @@ If No herb or plant is visible in the image then just return the response as No 
       setLoading(false);
     }
   };
+
+  const resultModify = result.replaceAll(star, " ").split("|").join("\n");
 
   return (
     <>
@@ -215,12 +218,14 @@ If No herb or plant is visible in the image then just return the response as No 
 
               {result && (
                 <div className="text-left font-semibold bg-[#e6f4ea] p-4 rounded-lg border border-[#d2e3c8] text-[#3b5d3b] whitespace-pre-wrap mt-4">
-                  {result
+                  {/* {result
                     .replaceAll("*", " ")
                     .split("|")
                     .map((line, index) => (
                       <p key={index}>{line}</p>
-                    ))}
+                    ))} */}
+
+                    <TextGenerateEffect duration={0.35} words={resultModify} />
                 </div>
               )}
             </div>
