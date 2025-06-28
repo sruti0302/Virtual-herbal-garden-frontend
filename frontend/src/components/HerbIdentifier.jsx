@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { GoogleGenAI } from "@google/genai";
 import { CheckCircle } from "lucide-react";
-
+"use client";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const ai = new GoogleGenAI({
   apiKey: "AIzaSyA8_1LBdhfFkzEXqq4rOtfTvEjkejzR06k",
