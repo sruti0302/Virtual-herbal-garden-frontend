@@ -116,7 +116,7 @@ If No herb or plant is visible in the image then just return the response as No 
     <>
       
       <div className="bg-[#f6f8ed] border border-[#d2e3c8] shadow rounded-3xl p-4 min-h-screen w-[96vw] mx-auto flex flex-col items-center justify-center">
-        <div className="w-full max-w-6xl mx-auto  rounded-2xl p-8 ">
+        <div className="w-full max-w-7xl mx-auto  rounded-2xl p-8 ">
           {/* Header */}
           <h1 className="text-5xl md:text-7xl font-extrabold text-[#3b5d3b] mb-2 text-center">
             BotanIQ
@@ -133,7 +133,7 @@ If No herb or plant is visible in the image then just return the response as No 
                 alt=""
                 className="w-16 md:w-20 sm:w-14"
               />
-              <p className="font-bold text-3xl md:text-4xl text-[#7ca982] mb-6">
+              <p className="font-bold text-center text-3xl md:text-4xl text-[#7ca982] mb-6">
                 "Let's Identify Your Herb"
               </p>
               <div className="flex flex-col rounded-lg bg-[#e6f4ea] p-6 shadow-md w-full">
@@ -226,7 +226,7 @@ If No herb or plant is visible in the image then just return the response as No 
                       <p key={index}>{line}</p>
                     ))} */}
 
-                    <TextGenerateEffect duration={0.35} words={resultModify} />
+                    <TextGenerateEffect duration={0.2} words={resultModify} />
                 </div>
               )}
             </div>
