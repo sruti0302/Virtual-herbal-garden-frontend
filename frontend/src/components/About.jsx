@@ -29,6 +29,7 @@ import {
 import { FaHtml5, FaCss3Alt } from "react-icons/fa";
 import Navbar from "./Navbar";
 import { motion } from "framer-motion";
+import Footer from "./Footer";
 
 const teamMembers = [
   {
@@ -91,8 +92,8 @@ export default function About() {
   return (
     <>
       <Navbar className="" />
-      <div className="min-h-screen bg-gradient-to-b from-white to-green-100 py-10 px-4">
-        <h1 className="text-4xl font-bold text-center mb-12 text-green-700">
+      <div className="min-h-screen bg-gradient-to-b mt-[12vh] from-white to-[#f6f8ed] py-10 px-4">
+        <h1 className="text-4xl font-bold text-center mb-12 text-[#3b5d3b]">
           About Our Team
         </h1>
 
@@ -159,6 +160,7 @@ export default function About() {
           ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
