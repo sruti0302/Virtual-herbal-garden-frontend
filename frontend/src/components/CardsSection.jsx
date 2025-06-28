@@ -5,6 +5,8 @@ import { BsCart2 } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+
+
 function CardsSection({ cartItems, setCartItems, onSave }) {
   const [cardsData, setCardsData] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -12,6 +14,9 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   const navigate = useNavigate();
   const [bookmarkedIds, setBookmarkedIds] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+
+ 
 
   useEffect(() => {
     const fetchBookmarks = async () => {
@@ -124,8 +129,8 @@ function CardsSection({ cartItems, setCartItems, onSave }) {
   );
 
   return (
-    <section className="py-10 px-2 bg-[#f6f8ed] min-h-screen rounded-3xl mt-8 mx-auto w-[96vw] shadow border border-[#d2e3c8]">
-      <h2 className="text-3xl font-bold text-center text-[#3b5d3b] mb-10">
+    <section  className="py-10 px-2 bg-[#f6f8ed] min-h-screen rounded-3xl mt-8 mx-auto w-[96vw] shadow border border-[#d2e3c8]">
+      <h2  className="text-3xl font-bold text-center text-[#3b5d3b] mb-10">
         Our Herbal Picks <span className="text-[#7ca982]">🌱</span>
       </h2>
 

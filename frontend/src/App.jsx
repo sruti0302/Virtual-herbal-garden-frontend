@@ -27,16 +27,11 @@ import Testimonials from "./components/Testimonials";
 import MarketPlace from "./components/MarketPlace";
 import HerbIdentifier from "./components/HerbIdentifier";
 import Contact from "./components/Contact";
-
 function App() {
-  /* const videos = [
-    "/videos/video1.mp4",
-    "/videos/video2.mp4",
-    "/videos/video3.mp4",
-  ]; */
+  
+  
 
-/*   const [setCurrentVideoIndex] = useState(0);
- */  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true); // <== Loading state
 
   useEffect(() => {
@@ -44,12 +39,7 @@ function App() {
     return () => clearTimeout(timer);
   }, []);
 
-  /* useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentVideoIndex((prevIndex) => (prevIndex + 1) % videos.length);
-    }, 12000);
-    return () => clearInterval(interval);
-  }, [videos.length]); */
+  
 
   if (loading) {
     return <Loader />; // 👈 Show loader while loading
@@ -61,6 +51,7 @@ function App() {
         <Routes>
           
           <Route
+            
             path="/"
             element={
               <>
@@ -78,7 +69,7 @@ function App() {
                   {/* Navbar and Hero Section */}
                   <div className="relative z-10">
                     <Navbar className="text-white" />
-                    <Hero />
+                    <Hero  />
                   </div>
 
                   {/* Grayish Overlay */}
@@ -88,14 +79,15 @@ function App() {
                 {/* Cards Section */}
                 
                   <CardsSection
+                    
                     cartItems={cartItems}
                     setCartItems={setCartItems}
                   />
                 
 
                 {/* Features Section */}
-                <div className="px-4 sm:px-6 lg:px-8">
-                  <Features />
+                <div  className="px-4 sm:px-6 lg:px-8">
+                  <Features  />
                 </div>
 
                 <HerbIdentifier />
