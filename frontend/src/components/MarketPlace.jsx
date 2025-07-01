@@ -154,7 +154,7 @@ function Marketplace({ cartItems, setCartItems }) {
                       e.stopPropagation();
                       handleAdd(product);
                     }}
-                    className="flex-1 border border-[#7ca982] text-[#3b5d3b] py-1 rounded hover:bg-[#e6f4ea] transition"
+                    className="flex-1 cursor-pointer border border-[#7ca982] text-[#3b5d3b] py-1 rounded hover:bg-[#e6f4ea] transition"
                   >
                     Add to Cart
                   </button>
@@ -163,7 +163,7 @@ function Marketplace({ cartItems, setCartItems }) {
                       e.stopPropagation();
                       openModal(product);
                     }}
-                    className="flex-1 border border-[#7ca982] text-[#3b5d3b] py-1 rounded hover:bg-[#b7d7b0] transition"
+                    className="flex-1 border cursor-pointer border-[#7ca982] text-[#3b5d3b] py-1 rounded hover:bg-[#b7d7b0] transition"
                   >
                     Buy Now
                   </button>
@@ -224,27 +224,27 @@ function Marketplace({ cartItems, setCartItems }) {
                     handleAdd(selectedProduct);
                     navigate("/cart");
                   }}
-                  className="flex-1 border border-[#7ca982] text-[#3b5d3b] py-2 rounded hover:bg-[#e6f4ea] transition"
+                  className="flex-1 cursor-pointer border border-[#7ca982] text-[#3b5d3b] py-2 rounded hover:bg-[#e6f4ea] transition"
                 >
                   Buy Now
                 </button>
                 <button
                   onClick={() => handleAdd(selectedProduct)}
-                  className="flex-1 border border-[#7ca982] text-[#3b5d3b] py-2 rounded hover:bg-[#b7d7b0] transition"
+                  className="flex-1 cursor-pointer border border-[#7ca982] text-[#3b5d3b] py-2 rounded hover:bg-[#b7d7b0] transition"
                 >
                   <BsCart2 className="inline mr-1 mb-1" />
                   Add to Cart
                 </button>
                 <button
                   onClick={() => handleRemove(selectedProduct)}
-                  className="flex-1 border border-red-400 text-red-500 py-2 rounded hover:bg-red-50 transition"
+                  className="flex-1 cursor-pointer border border-red-400 text-red-500 py-2 rounded hover:bg-red-50 transition"
                 >
                   Remove
                 </button>
               </div>
               <button
                 onClick={closeModal}
-                className="w-full mt-4 border border-gray-300 text-gray-600 py-2 rounded hover:bg-gray-100 transition"
+                className="w-full mt-4 border border-gray-300 cursor-pointer text-gray-600 py-2 rounded hover:bg-gray-100 transition"
               >
                 Close
               </button>

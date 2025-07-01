@@ -167,7 +167,7 @@ If No herb or plant is visible in the image then just return the response as No 
                     type="file"
                     accept="image/*"
                     onChange={handleImageChange}
-                    className="block text-sm text-[#3b5d3b] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#e6f4ea] file:text-[#7ca982] hover:file:bg-[#b7d7b0] mb-2"
+                    className="block text-sm cursor-pointer text-[#3b5d3b] file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#e6f4ea] file:text-[#7ca982] hover:file:bg-[#b7d7b0] mb-2"
                   />
                   {!previewImage && (
                     <div className="mb-2 rounded-xl w-64 h-72 border-2 border-[#d2e3c8] text-center pt-[10%] text-[#8a958a] bg-[#f6f8ed]">
@@ -189,7 +189,7 @@ If No herb or plant is visible in the image then just return the response as No 
                   <button
                     onClick={handleSubmit}
                     disabled={loading || !selectedImage}
-                    className="bg-[#7ca982] hover:bg-[#3b5d3b] text-white font-semibold py-2 px-6 rounded-lg mb-2 transition"
+                    className="bg-[#7ca982] hover:bg-[#3b5d3b] text-white font-semibold py-2 px-6 rounded-lg mb-2 transition cursor-pointer"
                   >
                     {loading ? "Identifying..." : "Identify Herb"}
                   </button>
