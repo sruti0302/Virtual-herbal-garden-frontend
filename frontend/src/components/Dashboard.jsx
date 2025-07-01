@@ -184,7 +184,7 @@ export default function Dashboard() {
         {/* Right: Logout */}
         <div className="flex justify-end min-w-[100px]">
           <button
-            className="flex items-center gap-1 bg-[#b7d7b0] hover:bg-[#a3cfa0] text-[#3b5d3b] px-4 py-1.5 rounded font-semibold text-xs sm:text-sm transition"
+            className="flex items-center gap-1 bg-[#b7d7b0] hover:bg-[#a3cfa0] text-[#3b5d3b] cursor-pointer px-4 py-1.5 rounded font-semibold text-xs sm:text-sm transition"
             onClick={handleLogout}
           >
             <LogOut size={18} />

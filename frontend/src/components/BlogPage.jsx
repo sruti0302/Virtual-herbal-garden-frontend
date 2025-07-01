@@ -172,7 +172,7 @@ const BlogPage = () => {
             ></textarea>
             <button
               type="submit"
-              className="bg-[#7ca982] text-white px-6 py-2 rounded-lg shadow hover:bg-[#3b5d3b] transition"
+              className="bg-[#7ca982] text-white cursor-pointer px-6 py-2 rounded-lg shadow hover:bg-[#3b5d3b] transition"
             >
               Post
             </button>
