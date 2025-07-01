@@ -7,6 +7,7 @@ import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import exclaim from "../assets/exclaim.svg";
 
 function Marketplace({ cartItems, setCartItems }) {
   const [products, setProducts] = useState([]);
@@ -87,6 +88,26 @@ function Marketplace({ cartItems, setCartItems }) {
   const filtered = products.filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+
+  if(sessionStorage.getItem("token") === null) {
+
+    return (
+    <>
+    <div className="flex flex-col items-center justify-center py-24">
+            <img src={exclaim} alt="Exclaim" className="w-24 h-24 mb-4" />
+            <p className="text-gray-400 text-lg mb-6">You haven't logged in.</p>
+            <p className="text-gray-400 text-lg mb-6">Please login and comeback.</p>
+            <button
+              onClick={() => navigate("/")}
+              className="px-6 py-3 rounded-xl bg-green-600 cursor-pointer text-white font-semibold hover:bg-green-700 transition text-lg shadow"
+            >
+              Go to Home
+            </button>
+          </div>
+    </>
+    )
+  }
 
   return (
     <>
